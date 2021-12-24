@@ -1,0 +1,28 @@
+header {
+  .v-toolbar__title {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .v-toolbar__content {
+    @media only screen and (max-width: 599px) {
+      padding: 0;
+    }
+  }
+}
+
+.mainHeader {
+  .v-toolbar__items {
+    .v-btn__content {
+      a {
+        color: $black;
+      }
+    }
+
+    .v-btn {
+      @media only screen and (max-width: 599px) {
+        padding: 0 0 0 10px;
+      }
+    }
+  }
+}
