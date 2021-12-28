@@ -1,22 +1,22 @@
 package com.example.weddingplanner.model;
 
-import com.example.weddingplanner.dao.DAO;
-import com.example.weddingplanner.dao.UserJdbcDAO;
+import com.example.weddingplanner.dao.UserDAO;
 import com.example.weddingplanner.model.userComponent.*;
 
 //treats with the database and the userRecord
 public class BackendFacade implements IBackend{
 
-    private DAO dao;
+    private final UserDAO dao;
 
-    public BackendFacade(DAO<User> dao){
-        this.dao= (DAO) dao;
+    public BackendFacade(UserDAO dao){
+        this.dao= dao;
     }
 
     @Override
     public boolean checkValidAddress(String email) {
         return dao.checkEmailExists(email);
     }
+
     @Override
     public int logIn(String email, String password) {
         User user = dao.getByEmailAndPassword(email,password);

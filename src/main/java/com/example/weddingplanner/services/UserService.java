@@ -1,6 +1,6 @@
 package com.example.weddingplanner.services;
 
-import com.example.weddingplanner.dao.DAO;
+import com.example.weddingplanner.dao.UserDAO;
 import com.example.weddingplanner.model.BackendFacade;
 import com.example.weddingplanner.model.userComponent.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +11,23 @@ import java.util.HashSet;
 @Service("userService")
 public class UserService {
 
-    @Autowired
-    private DAO<User> userDAO;
-    BackendFacade backend;
+    private final UserDAO userDAO;
+    private BackendFacade backend;
     private HashSet<Integer> activeUsers=new HashSet();
+
+    @Autowired
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
 
     public String signUp(User user){
-        initializeBackend();
+        backend = getSingleton();
         return backend.signUp(user);
     }
 
     public int logIn(String email, String password){
-        initializeBackend();
+        backend = getSingleton();
         int userId=backend.logIn(email,password);
         if (userId!=-1){
             activeUsers.add(userId);
@@ -31,8 +35,9 @@ public class UserService {
         return userId;
     }
 
-    private void initializeBackend(){
+    private BackendFacade getSingleton(){
         if(backend==null)
             backend = new BackendFacade(userDAO);
+        return backend;
     }
 }

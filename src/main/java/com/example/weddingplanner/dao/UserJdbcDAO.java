@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Repository("userDAO")
-public class UserJdbcDAO implements DAO<User> {
+public class UserJdbcDAO implements UserDAO{
 
     private final JdbcTemplate jdbcTemplate;
     private static final Logger log = LoggerFactory.getLogger(UserJdbcDAO.class);
