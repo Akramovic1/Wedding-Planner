@@ -1,4 +1,5 @@
 <template>
+  <v-form>
   <v-container id="container" >
       <v-row style="margin: 90px 0px 90px 0px" align="center" justify="center" >
           <v-col cols="12" sm="10">
@@ -17,6 +18,7 @@
                           <v-text-field
                             v-model="EmailAddress"
                             label="Email"
+                            :rules="emailRules"
                             outlined
                             dense
                             color="#FF4F5A"
@@ -111,6 +113,7 @@
                             <v-text-field
                               v-model="FirstName"
                               label="First Name"
+                              :rules="nameRules"
                               outlined
                               dense
                               color="#FF4F5A"
@@ -122,6 +125,7 @@
                             <v-text-field
                             v-model="LastName"
                             label="Last Name"
+                            :rules="lastNameRules"
                             outlined
                             dense
                             color="#FF4F5A"
@@ -133,6 +137,7 @@
                           <v-text-field
                             v-model="EmailAddress"
                             label="Email"
+                            :rules="emailRules"
                             outlined
                             dense
                             color="#FF4F5A"
@@ -141,11 +146,29 @@
                           <v-text-field
                             v-model="password"
                             label="Password"
+                            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[passwordRules.required, passwordRules.min]"
+                            :type="show ? 'text' : 'password'"
                             outlined
                             dense
                             color="#FF4F5A"
-                          autocomplete="false"
-                           type="password"
+                            autocomplete="false"
+                            hint="At least 8 characters"
+                            @click:append="show = !show"
+                          />
+
+                          <v-text-field
+                              v-model="rePassword"
+                              label="Confirm Password"
+                              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                              :rules="[passwordRules.required, passwordConfirmationRule]"
+                              :type="show2 ? 'text' : 'password'"
+                              outlined
+                              dense
+                              color="#FF4F5A"
+                              autocomplete="false"
+                              hint="At least 8 characters"
+                              @click:append="show2 = !show2"
                           />
 
                           
@@ -216,6 +239,7 @@
       </v-snackbar>
 
   </v-container>
+  </v-form>
 </template>
 
 <script>
@@ -225,20 +249,43 @@ import axios from 'axios'
 export default {
   data: () => ({
     step: 1,
-
     userTypes: ['Customer', 'Service Provider'],
-
     FirstName : '',
     LastName : '',
     EmailAddress : '',
     password : '',
     userType : '' ,
-
+    rePassword:'',
+    show: false,
+    show2: false,
     snackbar : false ,
     message : '',
+
+    nameRules: [
+      v => !!v || 'Required',
+      v => v.length <= 10 || 'Name must be less than 10 characters',
+    ],
+    lastNameRules: [
+      v => !!v || 'Required',
+      v => v.length <= 20 || 'Name must be less than 20 characters',
+    ],
+    emailRules: [
+      v => !!v || 'Required',
+      v => /.+@.+/.test(v) || 'E-mail must be valid',
+    ],
+    passwordRules: {
+      required: value => !!value || 'Required',
+      min: v => v.length >= 8 || 'Min 8 characters',
+    },
   }),
   props: {
     source: String
+  },
+  computed: {
+    passwordConfirmationRule() {
+      return () =>
+          this.password === this.rePassword || "Password you entered don't match";
+    }
   },
   methods : {
 
