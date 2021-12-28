@@ -1,6 +1,6 @@
 package com.example.weddingplanner.userComponentTests;
 
-import com.example.weddingplanner.services.UserService;
+import com.example.weddingplanner.services.UserServices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserLoginTests {
 
     @Autowired
-    UserService service;
+    UserServices service;
 
     @Test
     @DisplayName("Login with not existent user in database")

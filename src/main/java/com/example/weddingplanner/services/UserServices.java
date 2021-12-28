@@ -1,7 +1,7 @@
 package com.example.weddingplanner.services;
 
 import com.example.weddingplanner.dao.UserDAO;
-import com.example.weddingplanner.model.BackendFacade;
+import com.example.weddingplanner.model.facade.UserFacade;
 import com.example.weddingplanner.model.userComponent.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 
 @Service("userService")
-public class UserService {
+public class UserServices {
 
     private final UserDAO userDAO;
-    private BackendFacade backend;
-    private HashSet<Integer> activeUsers=new HashSet();
+    private UserFacade backend;
+    private final HashSet<Integer> activeUsers=new HashSet();
 
     @Autowired
-    public UserService(UserDAO userDAO) {
+    public UserServices(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -35,9 +35,9 @@ public class UserService {
         return userId;
     }
 
-    private BackendFacade getSingleton(){
+    private UserFacade getSingleton(){
         if(backend==null)
-            backend = new BackendFacade(userDAO);
+            backend = new UserFacade(userDAO);
         return backend;
     }
 }

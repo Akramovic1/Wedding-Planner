@@ -2,7 +2,7 @@ package com.example.weddingplanner.userComponentTests;
 
 import com.example.weddingplanner.dao.UserJdbcDAO;
 import com.example.weddingplanner.model.userComponent.*;
-import com.example.weddingplanner.services.UserService;
+import com.example.weddingplanner.services.UserServices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserSignUpTests {
 
     @Autowired
-    UserService service;
+    UserServices service;
     @Autowired
     UserJdbcDAO dao;
 

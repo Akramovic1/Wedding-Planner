@@ -1,23 +1,21 @@
-package com.example.weddingplanner.model;
+package com.example.weddingplanner.model.facade;
 
 import com.example.weddingplanner.dao.UserDAO;
 import com.example.weddingplanner.model.userComponent.*;
 
 //treats with the database and the userRecord
-public class BackendFacade implements IBackend{
+public class UserFacade{
 
     private final UserDAO dao;
 
-    public BackendFacade(UserDAO dao){
+    public UserFacade(UserDAO dao){
         this.dao= dao;
     }
 
-    @Override
     public boolean checkValidAddress(String email) {
         return dao.checkEmailExists(email);
     }
 
-    @Override
     public int logIn(String email, String password) {
         User user = dao.getByEmailAndPassword(email,password);
         if(user==null)
@@ -25,7 +23,6 @@ public class BackendFacade implements IBackend{
         return user.getID();
     }
 
-    @Override
     public String signUp(User user) {
         UserBuilder builder;
         if(user instanceof Administrator){
