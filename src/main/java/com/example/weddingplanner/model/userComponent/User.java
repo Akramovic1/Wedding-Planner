@@ -1,12 +1,12 @@
 package com.example.weddingplanner.model.userComponent;
 
 public abstract class User {
-    int ID;
-    String email;
-    String password;
-    String type;
-    String username;
-    String phonenumber;
+    private int ID;
+    private String email;
+    private String password;
+    private String type;
+    private String username;
+    private String phonenumber;
 
     public User(int ID, String email, String password, String type, String username, String phonenumber) {
         this.ID = ID;
