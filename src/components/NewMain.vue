@@ -170,14 +170,10 @@
                 </div>
               </v-card-text>
               <v-card-actions>
-                <v-btn style="margin-left:60%"
-                       color="red"
-                       text
-                >
-                  More<v-icon>mdi-chevron-right</v-icon>
-                </v-btn>
+    
+                <servicePage :service="item"/>
+
               </v-card-actions>
-              <v-divider class="mx-2"></v-divider>
             </v-card>
             </v-col>
             </v-layout>
@@ -188,12 +184,14 @@
 </template>
 
 <script>
+
+import servicePage from './servicePage.vue'
 export default {
 
   name: "NewMain",
 
   components: {
-
+      servicePage
   },
   data() {
     return {
@@ -896,9 +894,6 @@ ul{
     margin: 0;
   }
   
-  &-wrapper {
-    
-  }
   
   &-percentage {
     text-align: right;
