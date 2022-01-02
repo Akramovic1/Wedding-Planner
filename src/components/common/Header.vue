@@ -1,9 +1,9 @@
 <template>
     <v-app-bar  app class="px-12" color="white" elevate-on-scroll>
     <slot class="logocontainer">
-      <img src="../../assets/images/logo.jpg" @click="()=>$router.push('/#Home')" />
+      <img src="../../assets/images/rings.png" style="width:4%" @click="()=>$router.push('/#Home')" />
     </slot>
-    <v-toolbar-title > Wedding Planner </v-toolbar-title>
+    <v-toolbar-title style="margin-left:10px" > Wedding Planner </v-toolbar-title>
     <v-spacer/>
     <v-list class="d-flex align-center">
       <v-list-item link v-for = "(menu,index) in menus" :key="index" :to="menu.route">
@@ -12,7 +12,7 @@
     </v-list>
     <v-spacer/>
     <v-list right style="padding-left:20px;">
-      <v-btn bold dark style="margin-left:20px" rounded color="#FF4F5A"   @click="()=>$router.push('/registeration')">Registeration</v-btn>
+      <v-btn bold dark style="margin-left:20px" rounded color="#FF4F5A"   @click="()=>$router.push('/Registration')">Registration</v-btn>
     </v-list>
   </v-app-bar> 
 </template>

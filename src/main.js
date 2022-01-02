@@ -3,13 +3,16 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router'
 
-import Home from './views/Home';
+// import Home from './views/Home';
 import NotFound from './views/NotFound';
-import Registeration from './components/Registeration';
+import Registration from './components/Registration';
 
 Vue.use(VueRouter)
 
 import './scss/main.scss';
+import NewMain from "./components/NewMain";
+import Home from "./views/Home";
+
 
 Vue.config.productionTip = false
 
@@ -30,8 +33,9 @@ const router = new VueRouter({
   },
   routes: [
     { path: '/', component: Home },
+    { path: '/dashboard', component: NewMain },
     { path: '*', component: NotFound },
-    {path:'/registeration', component: Registeration}
+    {path:'/Registration', component: Registration}
   ],
   mode: 'hash'
 })

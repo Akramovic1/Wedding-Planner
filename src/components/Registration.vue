@@ -50,7 +50,7 @@
                             </v-row>
 
                               <!-- here is the login button-->
-                          <v-btn class="bold" color="#FF4F5A" dark block tile @click="checkLogin">Login</v-btn>
+                          <v-btn class="bold" color="#FF4F5A" dark block tile  @click="()=>$router.push('/dashboard')">Login</v-btn>
                      
                          <h5
                           class="text-center  grey--text mt-4 mb-3"
