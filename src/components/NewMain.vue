@@ -169,6 +169,14 @@
                   {{item.address}}
                 </div>
               </v-card-text>
+              <v-card-actions>
+                <v-btn style="margin-left:60%"
+                       color="red"
+                       text
+                >
+                  More<v-icon>mdi-chevron-right</v-icon>
+                </v-btn>
+              </v-card-actions>
               <v-divider class="mx-2"></v-divider>
             </v-card>
             </v-col>
@@ -181,11 +189,11 @@
 
 <script>
 export default {
-  
+
   name: "NewMain",
 
   components: {
-    
+
   },
   data() {
     return {
@@ -206,69 +214,72 @@ export default {
       items:[
         {
           id: 0,
-          title: "Cafe Badilico",
+          title: "Sample 1",
           image: require("../assets/images/hall1.png"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 1,
-          title: "Cafe Badilico",
+          title: "Sample 2",
           image: require("../assets/images/hall2.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 2,
-          title: "Cafe Badilico",
+          title: "Sample 3",
           image: require("../assets/images/hall3.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 3,
-          title: "Cafe Badilico",
+          title: "Sample 4",
           image: require("../assets/images/hall4.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 4,
-          title: "Cafe Badilico",
+          title: "Sample 5",
           image: require("../assets/images/hall5.png"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 5,
-          title: "Cafe Badilico",
+          title: "Sample 6",
           image: require("../assets/images/hall6.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 6,
-          title: "Cafe Badilico",
+          title: "Sample 7",
           image: require("../assets/images/hall7.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 7,
-          title: "Cafe Badilico",
+          title: "Sample 8",
           image: require("../assets/images/hall8.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
         {
           id: 8,
-          title: "Cafe Badilico",
+          title: "Sample 9",
           image: require("../assets/images/hall9.jpg"),
           rate: 4.5,
-          address: "Al-Agmy, Alexandria",
+          address: "Address, Alexandria",
         },
       ]
     }
+  },
+  methods:{
+
   },
   mounted: function(){
     var modeSwitch = document.querySelector('.mode-switch');
