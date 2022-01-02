@@ -5,15 +5,14 @@
       max-width="1100px"
     >
       <template v-slot:activator="{ on, attrs }">
-        
         <v-btn
-          style="margin-left:60%"
-          color="red"
-          text
+          color="#ff616b"
+          dark
           v-bind="attrs"
           v-on="on"
+          :style="{top :'50%'}"
         >
-          More<v-icon>mdi-chevron-right</v-icon>
+          Open service page
         </v-btn>
       </template>
 
@@ -27,9 +26,9 @@
             height="610"
           >
             <v-carousel-item
-              v-for="(photo,i) in photos"
+              v-for="(item,i) in items"
               :key="i"
-              :src="photo.src"
+              :src="item.src"
             ></v-carousel-item>
           </v-carousel>
         </v-col>
@@ -64,7 +63,7 @@
 
             <v-card-text style="height: 445px; overflow-y:auto;">
                 <!-- name of the service -->
-                <h1 style="padding:10px 10px 15px 15px">{{this.serviceInfo.title}}</h1>
+                <h1 style="padding:10px 10px 15px 15px">Alexandria Hall</h1>
                 <v-timeline
                   dense
                 >
@@ -92,7 +91,7 @@
                   <v-col>
                     <strong>Location</strong>
                     <div class="text-caption">
-                      {{this.serviceInfo.address}}
+                      Alexandria , miami
                     </div>
                   </v-col>
                   </v-timeline-item>
@@ -126,7 +125,7 @@
                       color="#FEC260"
                       length="5"
                       size="50"
-                      value = "4.5"
+                      value="3.1"
                       readonly
                     ></v-rating>
                   </v-col>
@@ -188,13 +187,11 @@
 
 <script>
   export default {
-    props :['service'],
     data () {
       return {
         dialogm1: '',
         dialog: false,
-        serviceInfo : "" ,
-        photos: [
+        items: [
           {
             src : require('../assets/images/hall1.png'),
           },
@@ -212,10 +209,6 @@
           },
         ],
       }
-    },
-    mounted () {
-        this.serviceInfo = JSON.parse(JSON.stringify(this.service));
-        //this.photos = JSON.parse(JSON.stringify(this.service.image));
     },
   }
 </script>
