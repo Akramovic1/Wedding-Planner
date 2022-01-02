@@ -1,9 +1,9 @@
 <template>
-    <v-app-bar  app class="px-12" color="white" elevate-on-scroll>
+    <v-app-bar  app class="px-1 app-name" color="white" elevate-on-scroll>
     <slot class="logocontainer">
-      <img src="../../assets/images/rings.png" style="width:4%" @click="()=>$router.push('/#Home')" />
+      <img src="../../assets/images/rings.png" style="width:3%" @click="()=>$router.push('/#Home')" />
     </slot>
-    <v-toolbar-title style="margin-left:10px" > Wedding Planner </v-toolbar-title>
+    <v-toolbar-title style="margin-left:20px" > Wedding Planner </v-toolbar-title>
     <v-spacer/>
     <v-list class="d-flex align-center">
       <v-list-item link v-for = "(menu,index) in menus" :key="index" :to="menu.route">
@@ -17,9 +17,9 @@
   </v-app-bar> 
 </template>
 <script>
+
 export default {
   name: "Header",
-
   data () {
     return{
       menus:[

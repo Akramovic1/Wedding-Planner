@@ -1,7 +1,24 @@
 <template>
+  <v-content>
+  <v-app-bar  app class="px-1 app-name" color="white" elevate-on-scroll>
+    <slot class="logocontainer">
+      <img src="../assets/images/rings.png" style="width:3%" @click="()=>$router.push('/#Home')" />
+    </slot>
+    <v-toolbar-title style="margin-left:20px" > Wedding Planner </v-toolbar-title>
+    <v-spacer/>
+    <v-list class="d-flex align-center">
+      <v-list-item link v-for = "(menu,index) in menus" :key="index" :to="menu.route">
+        <v-list-item-title>{{menu.title}} </v-list-item-title>
+      </v-list-item>
+    </v-list>
+    <v-spacer/>
+    <v-list right style="padding-left:20px;">
+      <v-btn bold dark style="margin-left:20px" rounded color="#FF4F5A"   @click="()=>$router.push('/Registration')">Registration</v-btn>
+    </v-list>
+  </v-app-bar>
   <v-form>
   <v-container id="container" >
-      <v-row style="margin: 90px 0px 90px 0px" align="center" justify="center" >
+      <v-row style="margin:0px 0px 100px 0px" align="center" justify="center" >
           <v-col cols="12" sm="10">
             <v-card class="elevation-6 mt-10"  >
              <v-window v-model="step">
@@ -240,14 +257,24 @@
 
   </v-container>
   </v-form>
+  </v-content>
 </template>
 
 <script>
-
+// import Header from "./common/Header";
 import axios from 'axios'
 
 export default {
   data: () => ({
+    components: {
+      // Header,
+    },
+    menus:[
+        {title:'Home',route:'/#Home'},
+        {title:'About Us',route:'/#AboutUs'},
+        {title:'Gallery',route:'/#Gallery'},
+        {title:'Contact Us',route:'/#ContactUs'},
+      ],
     step: 1,
     userTypes: ['Customer', 'Service Provider'],
     FirstName : '',
@@ -337,7 +364,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .bold{
     font-weight: bold;
 }
@@ -346,6 +373,14 @@ export default {
 }
 .v-application .rounded-br-xl {
     border-bottom-right-radius: 300px !important;
+}
+.btn-dimensions{
+  min-height: 25px;
+  max-width: 200px;
+}
+.v-text-field--outlined.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
+    min-height: 20px;
+    max-width: 250px !important;
 }
 
 </style>
