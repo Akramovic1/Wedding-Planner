@@ -11,23 +11,22 @@ import java.util.HashSet;
 @Service("userService")
 public class UserServices {
 
-    private final UserDAO userDAO;
-    private UserFacade backend;
+    private final UserFacade backend;
     private final HashSet<Integer> activeUsers=new HashSet();
 
     @Autowired
     public UserServices(UserDAO userDAO) {
-        this.userDAO = userDAO;
+        backend=new UserFacade(userDAO);
     }
 
 
     public String signUp(User user){
-        backend = getSingleton();
+        //backend = getSingleton();
         return backend.signUp(user);
     }
 
     public int logIn(String email, String password){
-        backend = getSingleton();
+      //  backend = getSingleton();
         int userId=backend.logIn(email,password);
         if (userId!=-1){
             activeUsers.add(userId);
@@ -35,9 +34,9 @@ public class UserServices {
         return userId;
     }
 
-    private UserFacade getSingleton(){
+   /* private UserFacade getSingleton(){
         if(backend==null)
             backend = new UserFacade(userDAO);
         return backend;
-    }
+    }*/
 }

@@ -2,12 +2,14 @@ package com.example.weddingplanner.dao;
 
 import com.example.weddingplanner.model.serviceComponent.Person;
 import com.example.weddingplanner.model.serviceComponent.Place;
-import com.example.weddingplanner.model.serviceComponent.Service;
+import com.example.weddingplanner.model.serviceComponent.BasicService;
+import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-public interface ServiceDAO extends DAO<Service> {
+@Repository("serviceDAO")
+public interface ServiceDAO extends DAO<BasicService> {
 
     //Returns all places in the database
     List<Place> getAllPlaces();
@@ -22,7 +24,7 @@ public interface ServiceDAO extends DAO<Service> {
     List<Place> getAllPlacesOfSP(int spID);
 
     //Returns all the persons who works for a service provider
-    List<Person> getAllPersonsOfSP(int spID);
+    ArrayList<Person> getAllPersonsOfSP(int spID);
 
     //Returns all the locations of a person
     List<String> getLocationsOfPerson(int serviceID);
@@ -46,4 +48,8 @@ public interface ServiceDAO extends DAO<Service> {
     //Return all persons with cost in between left and right
     List<Person> getPersonWithCost(int left,int right);
     List<Person> getPersonWithCost(int left,int right,String job);
+
+
+    List<Person> performPersonSQL(String SQL);
+    List<Place>performPlaceSQL(String SQl);
 }

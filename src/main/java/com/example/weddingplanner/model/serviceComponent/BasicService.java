@@ -3,13 +3,22 @@ package com.example.weddingplanner.model.serviceComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Service {
+public abstract class BasicService {
     private int ID;
     private String name;
     private  String description;
     private float rate;
     private int cost;
     private List<String>imgUrl=new ArrayList<>();
+
+    public BasicService(int ID, String name, String description, float rate, int cost, List<String> imgUrl) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.rate = rate;
+        this.cost = cost;
+        this.imgUrl = imgUrl;
+    }
 
     public int getID() {
         return ID;

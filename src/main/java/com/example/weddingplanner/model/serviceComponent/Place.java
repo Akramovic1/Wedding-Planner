@@ -1,8 +1,16 @@
 package com.example.weddingplanner.model.serviceComponent;
 
-public class Place extends Service {
+import java.util.List;
+
+public class Place extends BasicService {
     String location;
     int capacity;
+
+    public Place(int ID, String name, String description, float rate, int cost, List<String> imgUrl,String location,int capacity) {
+        super(ID, name, description, rate, cost, imgUrl);
+        this.location=location;
+        this.capacity=capacity;
+    }
 
     public String getLocation() {
         return location;

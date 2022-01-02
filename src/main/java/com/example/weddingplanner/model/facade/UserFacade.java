@@ -36,7 +36,7 @@ public class UserFacade{
         }
         else {
             System.out.println("Unknown user type");
-            return null;
+            return "Unknown user type";
         }
         return builder.getUser(dao);
     }
