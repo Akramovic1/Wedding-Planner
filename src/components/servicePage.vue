@@ -35,7 +35,7 @@
         </v-col>
 
         <!-- text corner -->
-        <v-col cols="6">
+        <v-col cols="6" class="card">
           <v-card tile class="rounded-tr rounded-td" height="610">
 
             <v-card-title>
@@ -220,8 +220,9 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 .serviceTitles{
     padding:15px 15px;
 }
+
 </style>

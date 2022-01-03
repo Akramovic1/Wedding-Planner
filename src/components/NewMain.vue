@@ -1,12 +1,11 @@
 <template>
   <div class="app-container" >
-  <!-- <div class="app-header" > -->
     <v-app-bar  app class="px-12" style="background-color:var(--app-container)" elevate-on-scroll>
     <div class="app-header-left">
       <img src="../assets/images/rings.png" style="width:4%"/>
       <p class="app-name" style="margin:10px 20px;">Wedding Planner</p>
       <div class="search-wrapper">
-        <input class="search-input" type="text" placeholder="Search">
+        <input class="search-input" type="text" placeholder="Search" v-model="searchKeyword">
         
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
           <defs></defs>
@@ -41,26 +40,28 @@
   <nav class="navbar" style="padding:20px 0px">
   <ul class="navbar__menu"  >
     <li class="navbar__item" >
-      <a href="#" class="navbar__link" style=" margin:20px 0px;"><i ><img src="../assets/images/home.png" style="width:42%; margin-top:5px"></i><span >Halls</span></a>
+      <a class="navbar__link" style=" margin:20px 0px;"  @click="sidebarOptionSelected='Halls'; disabled=false"><i ><img src="../assets/images/home.png" style="width:42%; margin-top:5px"></i><span >Halls</span></a>
     </li>
     <li class="navbar__item" >
-      <a href="#" class="navbar__link" style=" margin:20px 0px;"><i><img src="../assets/images/camera.png" style="width:42%; "></i><span>Photographers</span></a>        
+      <a class="navbar__link" style=" margin:20px 0px;" @click="sidebarOptionSelected='Photographers'; disabled=true"><i><img src="../assets/images/camera.png" style="width:42%; "></i><span>Photographers</span></a>        
     </li>
     <li class="navbar__item"  >
-      <a href="#" class="navbar__link" style=" margin:20px 0px;"><i><img src="../assets/images/make-up.png" style="width:42%;"></i><span>MakeUpArtists</span></a>        
+      <a class="navbar__link" style=" margin:20px 0px;" @click="sidebarOptionSelected='Makeup Artists'; disabled=true"><i><img src="../assets/images/make-up.png" style="width:42%;"></i><span>MakeUpArtists</span></a>        
     </li>
     <li class="navbar__item"  >
-      <a href="#" class="navbar__link" style=" margin:20px 0px;"> <i><img src="../assets/images/gear.png" style="width:42%; "></i><span>MyAccount</span></a>        
+      <a  class="navbar__link" style=" margin:20px 0px;" > <i><img src="../assets/images/gear.png" style="width:42%;"  @click="dialog = true"><MyAccount v-model="dialog"/> </i><span>MyAccount</span></a>
+        
     </li>
   </ul>
 </nav>
     <div class="projects-section" >
         <v-container class="flex">
-          <v-card-title class=""  style="font-size:3em; color:var(--main-color) ;">Halls</v-card-title>
+          <v-card-title class=""  style="font-size:3em; color:var(--main-color) ;">{{sidebarOptionSelected}}</v-card-title>
           <v-row style="display: flex;flex-wrap:wrap; margin-top:20px;" align="center" justify="center">
             
             <v-col lg="2" md="3" sm="4" xs="4" style="padding-left:60px">
             <v-combobox hide-details
+            v-model="inputAddress"
              outlined
              solo
              :items="addresses"
@@ -70,7 +71,8 @@
             ></v-combobox>
             </v-col>
             <v-col lg="1" md="3" sm="3" xs="4">
-            <v-text-field hide-details
+            <v-text-field v-model="inputPrice"
+            hide-details
             label="Price"
             solo
             filled
@@ -80,7 +82,7 @@
             </v-col>
             <v-col lg="1" md="2" sm="4" xs="4" style="margin-right:40px" >
             <v-rating 
-          v-model="rating"
+          v-model="inputRating" 
           color="yellow darken-3"
           background-color="grey darken-1"
           empty-icon="$ratingFull"
@@ -91,9 +93,9 @@
 
             </v-col>
 
-            <v-col lg="2" md="3" sm="4" xs="4">
-            <v-slider  hide-details class="priceSlider"
-               v-model="ex3.val"
+            <v-col lg="2" md="3" sm="4" xs="4"> 
+            <v-slider  hide-details class="priceSlider" id="sliderCapacity" :disabled="disabled"
+               v-model="inputCapacity"
                :min="200"
                :max="1000"
                :step="100"
@@ -113,8 +115,9 @@
                color="red"
                rounded
                style="color:var(--app-container)"
+               @click="filter()"
               >
-              <v-icon left>
+              <v-icon left >
                mdi-filter
              </v-icon>
              Filter
@@ -125,6 +128,7 @@
                tile
                color="red"
                style="color:var(--app-container)"
+               @click="resetFilter()"
               >
               <v-icon left>
                mdi-close
@@ -137,7 +141,12 @@
           </v-container>
         <v-container class="flex" wrap  >
             <v-layout row >
-            <v-col v-for="item in items" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
+     
+
+              <!-- ***************************Halls ***********************************-->
+
+            <slot v-if="sidebarOptionSelected == 'Halls'">
+            <v-col v-for="item in halls" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
             <v-card
                 class="mx-2 my-2 "
                 max-width="250"
@@ -176,6 +185,92 @@
               </v-card-actions>
             </v-card>
             </v-col>
+            </slot>
+
+            <!-- ***************************Photographer ***********************************-->
+            
+            <slot v-if="sidebarOptionSelected == 'Photographers'">
+            <v-col v-for="item in photographers" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
+            <v-card
+                class="mx-2 my-2 "
+                max-width="250"
+                style="background-color:var(--app-container)"
+            >
+              <v-img
+                  height="150"
+                  :src= "item.image"
+              ></v-img>
+              <v-card-title style="color:var(--main-color)"> {{item.title}} </v-card-title>
+              <v-card-text style="color:var(--main-color)">
+                <v-row
+                    align="center"
+                    class="mx-0"
+                >
+                  <v-rating
+                      :value= item.rate
+                      color="amber"
+                      dense
+                      half-increments
+                      readonly
+                      size="14"
+                  ></v-rating>
+                  <div class="grey--text ms-2">
+                    {{item.rate}}
+                  </div>
+                </v-row>
+                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                  {{item.address}}
+                </div>
+              </v-card-text>
+              <v-card-actions>
+                <servicePage :service="item"/>
+              </v-card-actions>
+            </v-card>
+            </v-col>
+            </slot>
+              <!-- ***************************MakeupArtist***********************************-->
+            
+            <slot v-if="sidebarOptionSelected == 'Makeup Artists'">
+            <v-col v-for="item in makeupArtist" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
+            <v-card
+                class="mx-2 my-2 "
+                max-width="250"
+                style="background-color:var(--app-container)"
+            >
+              <v-img
+                  height="150"
+                  :src= "item.image"
+              ></v-img>
+              <v-card-title style="color:var(--main-color)"> {{item.title}} </v-card-title>
+              <v-card-text style="color:var(--main-color)">
+                <v-row
+                    align="center"
+                    class="mx-0"
+                >
+                  <v-rating
+                      :value= item.rate
+                      color="amber"
+                      dense
+                      half-increments
+                      readonly
+                      size="14"
+                  ></v-rating>
+                  <div class="grey--text ms-2">
+                    {{item.rate}}
+                  </div>
+                </v-row>
+                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                  {{item.address}}
+                </div>
+              </v-card-text>
+              <v-card-actions>
+    
+                <servicePage :service="item"/>
+
+              </v-card-actions>
+            </v-card>
+            </v-col>
+            </slot>
             </v-layout>
           </v-container>
        </div>
@@ -184,18 +279,30 @@
 </template>
 
 <script>
-
+// eslint-disable-next-line
+import MyAccount from './MyAccount.vue'
 import servicePage from './servicePage.vue'
 export default {
 
   name: "NewMain",
 
   components: {
-      servicePage
+      servicePage,
+      // eslint-disable-next-line
+      MyAccount,
+      // eslint-disable-next-line
   },
   data() {
     return {
-      ex3: { label: 'Capacity', val: 600, color: 'red',trackColor:'#F1D3D7' },
+      dialog: false,
+      searchKeyword:'',
+      inputPrice:'',
+      inputAddress:'',
+      inputRating:'',
+      inputCapacity:'600',
+      disabled: false,
+      sidebarOptionSelected:'Halls',
+      ex3: { label: 'Capacity', val: 1000, color: 'red',trackColor:'#F1D3D7' },
       drawer: true,
         ite: [
           { title: 'Home', icon: 'mdi-home-city' },
@@ -209,75 +316,54 @@ export default {
           { title: 'Gleem'},
           { title: 'Sporting' },
         ],
-      items:[
-        {
-          id: 0,
-          title: "Sample 1",
-          image: require("../assets/images/hall1.png"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 1,
-          title: "Sample 2",
-          image: require("../assets/images/hall2.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 2,
-          title: "Sample 3",
-          image: require("../assets/images/hall3.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 3,
-          title: "Sample 4",
-          image: require("../assets/images/hall4.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 4,
-          title: "Sample 5",
-          image: require("../assets/images/hall5.png"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 5,
-          title: "Sample 6",
-          image: require("../assets/images/hall6.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 6,
-          title: "Sample 7",
-          image: require("../assets/images/hall7.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 7,
-          title: "Sample 8",
-          image: require("../assets/images/hall8.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
-        {
-          id: 8,
-          title: "Sample 9",
-          image: require("../assets/images/hall9.jpg"),
-          rate: 4.5,
-          address: "Address, Alexandria",
-        },
+      halls:[
+        {id: 0,title: "Sample 1",image: require("../assets/images/hall1.png"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 1,title: "Sample 2",image: require("../assets/images/hall2.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 2,title: "Sample 3",image: require("../assets/images/hall3.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 3,title: "Sample 4",image: require("../assets/images/hall4.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 4,title: "Sample 5",image: require("../assets/images/hall5.png"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 5,title: "Sample 6",image: require("../assets/images/hall6.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 6,title: "Sample 7",image: require("../assets/images/hall7.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 7,title: "Sample 8",image: require("../assets/images/hall8.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 8,title: "Sample 9",image: require("../assets/images/hall9.jpg"),rate: 4.5,address: "Address, Alexandria",},
+      ],
+      photographers:[
+        {id: 0,title: "Photographer 1",image: require("../assets/images/p1.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 1,title: "Photographer 2",image: require("../assets/images/p2.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 2,title: "Photographer 3",image: require("../assets/images/p4.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 3,title: "Photographer 4",image: require("../assets/images/p5.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 4,title: "Photographer 5",image: require("../assets/images/p6.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 5,title: "Photographer 6",image: require("../assets/images/p7.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 6,title: "Photographer 7",image: require("../assets/images/p8.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 7,title: "Photographer 8",image: require("../assets/images/p9.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 8,title: "Photographer 9",image: require("../assets/images/p3.jpg"),rate: 4.5,address: "Address, Alexandria",},
+      ],
+      makeupArtist:[
+        {id: 0,title: "Makeup Artist 1",image: require("../assets/images/m1.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 1,title: "Makeup Artist 2",image: require("../assets/images/m2.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 2,title: "Makeup Artist 3",image: require("../assets/images/m3.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 3,title: "Makeup Artist 4",image: require("../assets/images/m4.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 4,title: "Makeup Artist 5",image: require("../assets/images/m5.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 5,title: "Makeup Artist 6",image: require("../assets/images/m6.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 6,title: "Makeup Artist 7",image: require("../assets/images/m7.png"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 7,title: "Makeup Artist 8",image: require("../assets/images/m8.jpg"),rate: 4.5,address: "Address, Alexandria",},
+        {id: 8,title: "Makeup Artist 9",image: require("../assets/images/m9.png"),rate: 4.5,address: "Address, Alexandria",}
       ]
     }
+    
   },
   methods:{
+     changeClass: function(id) {
+      var element = document.getElementById(id);
+      element.classList.add("app-sidebar-link active");
+    },
+    
+    filter: function(){
+     window.alert(this.inputAddress.title +" , " + this.inputPrice + " , " + this.inputRating + " , " + this.inputCapacity+ " , " + this.searchKeyword);
+    },
+    resetFilter: function(){
 
+    }
   },
   mounted: function(){
     var modeSwitch = document.querySelector('.mode-switch');
@@ -285,7 +371,9 @@ export default {
       document.documentElement.classList.toggle('dark');
       modeSwitch.classList.toggle('active');
   });
-  }
+  },
+  
+  
 }
 </script>
 <style lang="scss" >
@@ -1146,7 +1234,7 @@ $transition: $timing ease all;
     span{
       font-weight: bold;
       position: absolute;
-      margin:0px 20px;
+      margin:0px 18px;
       left: 100%;
       transform: translate(-($spacer*3));
       opacity: 0;
@@ -1185,7 +1273,7 @@ $transition: $timing ease all;
       }
     }
     
-    @for $i from 1 to 5 {
+    @for $i from 1 to 6 {
       &:first-child:nth-last-child(#{$i}),
       &:first-child:nth-last-child(#{$i}) ~ li {
         &:hover {

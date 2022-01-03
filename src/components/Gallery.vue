@@ -9,7 +9,7 @@
             </v-col>
             <v-col lg="12">
                 <div class="text-center">
-                    <v-chip dark @click="activeGallery = 'halls'" :color="activeGallery == 'halls' ? '#FF4F5A' :'' " class="mx-5">Halls</v-chip>
+                    <v-chip dark @click="activeGallery = 'halls'" :color="activeGallery == 'halls' ? '#FF4F5A' :'' " class="mx-5 active">Halls</v-chip>
                     <v-chip dark @click="activeGallery = 'photographers'" :color="activeGallery == 'photographers' ? '#FF4F5A' :'' " class="mx-5">Photographers</v-chip>
                     <v-chip dark @click="activeGallery = 'makeupArtists'" :color="activeGallery == 'makeupArtists' ? '#FF4F5A' :'' " class="mx-5">Makeup Artists</v-chip>
                 </div>
@@ -108,6 +108,8 @@ export default {
     };
   }
 };
+
+
 </script>
 
 <style scoped>
