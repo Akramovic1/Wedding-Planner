@@ -34,6 +34,12 @@ public class ServiceBuilder {
            }
            else {
                serviceDAO.create(service);
+               for(String location : ((Person) service).getLocation()){
+                    serviceDAO.addLocationOfPerson(service.getID(),location);
+               }
+               for(String imgURL : service.getImgUrl()){
+                   serviceDAO.addLocationOfPerson(service.getID(),imgURL);
+               }
                return "Service has sent to system administrators successfully";
            }
        }

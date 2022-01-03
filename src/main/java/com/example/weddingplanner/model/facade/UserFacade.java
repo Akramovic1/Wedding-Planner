@@ -1,17 +1,18 @@
 package com.example.weddingplanner.model.facade;
 
 import com.example.weddingplanner.dao.UserDAO;
+import com.example.weddingplanner.model.serviceComponent.serviceAppendices.IPictures;
+import com.example.weddingplanner.model.serviceComponent.serviceAppendices.IServiceDate;
+import com.example.weddingplanner.model.serviceComponent.serviceAppendices.ServiceDate;
 import com.example.weddingplanner.model.userComponent.*;
 
 //treats with the database and the userRecord
 public class UserFacade{
 
     private final UserDAO dao;
-
     public UserFacade(UserDAO dao){
         this.dao= dao;
     }
-
     public boolean checkValidAddress(String email) {
         return dao.checkEmailExists(email);
     }
@@ -22,7 +23,6 @@ public class UserFacade{
             return -1;
         return user.getID();
     }
-
     public String signUp(User user) {
         UserBuilder builder;
         if(user instanceof Administrator){
@@ -40,6 +40,5 @@ public class UserFacade{
         }
         return builder.getUser(dao);
     }
-
 
 }

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.1" class="java.beans.XMLDecoder">
- <object class="java.util.HashMap">
-  <void method="put">
-   <string>person</string>
-   <object class="java.util.HashMap"/>
-  </void>
- </object>
-</java>
