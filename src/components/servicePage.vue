@@ -168,7 +168,7 @@
               <v-btn color="#FF4F5A" text @click="dialog = false">
                 Close
               </v-btn>
-              <v-btn color="#ff616b" dark @click="dialog = false"> Book </v-btn>
+              <v-btn color="#ff616b" dark @click="dialog = false"> Add to Cart </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
