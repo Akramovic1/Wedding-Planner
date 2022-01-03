@@ -91,7 +91,8 @@
               <v-btn color="#FF4F5A" text @click="dialog = false">
                 Close
               </v-btn>
-              <v-btn color="#ff616b" dark @click="dialog = false"> Check Out </v-btn>
+              <v-btn color="#ff616b" dark @click="dialog = false; dialog2 = true"> Check Out </v-btn>
+                <pay  v-model="dialog2"/>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -102,10 +103,13 @@
 
 
 <script>
+import Pay from './Pay.vue';
 export default {
+  components: { Pay },
   data() {
     return {
         dialog: false,
+        dialog2: false,
         ServicesList : [
             {
                 name : "Alexandria Hall",

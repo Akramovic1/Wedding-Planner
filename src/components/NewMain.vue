@@ -388,7 +388,7 @@ export default {
     // eslint-disable-next-line
     MyAccount,
     // eslint-disable-next-line
-    cartPage
+    cartPage,
   },
   data() {
     return {

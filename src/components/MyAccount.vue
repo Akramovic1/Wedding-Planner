@@ -328,7 +328,7 @@
                       <!-- <v-row>
                 <v-col> -->
                       <button class="buy">
-                        <i class="material-icons"></i> Pay €
+                        <i class="material-icons"></i> Add card
                       </button>
                       <!-- </v-col>
                 <v-col>
