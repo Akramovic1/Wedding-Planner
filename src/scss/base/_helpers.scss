@@ -7,8 +7,8 @@
 
 // clearfix
 %clearfix {
- &:after {
-    content: '';
+  &:after {
+    content: "";
     display: block;
     clear: both;
   }
@@ -20,5 +20,5 @@
 
 // transition
 %transition {
- transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }

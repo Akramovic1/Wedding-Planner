@@ -13,16 +13,33 @@
     </div>
     <div class="block">
       <v-container>
-        <p>Ea pri vitae antiopam theophrastus, ut sit erat putent eruditi. Qui at mutat adversarium. Postulant delicatissimi ei qui, an nonumy dolorem nam. Cu philosophia instructior pri, nec cu mutat homero saperet, cu paulo ridens legendos has. Cu veri oportere pri, ad integre numquam iudicabit mel. Nec ea ferri iudicabit dissentiet. Ex solet melius omittantur his, in gloriatur vulputate mel.</p>
+        <p>
+          Ea pri vitae antiopam theophrastus, ut sit erat putent eruditi. Qui at
+          mutat adversarium. Postulant delicatissimi ei qui, an nonumy dolorem
+          nam. Cu philosophia instructior pri, nec cu mutat homero saperet, cu
+          paulo ridens legendos has. Cu veri oportere pri, ad integre numquam
+          iudicabit mel. Nec ea ferri iudicabit dissentiet. Ex solet melius
+          omittantur his, in gloriatur vulputate mel.
+        </p>
       </v-container>
     </div>
     <div class="block">
       <v-container>
         <h2 class="text-center">Our Teams</h2>
         <v-row>
-          <v-col v-for="item in items" :key="item.id" class="d-flex child-flex" cols="12" sm="4">
+          <v-col
+            v-for="item in items"
+            :key="item.id"
+            class="d-flex child-flex"
+            cols="12"
+            sm="4"
+          >
             <v-card flat tile class="mx-auto">
-              <v-img :src="item.src" aspect-ratio="1" class="grey lighten-2"></v-img>
+              <v-img
+                :src="item.src"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              ></v-img>
               <v-card-text class="text--primary text-center">
                 <div class="title">{{ item.name }}</div>
                 <p>{{ item.title }}</p>
@@ -44,23 +61,23 @@ export default {
         {
           id: 1,
           src: require("../assets/images/team1.jpg"),
-          name: 'Peter Smith',
-          title: 'Director'
+          name: "Peter Smith",
+          title: "Director",
         },
         {
           id: 2,
           src: require("../assets/images/team2.jpg"),
-          name: 'Roy Perry',
-          title: 'Photographer'
+          name: "Roy Perry",
+          title: "Photographer",
         },
         {
           id: 3,
           src: require("../assets/images/team3.jpg"),
-          name: 'Lisa White',
-          title: 'Freelancer'
-        }
-      ]
-    };
-  }
-};
+          name: "Lisa White",
+          title: "Freelancer",
+        },
+      ],
+    }
+  },
+}
 </script>

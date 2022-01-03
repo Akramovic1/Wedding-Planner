@@ -30,14 +30,13 @@ img {
 }
 
 .gm-style img {
-  max-width: none
+  max-width: none;
 }
 
-@media only screen and (min-width:1025px) {
-
-  a[href^=tel],
-  a[href^=skype],
-  a[href^=sms] {
+@media only screen and (min-width: 1025px) {
+  a[href^="tel"],
+  a[href^="skype"],
+  a[href^="sms"] {
     cursor: default;
     pointer-events: none;
   }

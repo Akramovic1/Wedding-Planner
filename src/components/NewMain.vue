@@ -1,382 +1,659 @@
 <template>
-  <div class="app-container" >
-    <v-app-bar  app class="px-12" style="background-color:var(--app-container)" elevate-on-scroll>
-    <div class="app-header-left">
-      <img src="../assets/images/rings.png" style="width:4%"/>
-      <p class="app-name" style="margin:10px 20px;">Wedding Planner</p>
-      <div class="search-wrapper">
-        <input class="search-input" type="text" placeholder="Search" v-model="searchKeyword">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
-          <defs></defs>
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="M21 21l-4.35-4.35"></path>
-        </svg>
+  <div class="app-container">
+    <v-app-bar
+      app
+      class="px-12"
+      style="background-color: var(--app-container)"
+      elevate-on-scroll
+    >
+      <div class="app-header-left">
+        <img src="../assets/images/rings.png" style="width: 4%" />
+        <p class="app-name" style="margin: 10px 20px">Wedding Planner</p>
+        <div class="search-wrapper">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search"
+            v-model="searchKeyword"
+          />
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="feather feather-search"
+            viewBox="0 0 24 24"
+          >
+            <defs></defs>
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="M21 21l-4.35-4.35"></path>
+          </svg>
+        </div>
       </div>
-    </div>
-    
-    <div class="app-header-right">
+
+      <div class="app-header-right">
         <button class="cart">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-</svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-cart3"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+            />
+          </svg>
         </button>
-      <button class="mode-switch" title="Switch Theme">
-        <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-          <defs></defs>
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-        </svg>
-      </button>
-      <button class="profile-btn">
-        <img src="https://scontent.fcai20-6.fna.fbcdn.net/v/t1.6435-9/60104594_2264725093609458_3750581041635524608_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=-0f2j_VkSxcAX9FtQh5&_nc_ht=scontent.fcai20-6.fna&oh=00_AT9xiFC13iuDIcm51Fpexl2fb76nYu8mHWoKbRRrckAJgQ&oe=61F59BFE" />
-        <span> </span>
-      </button>
-      <button class="add-btn" title="Signout" @click="()=>$router.push('/#Home')">
-        <i class="fas fa-sign-out-alt"></i>
-      </button>
-    </div>
+        <button class="mode-switch" title="Switch Theme">
+          <svg
+            class="moon"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <defs></defs>
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+        <button class="profile-btn">
+          <img
+            src="https://scontent.fcai20-6.fna.fbcdn.net/v/t1.6435-9/60104594_2264725093609458_3750581041635524608_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=-0f2j_VkSxcAX9FtQh5&_nc_ht=scontent.fcai20-6.fna&oh=00_AT9xiFC13iuDIcm51Fpexl2fb76nYu8mHWoKbRRrckAJgQ&oe=61F59BFE"
+          />
+          <span> </span>
+        </button>
+        <button
+          class="add-btn"
+          title="Signout"
+          @click="() => $router.push('/#Home')"
+        >
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
     </v-app-bar>
-  <div class="app-content">
-  <nav class="navbar" style="padding:20px 0px">
-  <ul class="navbar__menu"  >
-    <li class="navbar__item" >
-      <a class="navbar__link" style=" margin:20px 0px;"  @click="sidebarOptionSelected='Halls'; disabled=false"><i ><img src="../assets/images/home.png" style="width:42%; margin-top:5px"></i><span >Halls</span></a>
-    </li>
-    <li class="navbar__item" >
-      <a class="navbar__link" style=" margin:20px 0px;" @click="sidebarOptionSelected='Photographers'; disabled=true"><i><img src="../assets/images/camera.png" style="width:42%; "></i><span>Photographers</span></a>        
-    </li>
-    <li class="navbar__item"  >
-      <a class="navbar__link" style=" margin:20px 0px;" @click="sidebarOptionSelected='Makeup Artists'; disabled=true"><i><img src="../assets/images/make-up.png" style="width:42%;"></i><span>MakeUpArtists</span></a>        
-    </li>
-    <li class="navbar__item"  >
-      <a  class="navbar__link" style=" margin:20px 0px;" > <i><img src="../assets/images/gear.png" style="width:42%;"  @click="dialog = true"><MyAccount v-model="dialog"/> </i><span>MyAccount</span></a>
-        
-    </li>
-  </ul>
-</nav>
-    <div class="projects-section" >
+    <div class="app-content">
+      <nav class="navbar" style="padding: 20px 0px">
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a
+              class="navbar__link"
+              style="margin: 20px 0px"
+              @click="
+                sidebarOptionSelected = 'Halls'
+                disabled = false
+              "
+              ><i
+                ><img
+                  src="../assets/images/home.png"
+                  style="width: 42%; margin-top: 5px" /></i
+              ><span>Halls</span></a
+            >
+          </li>
+          <li class="navbar__item">
+            <a
+              class="navbar__link"
+              style="margin: 20px 0px"
+              @click="
+                sidebarOptionSelected = 'Photographers'
+                disabled = true
+              "
+              ><i
+                ><img src="../assets/images/camera.png" style="width: 42%" /></i
+              ><span>Photographers</span></a
+            >
+          </li>
+          <li class="navbar__item">
+            <a
+              class="navbar__link"
+              style="margin: 20px 0px"
+              @click="
+                sidebarOptionSelected = 'Makeup Artists'
+                disabled = true
+              "
+              ><i
+                ><img
+                  src="../assets/images/make-up.png"
+                  style="width: 42%" /></i
+              ><span>MakeUpArtists</span></a
+            >
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__link" style="margin: 20px 0px">
+              <i
+                ><img
+                  src="../assets/images/gear.png"
+                  style="width: 42%"
+                  @click="dialog = true"
+                /><MyAccount v-model="dialog" /> </i
+              ><span>MyAccount</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="projects-section">
         <v-container class="flex">
-          <v-card-title class=""  style="font-size:3em; color:var(--main-color) ;">{{sidebarOptionSelected}}</v-card-title>
-          <v-row style="display: flex;flex-wrap:wrap; margin-top:20px;" align="center" justify="center">
-            
-            <v-col lg="2" md="3" sm="4" xs="4" style="padding-left:60px">
-            <v-combobox hide-details
-            v-model="inputAddress"
-             outlined
-             solo
-             :items="addresses"
-             item-text="title"
-             label="Address"
-            style="background:var(--main_color)"
-            ></v-combobox>
+          <v-card-title
+            class=""
+            style="font-size: 3em; color: var(--main-color)"
+            >{{ sidebarOptionSelected }}</v-card-title
+          >
+          <v-row
+            style="display: flex; flex-wrap: wrap; margin-top: 20px"
+            align="center"
+            justify="center"
+          >
+            <v-col lg="2" md="3" sm="4" xs="4" style="padding-left: 60px">
+              <v-combobox
+                hide-details
+                v-model="inputAddress"
+                outlined
+                solo
+                :items="addresses"
+                item-text="title"
+                label="Address"
+                style="background: var(--main_color)"
+              ></v-combobox>
             </v-col>
             <v-col lg="1" md="3" sm="3" xs="4">
-            <v-text-field v-model="inputPrice"
-            hide-details
-            label="Price"
-            solo
-            filled
-            outlined
-            background-color = "var(--app-container)"
-          ></v-text-field>
+              <v-text-field
+                v-model="inputPrice"
+                hide-details
+                label="Price"
+                solo
+                filled
+                outlined
+                background-color="var(--app-container)"
+              ></v-text-field>
             </v-col>
-            <v-col lg="1" md="2" sm="4" xs="4" style="margin-right:40px" >
-            <v-rating 
-          v-model="inputRating" 
-          color="yellow darken-3"
-          background-color="grey darken-1"
-          empty-icon="$ratingFull"
-          half-increments
-          hover
-          size="20"
-        ></v-rating>
+            <v-col lg="1" md="2" sm="4" xs="4" style="margin-right: 40px">
+              <v-rating
+                v-model="inputRating"
+                color="yellow darken-3"
+                background-color="grey darken-1"
+                empty-icon="$ratingFull"
+                half-increments
+                hover
+                size="20"
+              ></v-rating>
+            </v-col>
 
+            <v-col lg="2" md="3" sm="4" xs="4">
+              <v-slider
+                hide-details
+                class="priceSlider"
+                id="sliderCapacity"
+                :disabled="disabled"
+                v-model="inputCapacity"
+                :min="200"
+                :max="1000"
+                :step="100"
+                :label="ex3.label"
+                :thumb-color="ex3.color"
+                :color="ex3.color"
+                :track-color="ex3.trackColor"
+                thumb-label="always"
+              ></v-slider>
             </v-col>
+            <v-col lg="2" md="0" sm="0" xs="0"> </v-col>
 
-            <v-col lg="2" md="3" sm="4" xs="4"> 
-            <v-slider  hide-details class="priceSlider" id="sliderCapacity" :disabled="disabled"
-               v-model="inputCapacity"
-               :min="200"
-               :max="1000"
-               :step="100"
-              :label="ex3.label"
-              :thumb-color="ex3.color"
-              :color="ex3.color"
-              :track-color="ex3.trackColor"
-              thumb-label="always"
-            ></v-slider>
-            </v-col>
-            <v-col lg="2" md="0" sm="0" xs="0">
-            </v-col>
-            
-            <v-col style="flex-grow: 0;" >
-            <v-btn 
-               tile
-               color="red"
-               rounded
-               style="color:var(--app-container)"
-               @click="filter()"
+            <v-col style="flex-grow: 0">
+              <v-btn
+                tile
+                color="red"
+                rounded
+                style="color: var(--app-container)"
+                @click="filter()"
               >
-              <v-icon left >
-               mdi-filter
-             </v-icon>
-             Filter
-            </v-btn>
+                <v-icon left> mdi-filter </v-icon>
+                Filter
+              </v-btn>
             </v-col>
-            <v-col style="flex-grow: 0;" >
-            <v-btn 
-               tile
-               color="red"
-               style="color:var(--app-container)"
-               @click="resetFilter()"
+            <v-col style="flex-grow: 0">
+              <v-btn
+                tile
+                color="red"
+                style="color: var(--app-container)"
+                @click="resetFilter()"
               >
-              <v-icon left>
-               mdi-close
-             </v-icon>
-             Reset
-            </v-btn>
+                <v-icon left> mdi-close </v-icon>
+                Reset
+              </v-btn>
             </v-col>
-            </v-row>
-            <v-divider></v-divider>
-          </v-container>
-        <v-container class="flex" wrap  >
-            <v-layout row >
-     
-
-              <!-- ***************************Halls ***********************************-->
+          </v-row>
+          <v-divider></v-divider>
+        </v-container>
+        <v-container class="flex" wrap>
+          <v-layout row>
+            <!-- ***************************Halls ***********************************-->
 
             <slot v-if="sidebarOptionSelected == 'Halls'">
-            <v-col v-for="item in halls" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
-            <v-card
-                class="mx-2 my-2 "
-                max-width="250"
-                style="background-color:var(--app-container)"
-            >
-              <v-img
-                  height="150"
-                  :src= "item.image"
-              ></v-img>
-              <v-card-title style="color:var(--main-color)"> {{item.title}} </v-card-title>
-              <v-card-text style="color:var(--main-color)">
-                <v-row
-                    align="center"
-                    class="mx-0"
+              <v-col
+                v-for="item in halls"
+                :key="item.id"
+                class="d-flex child-flex"
+                cols="12"
+                lg="3"
+                md="4"
+                sm="6"
+                xs="12"
+              >
+                <v-card
+                  class="mx-2 my-2"
+                  max-width="250"
+                  style="background-color: var(--app-container)"
                 >
-                  <v-rating
-                      :value= item.rate
-                      color="amber"
-                      dense
-                      half-increments
-                      readonly
-                      size="14"
-                  ></v-rating>
-                  <div class="grey--text ms-2">
-                    {{item.rate}}
-                  </div>
-                </v-row>
-                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{item.address}}
-                </div>
-              </v-card-text>
-              <v-card-actions>
-    
-                <servicePage :service="item"/>
-
-              </v-card-actions>
-            </v-card>
-            </v-col>
+                  <v-img height="150" :src="item.image"></v-img>
+                  <v-card-title style="color: var(--main-color)">
+                    {{ item.title }}
+                  </v-card-title>
+                  <v-card-text style="color: var(--main-color)">
+                    <v-row align="center" class="mx-0">
+                      <v-rating
+                        :value="item.rate"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+                      <div class="grey--text ms-2">
+                        {{ item.rate }}
+                      </div>
+                    </v-row>
+                    <div class="my-2 text-subtitle-1">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      {{ item.address }}
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <servicePage :service="item" />
+                  </v-card-actions>
+                </v-card>
+              </v-col>
             </slot>
 
             <!-- ***************************Photographer ***********************************-->
-            
-            <slot v-if="sidebarOptionSelected == 'Photographers'">
-            <v-col v-for="item in photographers" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
-            <v-card
-                class="mx-2 my-2 "
-                max-width="250"
-                style="background-color:var(--app-container)"
-            >
-              <v-img
-                  height="150"
-                  :src= "item.image"
-              ></v-img>
-              <v-card-title style="color:var(--main-color)"> {{item.title}} </v-card-title>
-              <v-card-text style="color:var(--main-color)">
-                <v-row
-                    align="center"
-                    class="mx-0"
-                >
-                  <v-rating
-                      :value= item.rate
-                      color="amber"
-                      dense
-                      half-increments
-                      readonly
-                      size="14"
-                  ></v-rating>
-                  <div class="grey--text ms-2">
-                    {{item.rate}}
-                  </div>
-                </v-row>
-                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{item.address}}
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <servicePage :service="item"/>
-              </v-card-actions>
-            </v-card>
-            </v-col>
-            </slot>
-              <!-- ***************************MakeupArtist***********************************-->
-            
-            <slot v-if="sidebarOptionSelected == 'Makeup Artists'">
-            <v-col v-for="item in makeupArtist" :key="item.id" class="d-flex child-flex" cols="12" lg="3" md="4" sm="6"  xs="12" >
-            <v-card
-                class="mx-2 my-2 "
-                max-width="250"
-                style="background-color:var(--app-container)"
-            >
-              <v-img
-                  height="150"
-                  :src= "item.image"
-              ></v-img>
-              <v-card-title style="color:var(--main-color)"> {{item.title}} </v-card-title>
-              <v-card-text style="color:var(--main-color)">
-                <v-row
-                    align="center"
-                    class="mx-0"
-                >
-                  <v-rating
-                      :value= item.rate
-                      color="amber"
-                      dense
-                      half-increments
-                      readonly
-                      size="14"
-                  ></v-rating>
-                  <div class="grey--text ms-2">
-                    {{item.rate}}
-                  </div>
-                </v-row>
-                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{item.address}}
-                </div>
-              </v-card-text>
-              <v-card-actions>
-    
-                <servicePage :service="item"/>
 
-              </v-card-actions>
-            </v-card>
-            </v-col>
+            <slot v-if="sidebarOptionSelected == 'Photographers'">
+              <v-col
+                v-for="item in photographers"
+                :key="item.id"
+                class="d-flex child-flex"
+                cols="12"
+                lg="3"
+                md="4"
+                sm="6"
+                xs="12"
+              >
+                <v-card
+                  class="mx-2 my-2"
+                  max-width="250"
+                  style="background-color: var(--app-container)"
+                >
+                  <v-img height="150" :src="item.image"></v-img>
+                  <v-card-title style="color: var(--main-color)">
+                    {{ item.title }}
+                  </v-card-title>
+                  <v-card-text style="color: var(--main-color)">
+                    <v-row align="center" class="mx-0">
+                      <v-rating
+                        :value="item.rate"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+                      <div class="grey--text ms-2">
+                        {{ item.rate }}
+                      </div>
+                    </v-row>
+                    <div class="my-2 text-subtitle-1">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      {{ item.address }}
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <servicePage :service="item" />
+                  </v-card-actions>
+                </v-card>
+              </v-col>
             </slot>
-            </v-layout>
-          </v-container>
-       </div>
-       </div>
-       </div>
+            <!-- ***************************MakeupArtist***********************************-->
+
+            <slot v-if="sidebarOptionSelected == 'Makeup Artists'">
+              <v-col
+                v-for="item in makeupArtist"
+                :key="item.id"
+                class="d-flex child-flex"
+                cols="12"
+                lg="3"
+                md="4"
+                sm="6"
+                xs="12"
+              >
+                <v-card
+                  class="mx-2 my-2"
+                  max-width="250"
+                  style="background-color: var(--app-container)"
+                >
+                  <v-img height="150" :src="item.image"></v-img>
+                  <v-card-title style="color: var(--main-color)">
+                    {{ item.title }}
+                  </v-card-title>
+                  <v-card-text style="color: var(--main-color)">
+                    <v-row align="center" class="mx-0">
+                      <v-rating
+                        :value="item.rate"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+                      <div class="grey--text ms-2">
+                        {{ item.rate }}
+                      </div>
+                    </v-row>
+                    <div class="my-2 text-subtitle-1">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      {{ item.address }}
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <servicePage :service="item" />
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </slot>
+          </v-layout>
+        </v-container>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 // eslint-disable-next-line
-import MyAccount from './MyAccount.vue'
-import servicePage from './servicePage.vue'
+import MyAccount from "./MyAccount.vue"
+import servicePage from "./servicePage.vue"
 export default {
-
   name: "NewMain",
 
   components: {
-      servicePage,
-      // eslint-disable-next-line
-      MyAccount,
-      // eslint-disable-next-line
+    servicePage,
+    // eslint-disable-next-line
+    MyAccount,
+    // eslint-disable-next-line
   },
   data() {
     return {
       dialog: false,
-      searchKeyword:'',
-      inputPrice:'',
-      inputAddress:'',
-      inputRating:'',
-      inputCapacity:'600',
+      searchKeyword: "",
+      inputPrice: "",
+      inputAddress: "",
+      inputRating: "",
+      inputCapacity: "600",
       disabled: false,
-      sidebarOptionSelected:'Halls',
-      ex3: { label: 'Capacity', val: 1000, color: 'red',trackColor:'#F1D3D7' },
+      sidebarOptionSelected: "Halls",
+      ex3: {
+        label: "Capacity",
+        val: 1000,
+        color: "red",
+        trackColor: "#F1D3D7",
+      },
       drawer: true,
-        ite: [
-          { title: 'Home', icon: 'mdi-home-city' },
-          { title: 'My Account', icon: 'mdi-account' },
-          { title: 'Users', icon: 'mdi-account-group-outline' },
-        ],
-        mini: true,
-
-        addresses:[
-          { title: 'Loran'},
-          { title: 'Gleem'},
-          { title: 'Sporting' },
-        ],
-      halls:[
-        {id: 0,title: "Sample 1",image: require("../assets/images/hall1.png"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 1,title: "Sample 2",image: require("../assets/images/hall2.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 2,title: "Sample 3",image: require("../assets/images/hall3.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 3,title: "Sample 4",image: require("../assets/images/hall4.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 4,title: "Sample 5",image: require("../assets/images/hall5.png"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 5,title: "Sample 6",image: require("../assets/images/hall6.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 6,title: "Sample 7",image: require("../assets/images/hall7.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 7,title: "Sample 8",image: require("../assets/images/hall8.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 8,title: "Sample 9",image: require("../assets/images/hall9.jpg"),rate: 4.5,address: "Address, Alexandria",},
+      ite: [
+        { title: "Home", icon: "mdi-home-city" },
+        { title: "My Account", icon: "mdi-account" },
+        { title: "Users", icon: "mdi-account-group-outline" },
       ],
-      photographers:[
-        {id: 0,title: "Photographer 1",image: require("../assets/images/p1.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 1,title: "Photographer 2",image: require("../assets/images/p2.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 2,title: "Photographer 3",image: require("../assets/images/p4.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 3,title: "Photographer 4",image: require("../assets/images/p5.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 4,title: "Photographer 5",image: require("../assets/images/p6.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 5,title: "Photographer 6",image: require("../assets/images/p7.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 6,title: "Photographer 7",image: require("../assets/images/p8.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 7,title: "Photographer 8",image: require("../assets/images/p9.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 8,title: "Photographer 9",image: require("../assets/images/p3.jpg"),rate: 4.5,address: "Address, Alexandria",},
-      ],
-      makeupArtist:[
-        {id: 0,title: "Makeup Artist 1",image: require("../assets/images/m1.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 1,title: "Makeup Artist 2",image: require("../assets/images/m2.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 2,title: "Makeup Artist 3",image: require("../assets/images/m3.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 3,title: "Makeup Artist 4",image: require("../assets/images/m4.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 4,title: "Makeup Artist 5",image: require("../assets/images/m5.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 5,title: "Makeup Artist 6",image: require("../assets/images/m6.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 6,title: "Makeup Artist 7",image: require("../assets/images/m7.png"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 7,title: "Makeup Artist 8",image: require("../assets/images/m8.jpg"),rate: 4.5,address: "Address, Alexandria",},
-        {id: 8,title: "Makeup Artist 9",image: require("../assets/images/m9.png"),rate: 4.5,address: "Address, Alexandria",}
-      ]
-    }
-    
-  },
-  methods:{
-     changeClass: function(id) {
-      var element = document.getElementById(id);
-      element.classList.add("app-sidebar-link active");
-    },
-    
-    filter: function(){
-     window.alert(this.inputAddress.title +" , " + this.inputPrice + " , " + this.inputRating + " , " + this.inputCapacity+ " , " + this.searchKeyword);
-    },
-    resetFilter: function(){
+      mini: true,
 
+      addresses: [
+        { title: "Loran" },
+        { title: "Gleem" },
+        { title: "Sporting" },
+      ],
+      halls: [
+        {
+          id: 0,
+          title: "Sample 1",
+          image: require("../assets/images/hall1.png"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 1,
+          title: "Sample 2",
+          image: require("../assets/images/hall2.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 2,
+          title: "Sample 3",
+          image: require("../assets/images/hall3.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 3,
+          title: "Sample 4",
+          image: require("../assets/images/hall4.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 4,
+          title: "Sample 5",
+          image: require("../assets/images/hall5.png"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 5,
+          title: "Sample 6",
+          image: require("../assets/images/hall6.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 6,
+          title: "Sample 7",
+          image: require("../assets/images/hall7.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 7,
+          title: "Sample 8",
+          image: require("../assets/images/hall8.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 8,
+          title: "Sample 9",
+          image: require("../assets/images/hall9.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+      ],
+      photographers: [
+        {
+          id: 0,
+          title: "Photographer 1",
+          image: require("../assets/images/p1.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 1,
+          title: "Photographer 2",
+          image: require("../assets/images/p2.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 2,
+          title: "Photographer 3",
+          image: require("../assets/images/p4.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 3,
+          title: "Photographer 4",
+          image: require("../assets/images/p5.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 4,
+          title: "Photographer 5",
+          image: require("../assets/images/p6.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 5,
+          title: "Photographer 6",
+          image: require("../assets/images/p7.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 6,
+          title: "Photographer 7",
+          image: require("../assets/images/p8.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 7,
+          title: "Photographer 8",
+          image: require("../assets/images/p9.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 8,
+          title: "Photographer 9",
+          image: require("../assets/images/p3.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+      ],
+      makeupArtist: [
+        {
+          id: 0,
+          title: "Makeup Artist 1",
+          image: require("../assets/images/m1.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 1,
+          title: "Makeup Artist 2",
+          image: require("../assets/images/m2.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 2,
+          title: "Makeup Artist 3",
+          image: require("../assets/images/m3.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 3,
+          title: "Makeup Artist 4",
+          image: require("../assets/images/m4.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 4,
+          title: "Makeup Artist 5",
+          image: require("../assets/images/m5.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 5,
+          title: "Makeup Artist 6",
+          image: require("../assets/images/m6.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 6,
+          title: "Makeup Artist 7",
+          image: require("../assets/images/m7.png"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 7,
+          title: "Makeup Artist 8",
+          image: require("../assets/images/m8.jpg"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+        {
+          id: 8,
+          title: "Makeup Artist 9",
+          image: require("../assets/images/m9.png"),
+          rate: 4.5,
+          address: "Address, Alexandria",
+        },
+      ],
     }
   },
-  mounted: function(){
-    var modeSwitch = document.querySelector('.mode-switch');
-    modeSwitch.addEventListener('click', function () {                     
-      document.documentElement.classList.toggle('dark');
-      modeSwitch.classList.toggle('active');
-  });
+  methods: {
+    changeClass: function (id) {
+      var element = document.getElementById(id)
+      element.classList.add("app-sidebar-link active")
+    },
+
+    filter: function () {
+      window.alert(
+        this.inputAddress.title +
+          " , " +
+          this.inputPrice +
+          " , " +
+          this.inputRating +
+          " , " +
+          this.inputCapacity +
+          " , " +
+          this.searchKeyword
+      )
+    },
+    resetFilter: function () {},
   },
-  
-  
+  mounted: function () {
+    var modeSwitch = document.querySelector(".mode-switch")
+    modeSwitch.addEventListener("click", function () {
+      document.documentElement.classList.toggle("dark")
+      modeSwitch.classList.toggle("active")
+    })
+  },
 }
 </script>
-<style lang="scss" >
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
 
 * {
@@ -386,14 +663,14 @@ export default {
 :root {
   --app-container: #fff;
   --main-color: #1f1c2e;
-  --secondary-color: #4A4A4A;
+  --secondary-color: #4a4a4a;
   --link-color: #1f1c2e;
-  --link-color-hover: #F1D3D7;
+  --link-color-hover: #f1d3d7;
   --link-color-active: #fff;
   --link-color-active-bg: #e2e2e2;
-  --projects-section: 	#F5F5F5		;
+  --projects-section: #f5f5f5;
   --more-list-bg: #fff;
-  --more-list-bg-hover:  #f6fbff;
+  --more-list-bg-hover: #f6fbff;
   --more-list-shadow: rgba(209, 209, 209, 0.4);
   --button-bg: #1f1c24;
   --search-area-bg: #fff;
@@ -404,39 +681,40 @@ export default {
   --app-container: #1f1d2b;
   --app-container: #111827;
   --main-color: #fff;
-  --secondary-color: rgba(255,255,255,.8);
+  --secondary-color: rgba(255, 255, 255, 0.8);
   --projects-section: #1f2937;
-  --link-color: rgba(255,255,255,.8);
+  --link-color: rgba(255, 255, 255, 0.8);
   --link-color-hover: rgba(195, 207, 244, 0.1);
   --link-color-active-bg: rgba(195, 207, 244, 0.2);
   --button-bg: #1f2937;
   --search-area-bg: #1f2937;
   --star: #ffd92c;
-  --light-font: rgba(255,255,255,.8);
+  --light-font: rgba(255, 255, 255, 0.8);
   --more-list-bg: #2f3142;
-  --more-list-bg-hover:  rgba(195, 207, 244, 0.1);
+  --more-list-bg-hover: rgba(195, 207, 244, 0.1);
   --more-list-shadow: rgba(195, 207, 244, 0.1);
 }
 .theme--light.v-application {
-    background: var(--app-container) !important;
+  background: var(--app-container) !important;
 }
-html, body {
+html,
+body {
   width: 100%;
   height: 100vh;
   margin: 0;
   background-color: var(--app-container);
-
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
-button, a {
+button,
+a {
   cursor: pointer;
 }
-ul{
-     list-style:none;
+ul {
+  list-style: none;
 }
 
 .app {
@@ -446,21 +724,25 @@ ul{
     flex-direction: column;
     height: 100%;
     background-color: var(--app-container);
-    transition: .2s;
+    transition: 0.2s;
     max-width: 1800px;
-    
-    button, input, optgroup, select, textarea {
-      font-family: 'DM Sans', sans-serif;
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: "DM Sans", sans-serif;
     }
   }
-  
+
   &-content {
     display: flex;
     height: 100%;
     overflow: hidden;
     padding: 16px 24px 24px 0;
   }
-  
+
   &-header {
     display: flex;
     justify-content: space-between;
@@ -468,28 +750,32 @@ ul{
     width: 100%;
     padding: 16px 24px;
     position: relative;
-    
-    &-left, &-right {
+
+    &-left,
+    &-right {
       display: flex;
       align-items: center;
     }
-    
-    &-left { flex-grow: 1; } 
-    
+
+    &-left {
+      flex-grow: 1;
+    }
+
     &-right button {
-      margin-left: 10px; 
+      margin-left: 10px;
     }
   }
-  
+
   &-icon {
     width: 26px;
     height: 2px;
     border-radius: 4px;
     background-color: var(--main-color);
     position: relative;
-    
-    &:before, &:after {
-      content: '';
+
+    &:before,
+    &:after {
+      content: "";
       position: absolute;
       width: 12px;
       height: 2px;
@@ -498,11 +784,15 @@ ul{
       left: 50%;
       transform: translatex(-50%);
     }
-    
-    &:before { top: -6px; }
-    &:after { bottom: -6px; }
+
+    &:before {
+      top: -6px;
+    }
+    &:after {
+      bottom: -6px;
+    }
   }
-  
+
   &-name {
     color: var(--main-color);
     margin: 0;
@@ -522,7 +812,7 @@ ul{
   justify-content: center;
   align-items: center;
 }
-.cart{
+.cart {
   background-color: transparent;
   border: none;
   padding: 0;
@@ -543,10 +833,13 @@ ul{
   width: 100%;
   max-width: 480px;
   color: var(--light-font);
-  box-shadow: 0 2px 6px 0 rgba(136,148,171,.2),0 24px 20px -24px rgba(71,82,107,.1);
+  box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+    0 24px 20px -24px rgba(71, 82, 107, 0.1);
   overflow: hidden;
-  
-  .dark & { box-shadow: none; }
+
+  .dark & {
+    box-shadow: none;
+  }
 }
 
 .search-input {
@@ -558,10 +851,10 @@ ul{
   font-size: 16px;
   background-color: var(--search-area-bg);
   color: var(--main-color);
-  
+
   &:placeholder {
     color: var(--main-color);
-    opacity: .6;
+    opacity: 0.6;
   }
 }
 
@@ -597,7 +890,7 @@ ul{
   align-items: center;
   padding-left: 12px;
   border-left: 2px solid #ddd;
-  
+
   img {
     width: 32px;
     height: 32px;
@@ -605,7 +898,7 @@ ul{
     border-radius: 50%;
     margin-right: 4px;
   }
-  
+
   span {
     color: var(--main-color);
     font-size: 16px;
@@ -614,24 +907,23 @@ ul{
   }
 }
 
-.page-content{
+.page-content {
   flex: 1;
   width: 100%;
 }
-.sideHover{
-  margin-top:40px;
+.sideHover {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   position: fixed;
   height: 100%;
   justify-content: center;
 
-   &-link {
+  &-link {
     display: flex;
     justify-content: center;
     align-items: center;
-   }
-
+  }
 }
 
 .app-sidebar {
@@ -643,12 +935,11 @@ ul{
   height: 100%;
   justify-content: center;
 
-  
   &-link {
     color: var(--main-color);
     color: var(--link-color);
     margin: 16px 0;
-    transition: .2s;
+    transition: 0.2s;
     border-radius: 20%;
     flex-shrink: 0;
     width: 40px;
@@ -656,7 +947,7 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &:hover {
       background-color: var(--link-color-hover);
       color: var(--link-color-active);
@@ -679,31 +970,31 @@ ul{
   width: 100%;
   flex-direction: column;
   margin-left: 15em;
-  margin-top: 5em ;
-  
+  margin-top: 5em;
+
   &-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 32px;
   }
-  
+
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
     color: var(--main-color);
-    
+
     p {
       font-size: 24px;
       line-height: 32px;
       font-weight: 700;
-      opacity: .9;
+      opacity: 0.9;
       margin: 0;
       color: var(--main-color);
     }
-    
+
     .time {
       font-size: 20px;
     }
@@ -718,9 +1009,9 @@ ul{
   display: flex;
   flex-direction: column;
   margin-right: 0px;
-  
+
   &:not(:last-child) .status-type:after {
-    content: '';
+    content: "";
     position: absolute;
     right: 8px;
     top: 50%;
@@ -750,7 +1041,6 @@ ul{
   align-items: center;
 }
 
-
 .view-btn {
   width: 36px;
   height: 36px;
@@ -763,19 +1053,18 @@ ul{
   border: none;
   color: var(--main-color);
   margin-left: 8px;
-  transition: .2s;
-  
+  transition: 0.2s;
+
   &.active {
     background-color: var(--link-color-active-bg);
     color: var(--link-color-active);
   }
-  
+
   &:not(.active):hover {
-    background-color:  var(--link-color-hover);
+    background-color: var(--link-color-hover);
     color: var(--link-color-active);
   }
 }
-
 
 .star-checkbox {
   input {
@@ -784,7 +1073,7 @@ ul{
     width: 0;
     height: 0;
   }
-  
+
   label {
     width: 24px;
     height: 24px;
@@ -793,36 +1082,34 @@ ul{
     align-items: center;
     cursor: pointer;
   }
-  
+
   .dark & {
     color: var(--secondary-color);
-    
-    
-    
+
     input:checked + label {
       color: var(--star);
     }
   }
-  
+
   input:checked + label svg {
     fill: var(--star);
-    transition: .2s;
+    transition: 0.2s;
   }
 }
 
 .project-boxes {
   margin: 0 -8px;
   overflow-y: auto;
-  
+
   &.jsGridView {
     display: flex;
     flex-wrap: wrap;
-    
+
     .project-box-wrapper {
       width: 33.3%;
     }
   }
-  
+
   &.jsListView {
     .project-box {
       display: flex;
@@ -832,51 +1119,51 @@ ul{
         margin-right: 24px;
       }
     }
-    
+
     .more-wrapper {
       position: absolute;
       right: 16px;
       top: 16px;
     }
-    
+
     .project-box-content-header {
       order: 1;
       max-width: 120px;
     }
-    
+
     .project-box-header {
       order: 2;
     }
-    
+
     .project-box-footer {
       order: 3;
       padding-top: 0;
       flex-direction: column;
       justify-content: flex-start;
     }
-    
+
     .project-box-footer:after {
       display: none;
     }
-    
+
     .participants {
       margin-bottom: 8px;
     }
-    
+
     .project-box-content-header p {
       text-align: left;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-    
+
     .project-box-header > span {
       position: absolute;
       bottom: 16px;
       left: 16px;
       font-size: 12px;
     }
-    
+
     .box-progress-wrapper {
       order: 3;
       flex: 1;
@@ -889,32 +1176,34 @@ ul{
   border-radius: 30px;
   padding: 16px;
   background-color: var(--main-color-card);
-  
+
   &-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
     color: var(--main-color);
-    
+
     span {
-      color: #4A4A4A;
-      opacity: .7;
+      color: #4a4a4a;
+      opacity: 0.7;
       font-size: 14px;
       line-height: 16px;
     }
   }
-  
+
   &-content-header {
     text-align: center;
     margin-bottom: 16px;
-    
-    p { margin: 0; }
+
+    p {
+      margin: 0;
+    }
   }
-  
+
   &-wrapper {
     padding: 8px;
-    transition: .2s;
+    transition: 0.2s;
   }
 }
 
@@ -927,7 +1216,7 @@ ul{
   background-color: transparent;
   border: none;
   flex-shrink: 0;
-  
+
   /*&:after, &:before {
     content: '';
     position: absolute;
@@ -952,20 +1241,20 @@ ul{
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .box-content-subheader {
   font-size: 14px;
   line-height: 24px;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .box-progress {
   display: block;
   height: 4px;
   border-radius: 6px;
-  
+
   &-bar {
     width: 100%;
     height: 4px;
@@ -974,15 +1263,14 @@ ul{
     background-color: #fff;
     margin: 8px 0;
   }
-  
+
   &-header {
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
     margin: 0;
   }
-  
-  
+
   &-percentage {
     text-align: right;
     margin: 0;
@@ -997,11 +1285,11 @@ ul{
   justify-content: space-between;
   padding-top: 16px;
   position: relative;
-  
+
   &:after {
-    content: '';
+    content: "";
     position: absolute;
-    background-color: rgba(255,255,255,0.6);;
+    background-color: rgba(255, 255, 255, 0.6);
     width: calc(100% + 32px);
     top: 0;
     left: -16px;
@@ -1012,14 +1300,14 @@ ul{
 .participants {
   display: flex;
   align-items: center;
-  
+
   img {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
-    
+
     &:not(:first-child) {
       margin-left: -8px;
     }
@@ -1031,7 +1319,7 @@ ul{
   height: 20px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   margin-left: 6px;
   display: flex;
   justify-content: center;
@@ -1040,7 +1328,7 @@ ul{
 }
 
 .days-left {
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   font-size: 12px;
   border-radius: 20px;
   flex-shrink: 0;
@@ -1052,101 +1340,117 @@ ul{
   fill: var(--main-color);
 }
 
-
 @media screen and (max-width: 980px) {
   .project-boxes.jsGridView .project-box-wrapper {
     width: 50%;
   }
-  
-  .status-number, .status-type {
+
+  .status-number,
+  .status-type {
     font-size: 14px;
   }
-  
+
   .status-type:after {
     width: 4px;
     height: 4px;
   }
-  
-  .item-status { margin-right: 0; }
+
+  .item-status {
+    margin-right: 0;
+  }
 }
 
 @media screen and (max-width: 720px) {
-  .app-name, .profile-btn span { display: none; }
-  
-  .add-btn, .notification-btn, .mode-switch {
+  .app-name,
+  .profile-btn span {
+    display: none;
+  }
+
+  .add-btn,
+  .notification-btn,
+  .mode-switch {
     width: 20px;
     height: 20px;
-    
+
     svg {
       width: 16px;
       height: 16px;
     }
   }
-  
+
   .app-header-right button {
     margin-left: 4px;
   }
 }
 
 @media screen and (max-width: 520px) {
-  .projects-section { overflow: auto; }
-  .project-boxes { overflow-y: visible; }
-  
-  .app-sidebar, .app-icon { display: none; }
-  
-  .app-content { padding: 16px 12px 24px 12px;}
-  
-  .status-number, .status-type {
+  .projects-section {
+    overflow: auto;
+  }
+  .project-boxes {
+    overflow-y: visible;
+  }
+
+  .app-sidebar,
+  .app-icon {
+    display: none;
+  }
+
+  .app-content {
+    padding: 16px 12px 24px 12px;
+  }
+
+  .status-number,
+  .status-type {
     font-size: 10px;
   }
-  
+
   .view-btn {
     width: 24px;
     height: 24px;
   }
-  
+
   .app-header {
     padding: 16px 10px;
   }
-  
+
   .search-input {
     max-width: 120px;
   }
-  
+
   .project-boxes.jsGridView .project-box-wrapper {
     width: 100%;
   }
-  
+
   .projects-section {
     padding: 24px 16px 0 16px;
   }
-  
+
   .profile-btn img {
     width: 24px;
     height: 24px;
   }
-  
+
   .app-header {
     padding: 10px;
   }
-  
+
   .projects-section-header p,
-  .projects-section-header .time{
+  .projects-section-header .time {
     font-size: 18px;
   }
-  
+
   .status-type {
     padding-right: 4px;
-    
+
     &:after {
       display: none;
     }
   }
-  
+
   .search-input {
     font-size: 14px;
   }
-  
 
   .box-content-header {
     font-size: 12px;
@@ -1207,23 +1511,23 @@ $transition: $timing ease all;
     }
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
-.navbar{
+.navbar {
   $ref: &;
   position: fixed;
   top: $spacer;
   left: $spacer;
   background: var(--projects-section);
-  margin-top: 13% ;
+  margin-top: 13%;
   margin-left: 2%;
   border-radius: 32px;
-  padding:  0;
-  box-shadow: 0 0 40px rgba(0,0,0,0.03);
+  padding: 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
   width: 90px;
-  
-  &__link{
-    position:relative;
+
+  &__link {
+    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -1231,34 +1535,34 @@ $transition: $timing ease all;
     width: $spacer * 5.5;
     color: $text;
     transition: $transition;
-    span{
+    span {
       font-weight: bold;
       position: absolute;
-      margin:0px 18px;
+      margin: 0px 18px;
       left: 100%;
-      transform: translate(-($spacer*3));
+      transform: translate(-($spacer * 3));
       opacity: 0;
       color: var(--main-color);
       background: var(--app-container);
-      padding: $spacer *0.55;
+      padding: $spacer * 0.55;
       transition: $transition;
       border-radius: $borderRadius * 1.75;
     }
-    &:hover{
+    &:hover {
       color: #fff;
-      span{
+      span {
         opacity: 3;
         transform: translate(2);
       }
     }
   }
-  &__menu{
+  &__menu {
     position: relative;
   }
-  &__item{
-    &:last-child{
-      &:before{
-        content: '';
+  &__item {
+    &:last-child {
+      &:before {
+        content: "";
         position: absolute;
         opacity: 0;
         z-index: -1;
@@ -1269,10 +1573,9 @@ $transition: $timing ease all;
         background: $primary;
         border-radius: $borderRadius * 1.75;
         transition: $timing cubic-bezier(1, 0.2, 0.1, 1.2) all;
-        
       }
     }
-    
+
     @for $i from 1 to 6 {
       &:first-child:nth-last-child(#{$i}),
       &:first-child:nth-last-child(#{$i}) ~ li {
@@ -1304,49 +1607,52 @@ $transition: $timing ease all;
         }
       }
     }
-
   }
-  
 }
 
-
-.priceSlider{
-  width:250px;
-
+.priceSlider {
+  width: 250px;
 }
-.v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) > .v-input__control > .v-input__slot {
+.v-text-field.v-text-field--solo:not(.v-text-field--solo-flat)
+  > .v-input__control
+  > .v-input__slot {
   min-height: 20px;
   max-width: 130px;
 }
-.v-text-field--outlined.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
-    min-height: 20px;
-    max-width: 130px;
+.v-text-field--outlined.v-input--dense.v-text-field--outlined
+  > .v-input__control
+  > .v-input__slot,
+.v-text-field--outlined.v-input--dense.v-text-field--outlined.v-text-field--filled
+  > .v-input__control
+  > .v-input__slot {
+  min-height: 20px;
+  max-width: 130px;
 }
 
 .v-text-field.v-text-field--solo .v-input__control {
-     min-height: 0px;
+  min-height: 0px;
 }
 .v-rating .v-icon {
-    padding: 0.1rem;
+  padding: 0.1rem;
 }
 .v-text-field.v-text-field--solo.v-input--dense > .v-input__control {
-    min-height: 0px;
+  min-height: 0px;
 }
 .theme--light.v-label {
-    color: var(--main-color);
+  color: var(--main-color);
 }
 .theme--light.v-text-field--solo > .v-input__control > .v-input__slot {
-    background: var(--app-container);
+  background: var(--app-container);
 }
 .theme--light.v-list {
-    background: var(--app-container);
-    color: var(--main-color) ;
+  background: var(--app-container);
+  color: var(--main-color);
 }
 .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-    color:  var(--main-color) !important;
+  color: var(--main-color) !important;
 }
-.theme--light.v-input:not(.v-input--is-disabled) input, .theme--light.v-input:not(.v-input--is-disabled) textarea {
-    color:  var(--main-color);
+.theme--light.v-input:not(.v-input--is-disabled) input,
+.theme--light.v-input:not(.v-input--is-disabled) textarea {
+  color: var(--main-color);
 }
-
 </style>

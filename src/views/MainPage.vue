@@ -1,48 +1,52 @@
 <template>
   <v-content>
     <Mainbar app />
-    <v-container class="my-5" style="width:100%" mx2 >
+    <v-container class="my-5" style="width: 100%" mx2>
       <v-layout row wrap>
         <v-flex xl2 md2 xs4>
-          <SideBar fixed/>
+          <SideBar fixed />
         </v-flex>
         <v-flex xl10 md10 xs8>
-          <v-container class="flex"  style="display: flex; height: 80vh;overflow:auto">
+          <v-container
+            class="flex"
+            style="display: flex; height: 80vh; overflow: auto"
+          >
             <v-layout row wrap justify-space>
-            <v-col v-for="item in items" :key="item.id" class="d-flex child-flex" cols="5" lg="4" md="4" sm="5"  xs="10">
-            <v-card
-                class="mx-10 my-5 "
-                max-width="250"
-            >
-              <v-img
-                  height="200"
-                  :src= "item.image"
-              ></v-img>
-              <v-card-title> {{item.title}} </v-card-title>
-              <v-card-text>
-                <v-row
-                    align="center"
-                    class="mx-0"
-                >
-                  <v-rating
-                      :value= item.rate
-                      color="amber"
-                      dense
-                      half-increments
-                      readonly
-                      size="14"
-                  ></v-rating>
-                  <div class="grey--text ms-2">
-                    {{item.rate}}
-                  </div>
-                </v-row>
-                <div class="my-2 text-subtitle-1"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{item.address}}
-                </div>
-              </v-card-text>
-              <v-divider class="mx-2"></v-divider>
-            </v-card>
-            </v-col>
+              <v-col
+                v-for="item in items"
+                :key="item.id"
+                class="d-flex child-flex"
+                cols="5"
+                lg="4"
+                md="4"
+                sm="5"
+                xs="10"
+              >
+                <v-card class="mx-10 my-5" max-width="250">
+                  <v-img height="200" :src="item.image"></v-img>
+                  <v-card-title> {{ item.title }} </v-card-title>
+                  <v-card-text>
+                    <v-row align="center" class="mx-0">
+                      <v-rating
+                        :value="item.rate"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+                      <div class="grey--text ms-2">
+                        {{ item.rate }}
+                      </div>
+                    </v-row>
+                    <div class="my-2 text-subtitle-1">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      {{ item.address }}
+                    </div>
+                  </v-card-text>
+                  <v-divider class="mx-2"></v-divider>
+                </v-card>
+              </v-col>
             </v-layout>
           </v-container>
         </v-flex>
@@ -104,20 +108,19 @@
     </v-row>
        </v-layout>
     </v-container> -->
-    
   </v-content>
 </template>
 
 <script>
-import Mainbar from "../components/Mainbar";
-import SideBar from '../components/SideBar.vue';
+import Mainbar from "../components/Mainbar"
+import SideBar from "../components/SideBar.vue"
 
 export default {
   name: "MainPage.vue",
-  components: {Mainbar,SideBar},
+  components: { Mainbar, SideBar },
   data() {
     return {
-      items:[
+      items: [
         {
           id: 0,
           title: "Cafe Badilico",
@@ -181,14 +184,14 @@ export default {
           rate: 4.5,
           address: "Al-Agmy, Alexandria",
         },
-      ]
+      ],
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
-.flex{
+.flex {
   display: flex;
   flex-wrap: wrap;
   margin: 0;

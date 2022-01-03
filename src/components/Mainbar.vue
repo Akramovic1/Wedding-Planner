@@ -1,31 +1,46 @@
 <template>
-  <v-app-bar  app class="px-12" color="white" elevate-on-scroll>
+  <v-app-bar app class="px-12" color="white" elevate-on-scroll>
     <slot class="logocontainer">
-      <img src="../assets/images/logo.jpg" @click="()=>$router.push('/#Home')" />
+      <img
+        src="../assets/images/logo.jpg"
+        @click="() => $router.push('/#Home')"
+      />
     </slot>
     <v-list>
-    <v-toolbar-title left > Wedding Planner </v-toolbar-title>
+      <v-toolbar-title left> Wedding Planner </v-toolbar-title>
     </v-list>
-    <v-spacer/>
+    <v-spacer />
 
     <v-layout class="wrapme" column align-center justify-center>
-      <div :class="['search-bar', searchIsFocused ? 'elevation-6' : 'elevation-3']">
+      <div
+        :class="['search-bar', searchIsFocused ? 'elevation-6' : 'elevation-3']"
+      >
         <input
-               placeholder="Search"
-               v-on:focus="searchFocus()"
-               v-on:blur="searchUnfocus()"
-               type="text"
-               name="search"
-               v-model="filter.search">
+          placeholder="Search"
+          v-on:focus="searchFocus()"
+          v-on:blur="searchUnfocus()"
+          type="text"
+          name="search"
+          v-model="filter.search"
+        />
       </div>
     </v-layout>
 
-    <v-spacer/>
-    <v-list right style="padding-left:20px;">
-      <v-btn bold dark rounded color="#FF4F5A" ><i class="fas fa-user-circle"></i>My Account</v-btn>
+    <v-spacer />
+    <v-list right style="padding-left: 20px">
+      <v-btn bold dark rounded color="#FF4F5A"
+        ><i class="fas fa-user-circle"></i>My Account</v-btn
+      >
     </v-list>
-    <v-list right style="padding-left:20px;">
-      <v-btn bold dark  rounded color="#FF4F5A"   @click="()=>$router.push('/Registration')"><i class="fas fa-sign-out-alt"></i>Log Out</v-btn>
+    <v-list right style="padding-left: 20px">
+      <v-btn
+        bold
+        dark
+        rounded
+        color="#FF4F5A"
+        @click="() => $router.push('/Registration')"
+        ><i class="fas fa-sign-out-alt"></i>Log Out</v-btn
+      >
     </v-list>
   </v-app-bar>
 </template>
@@ -33,44 +48,41 @@
 export default {
   name: "Mainbar",
 
-  data () {
-
-    return{
+  data() {
+    return {
       searchIsFocused: false,
       filter: {
-        search: ''
+        search: "",
       },
-      menus:[
-        {title:'Home',route:'/#Home'},
-        {title:'About Us',route:'/#AboutUs'},
-        {title:'Gallery',route:'/#Gallery'},
-        {title:'Contact Us',route:'/#ContactUs'},
-      ]
+      menus: [
+        { title: "Home", route: "/#Home" },
+        { title: "About Us", route: "/#AboutUs" },
+        { title: "Gallery", route: "/#Gallery" },
+        { title: "Contact Us", route: "/#ContactUs" },
+      ],
     }
   },
   methods: {
     searchFocus() {
-      this.searchIsFocused = true;
+      this.searchIsFocused = true
     },
     searchUnfocus() {
-      this.searchIsFocused = false;
+      this.searchIsFocused = false
     },
-
-  }
-};
+  },
+}
 </script>
 
 <style scoped>
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
-img{
-  display:block;
-  margin:0 auto;
-  width:5%;
+img {
+  display: block;
+  margin: 0 auto;
+  width: 5%;
 }
 .wrapme {
   width: 70%;
   max-width: 900px;
-
 }
 
 .search-bar {
@@ -94,5 +106,4 @@ img{
 .search-bar input:focus {
   outline: none;
 }
-
 </style>

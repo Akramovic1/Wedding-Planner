@@ -6156,6 +6156,11 @@
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-1.19.1.tgz"
   "version" "1.19.1"
 
+"prettier@2.5.1":
+  "integrity" "sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.5.1.tgz"
+  "version" "2.5.1"
+
 "pretty-error@^2.0.2":
   "integrity" "sha1-X0+HyPkeWuPzuoerTPXgOxoX8aM="
   "resolved" "https://registry.npmjs.org/pretty-error/-/pretty-error-2.1.1.tgz"
