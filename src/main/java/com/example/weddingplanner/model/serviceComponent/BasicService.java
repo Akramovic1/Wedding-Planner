@@ -8,16 +8,25 @@ public abstract class BasicService {
     private String name;
     private  String description;
     private float rate;
+    private int ownerID;
     private int cost;
     private List<String>imgUrl=new ArrayList<>();
 
-    public BasicService(int ID, String name, String description, float rate, int cost, List<String> imgUrl) {
-        this.ID = ID;
+    public BasicService(String name, String description, float rate, int ownerID, int cost, List<String> imgUrl) {
         this.name = name;
         this.description = description;
         this.rate = rate;
+        this.ownerID = ownerID;
         this.cost = cost;
         this.imgUrl = imgUrl;
+    }
+
+    public BasicService(String name, String description, float rate, int ownerID, int cost) {
+        this.name = name;
+        this.description = description;
+        this.rate = rate;
+        this.ownerID = ownerID;
+        this.cost = cost;
     }
 
     public int getID() {
@@ -66,5 +75,25 @@ public abstract class BasicService {
 
     public void setImgUrl(List<String> imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public int getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    @Override
+    public String toString() {
+        return "BasicService{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rate=" + rate +
+                ", ownerID=" + ownerID +
+                ", cost=" + cost +
+                '}';
     }
 }

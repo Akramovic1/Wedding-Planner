@@ -43,22 +43,18 @@ public class UserSignUpTests {
     void notValidPassword(){
         User user = new Customer(-10,"newtestsssss@gmail.com","1415","Customer","trojan",null);
         Assertions.assertEquals("Password should have at least 8 characters",service.signUp(user));
-        dao.delete(user.getID());
     }
     @Test
     @DisplayName("Not valid email-address")
     void notValidEmail(){
         User user = new Customer(-10,"@gmail.com","12345678","Customer","trojan",null);
         Assertions.assertEquals("Not valid email-address",service.signUp(user));
-        dao.delete(user.getID());
 
         user = new Customer(-10,"@gmacccil.com","12345678","Customer","trojan",null);
         Assertions.assertEquals("Not valid email-address",service.signUp(user));
-        dao.delete(user.getID());
 
         user = new Customer(-10,"ahmed@gmacccil.cccom","12345678","Customer","trojan",null);
         Assertions.assertEquals("Not valid email-address",service.signUp(user));
-        dao.delete(user.getID());
     }
 
     @Test

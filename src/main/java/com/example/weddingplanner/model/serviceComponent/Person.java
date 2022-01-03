@@ -6,10 +6,17 @@ import java.util.List;
 public class Person extends BasicService {
     private String job;
     private List<String>location=new ArrayList<>();
-    public Person(int ID, String name, String description, float rate, int cost, List<String> imgUrl,String job,List<String>location) {
-        super(ID, name, description, rate, cost, imgUrl);
-        this.job=job;
-        this.location=location;
+
+    public Person(String name, String description,
+                  float rate, int ownerID, int cost, List<String> imgUrl, String job, List<String> location) {
+        super(name, description, rate, ownerID, cost, imgUrl);
+        this.job = job;
+        this.location = location;
+    }
+
+    public Person(String name, String description, float rate, int ownerID, int cost, String job) {
+        super(name, description, rate, ownerID, cost);
+        this.job = job;
     }
 
     public List<String> getLocation() {

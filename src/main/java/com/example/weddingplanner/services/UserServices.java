@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 
-@Service("userService")
+@Service("UserService")
 public class UserServices {
 
     private final UserFacade backend;
@@ -19,24 +19,15 @@ public class UserServices {
         backend=new UserFacade(userDAO);
     }
 
-
     public String signUp(User user){
-        //backend = getSingleton();
         return backend.signUp(user);
     }
 
     public int logIn(String email, String password){
-      //  backend = getSingleton();
         int userId=backend.logIn(email,password);
         if (userId!=-1){
             activeUsers.add(userId);
         }
         return userId;
     }
-
-   /* private UserFacade getSingleton(){
-        if(backend==null)
-            backend = new UserFacade(userDAO);
-        return backend;
-    }*/
 }

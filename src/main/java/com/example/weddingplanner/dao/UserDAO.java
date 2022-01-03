@@ -8,5 +8,4 @@ public interface UserDAO extends DAO<User> {
 
     User getByEmailAndPassword(String email,String password);
 
-    int getNewUserID();
 }

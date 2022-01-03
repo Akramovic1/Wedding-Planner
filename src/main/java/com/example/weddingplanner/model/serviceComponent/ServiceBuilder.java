@@ -33,7 +33,7 @@ public class ServiceBuilder {
                return "You should provide at least one location";
            }
            else {
-             //  serviceDAO.create((Person)service);
+               serviceDAO.create(service);
                return "Service has sent to system administrators successfully";
            }
        }
@@ -46,13 +46,12 @@ public class ServiceBuilder {
                 return "You should provide location";
             }
             else {
-               // serviceDAO.create((Place)service);
-                return "Service has sent to system administrators successfully";
+               serviceDAO.create(service);
+               return "Service has sent to system administrators successfully";
             }
        }
-       else {
+       else
            return "Unsupported service type";
-       }
 
     }
 }

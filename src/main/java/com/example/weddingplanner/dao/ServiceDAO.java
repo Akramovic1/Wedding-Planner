@@ -3,12 +3,10 @@ package com.example.weddingplanner.dao;
 import com.example.weddingplanner.model.serviceComponent.Person;
 import com.example.weddingplanner.model.serviceComponent.Place;
 import com.example.weddingplanner.model.serviceComponent.BasicService;
-import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-@Repository("serviceDAO")
+
 public interface ServiceDAO extends DAO<BasicService> {
 
     //Returns all places in the database
@@ -17,6 +15,12 @@ public interface ServiceDAO extends DAO<BasicService> {
     //Returns all persons in the database
     List<Person> getAllPersons();
 
+    //Add new busy date for a specific service
+    int addBusyDate(int serviceID, Date busyDate);
+
+    //remove busy date for a specific service
+    int removeBusyDate(int serviceID, Date busyDate);
+
     //Returns all the dates that a certain service is busy
     List<Date> getBusyDates(int serviceID);
 
@@ -24,32 +28,27 @@ public interface ServiceDAO extends DAO<BasicService> {
     List<Place> getAllPlacesOfSP(int spID);
 
     //Returns all the persons who works for a service provider
-    ArrayList<Person> getAllPersonsOfSP(int spID);
+    List<Person> getAllPersonsOfSP(int spID);
+
+    //Add new location to a person
+    int addLocationOfPerson(int personID,String location);
+
+    //remove location from a person
+    int removeLocationOfPerson(int personID,String location);
 
     //Returns all the locations of a person
-    List<String> getLocationsOfPerson(int serviceID);
+    List<String> getLocationsOfPerson(int personID);
+
+    //Add new picture to a service
+    int addPictureToService(int serviceID,String url);
+
+    //Remove picture from a service
+    int removePictureToService(int serviceID,String url);
 
     //Returns all the pictures of a person
     List<String> getPicturesOfService(int serviceID);
 
-    //Return all places with capacities in between left and right
-    List<Place> getPlaceWithCapacity(int left,int right);
-
-    //Return all places in location
-    List<Place> getPlaceInLocation(String location);
-
-    //Return all persons in location
-    List<Person> getPersonsInLocation(String location);
-    List<Person> getPersonsInLocation(String location,String job);
-
-    //Return all places with cost in between left and right
-    List<Place> getPlaceWithCost(int left,int right);
-
-    //Return all persons with cost in between left and right
-    List<Person> getPersonWithCost(int left,int right);
-    List<Person> getPersonWithCost(int left,int right,String job);
-
-
-    List<Person> performPersonSQL(String SQL);
-    List<Place>performPlaceSQL(String SQl);
+    //Performs certain SQL on specific table
+    List<Person> performPersonSQL(String sql);
+    List<Place>performPlaceSQL(String sql);
 }

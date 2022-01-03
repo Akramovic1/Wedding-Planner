@@ -45,22 +45,24 @@ public class Controller {
                      @RequestParam(value = "password")String password){
         return this.userServices.logIn(email,password);
     }
+
     @GetMapping("/setPersonPage")
-    public void setPersonPage(@RequestParam(value = "attributes")ArrayList<Attribute>attributes)
-    {
+    public void setPersonPage(@RequestParam(value = "attributes")ArrayList<Attribute>attributes) {
         Page.setPersonPage(attributes);
     }
+
     @GetMapping("/setPlacePage")
-    public void setPlacePage(@RequestParam(value = "attributes")ArrayList<Attribute>attributes)
-    {
+    public void setPlacePage(@RequestParam(value = "attributes")ArrayList<Attribute>attributes) {
         Page.setPlacePage(attributes);
     }
+
     @GetMapping("/getPlacePage")
     public ArrayList<Place> setPlacePage(@RequestParam(value = "pageNumber")int n)
     {
         return  Page.getPlacePage(n);
     }
     @GetMapping("/getPersonPage")
+
     public ArrayList<Person> setPersonPage(@RequestParam(value = "pageNumber")int n)
     {
         return  Page.getPersonPage(n);

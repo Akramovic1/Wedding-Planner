@@ -6,10 +6,18 @@ public class Place extends BasicService {
     String location;
     int capacity;
 
-    public Place(int ID, String name, String description, float rate, int cost, List<String> imgUrl,String location,int capacity) {
-        super(ID, name, description, rate, cost, imgUrl);
-        this.location=location;
-        this.capacity=capacity;
+    public Place(String name, String description, float rate, int ownerID, int cost, List<String> imgUrl,
+                 String location, int capacity) {
+        super(name, description, rate, ownerID, cost, imgUrl);
+        this.location = location;
+        this.capacity = capacity;
+    }
+
+    public Place(String name, String description, float rate, int ownerID,
+                 int cost, String location, int capacity) {
+        super(name, description, rate, ownerID, cost);
+        this.location = location;
+        this.capacity = capacity;
     }
 
     public String getLocation() {
@@ -27,4 +35,5 @@ public class Place extends BasicService {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
 }

@@ -56,7 +56,6 @@ public class UserBuilder {
             if(dao.checkEmailExists(email)){
                 return "There's another account with tha same email";}
             else {
-                user.setID(dao.getNewUserID());
                 dao.create(user);
                 return "Successfully created";
             }
