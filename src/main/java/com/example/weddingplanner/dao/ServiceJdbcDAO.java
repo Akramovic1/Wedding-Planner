@@ -208,6 +208,7 @@ public class ServiceJdbcDAO implements ServiceDAO{
     @Override
     public List<Person> searchPersonByName(String name) {
         String sql = "SELECT * FROM persons WHERE name LIKE ?";
+
         return jdbcTemplate.query(sql,personsRowMapper,"%"+name+"%");
     }
 

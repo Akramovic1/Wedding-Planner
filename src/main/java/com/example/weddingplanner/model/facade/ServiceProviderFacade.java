@@ -65,10 +65,19 @@ public class ServiceProviderFacade {
         return serviceDate.isDateFree(busyDates,date);
     }
     public List<Person> searchPersonByName(String name){
-        return dao.searchPersonByName(name);
+        ArrayList<Person>searched= (ArrayList<Person>) dao.searchPersonByName(name);
+        for(Person p :searched){
+            p.setImgUrl(dao.getPicturesOfService(p.getID()));
+            p.setLocation(dao.getLocationsOfPerson(p.getID()));
+        }
+        return searched;
     }
     public List<Place> searchPlaceByName(String name){
-        return dao.searchPlaceByName(name);
+        ArrayList<Place>searched= (ArrayList<Place>) dao.searchPlaceByName(name);
+        for(Place p :searched){
+            p.setImgUrl(dao.getPicturesOfService(p.getID()));
+        }
+        return searched;
     }
 
 }
