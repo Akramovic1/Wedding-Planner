@@ -60,7 +60,7 @@ public class Controller {
     }
 
     @PostMapping("/setPlacePage")
-    public void setPlacePage(@RequestParam(value = "attributes")ArrayList<Attribute>attributes) {
+    public void setPlacePage(@RequestBody ArrayList<Attribute>attributes) {
         pagingSystem.setPlacePage(attributes);
     }
 

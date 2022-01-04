@@ -30,10 +30,12 @@ public class Filter {
             parseSQL.append(" WHERE ");
             for(Attribute attribute :attributes){
                 if(attribute.getColumnName().equals("cost")||attribute.getColumnName().equals("rate")||attribute.getColumnName().equals("capacity")){
+                    if(!attribute.getVal().equals("0,")){
                     parseSQL.append("("+attribute.getColumnName()+" between "+attribute.getVal().split(",")[0]+" and "+attribute.getVal().split(",")[1]+" )");
                     parseSQL.append(" and ");
                 }
-                else if(attribute.getColumnName().equals("location")){
+                }
+                else if(attribute.getColumnName().equals("location")&&(!attribute.getVal().equals(""))){
                     if(tableName.equals("places")){
                         parseSQL.append("( "+attribute.getColumnName()+" in "+" (");
                         String[] locations=attribute.getVal().split(",");
@@ -63,14 +65,19 @@ public class Filter {
                     }
                 }
                 else {
+                    if(!attribute.getVal().equals("")){
                 parseSQL.append("("+attribute.getColumnName()+" = \""+attribute.getVal()+"\")");
                 parseSQL.append(" and ");}
+                }
             }
-            parseSQL= new StringBuilder(parseSQL.substring(0, parseSQL.lastIndexOf("a")));
+            if(parseSQL.lastIndexOf("a")!=-1){
+            parseSQL= new StringBuilder(parseSQL.substring(0, parseSQL.lastIndexOf("a")));}
+            else {parseSQL= new StringBuilder(parseSQL.substring(0, parseSQL.lastIndexOf("WHERE")));}
         }
 
         return String.valueOf(parseSQL);
     }
+    
     public  ArrayList<Person>makePersonFilter(ArrayList<Attribute>attributes){
         String tableName="persons";
         String SQLCommand=parseSQL(tableName,attributes);
@@ -104,14 +111,14 @@ public class Filter {
         x.add(a1);x.add(a2);x.add(a3);//x.add(a4);
         System.out.println(Filter.parseSQL("persons",x));
 
-    /*    ArrayList<Attribute>x2=new ArrayList<>();
+        ArrayList<Attribute>x2=new ArrayList<>();
         Attribute a11=new Attribute("location","alexandria");
         Attribute a22=new Attribute("cost","52,105");
         Attribute a33=new Attribute("rate","2.5,4");
         Attribute a44=new Attribute("capacity","8,800");
         //Attribute a4=new Attribute("job","photographer");
         x2.add(a11);x2.add(a22);x2.add(a33);x2.add(a44);
-        System.out.println(Filter.parseSQL("place",x2));*/
+        System.out.println(Filter.parseSQL("places",x2));
 
     }
 
