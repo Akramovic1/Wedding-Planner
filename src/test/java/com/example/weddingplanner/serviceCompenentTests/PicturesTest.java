@@ -94,15 +94,19 @@ class PicturesTest {
     @Test
     void mapOfPicInFolderEmptyFolder() {
         Pictures p = new Pictures();
-        assertEquals(0,p.MapOfPicInFolder("testing Appendices\\New folder").size());
+        List<Map<String,Integer>> m=p.MapOfPicInFolder("testing Appendices\\New folder");
+        if (m!=null)
+            assertEquals(0,m.size());
     }
     @Test
     void mapOfPicInFolderCorrectFolder() {
         Pictures p = new Pictures();
         List<Map<String,Integer>> m=p.MapOfPicInFolder("testing Appendices\\New folder1");
-        assertEquals(1,m.size());
-        assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
-        p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        if (m!=null) {
+            assertEquals(1, m.size());
+            assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
+            p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        }
     }
     /*
     test the function urlOfPicInFolder
@@ -120,15 +124,19 @@ class PicturesTest {
     @Test
     void urlOfPicInFolderEmptyFolder() {
         Pictures p = new Pictures();
-        assertEquals(0,p.urlOfPicInFolder("testing Appendices\\New folder").size());
+        List<String> u = p.urlOfPicInFolder("testing Appendices\\New folder");
+        if (u!=null)
+            assertEquals(0,u.size());
     }
     @Test
     void urlOfPicInFolderCorrectFolder() {
         Pictures p = new Pictures();
         List<Map<String,Integer>> m=p.MapOfPicInFolder("testing Appendices\\New folder1");
-        assertEquals(1,m.size());
-        assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
-        p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        if (m!=null) {
+            assertEquals(1, m.size());
+            assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
+            p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        }
     }
 
     /*
@@ -138,9 +146,11 @@ class PicturesTest {
     void deletePictureExistingPicture() {
         Pictures p = new Pictures();
         List<Map<String,Integer>> m=p.MapOfPicInFolder("testing Appendices\\New folder1");
-        assertEquals(1,m.size());
-        assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
-        p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        if (m!=null) {
+            assertEquals(1, m.size());
+            assertTrue(isValid(String.valueOf(m.get(0).get("url"))));
+            p.deletePicture(String.valueOf(m.get(0).get("public_id")));
+        }
     }
     @Test
     void deletePictureNonExistingPicture() {
@@ -178,8 +188,10 @@ class PicturesTest {
         Pictures p = new Pictures();
         File pic=new File("testing Appendices\\happy new year 2022.jpg");
         var m=p.mapOfPicture(pic);
-        assertTrue(isValid(String.valueOf(m.get("url"))));
-        p.deletePicture(String.valueOf(m.get("public_id")));
+        if (m!=null) {
+            assertTrue(isValid(String.valueOf(m.get("url"))));
+            p.deletePicture(String.valueOf(m.get("public_id")));
+        }
     }
 
     /*
@@ -207,8 +219,10 @@ class PicturesTest {
         Pictures p = new Pictures();
         File pic=new File("testing Appendices\\happy new year 2022.jpg");
         var m=p.mapOfPicture(pic);
-        assertTrue(isValid(String.valueOf(m.get("url"))));
-        p.deletePicture(String.valueOf(m.get("public_id")));
+        if (m!=null) {
+            assertTrue(isValid(String.valueOf(m.get("url"))));
+            p.deletePicture(String.valueOf(m.get("public_id")));
+        }
     }
 
     /*
@@ -234,7 +248,9 @@ class PicturesTest {
         Pictures p = new Pictures();
         File pic=new File("testing Appendices\\happy new year 2022.jpg");
         var m=p.mapOfPicture(pic);
-        assertTrue(isValid(String.valueOf(m.get("url"))));
-        p.deletePicture(String.valueOf(m.get("public_id")));
+        if (m!=null) {
+            assertTrue(isValid(String.valueOf(m.get("url"))));
+            p.deletePicture(String.valueOf(m.get("public_id")));
+        }
     }
 }
