@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <v-dialog
       :value="value"
       max-width="300px"
@@ -7,51 +7,51 @@
       @input="$emit('input')"
     >
       <div id="success-box">
-    <div class="dot"></div>
-    <div class="dot two"></div>
-    <div class="face">
-      <div class="eye"></div>
-      <div class="eye right"></div>
-      <div class="mouth happy"></div>
-    </div>
-    <div class="shadow scale"></div>
-    <div class="message"><h1 class="alert">Success!</h1><p>Payment is success.</p></div>
-    <button class="button-box green" @click="value = false"><h1 class="green">continue</h1></button>
-  </div>
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth happy"></div>
+        </div>
+        <div class="shadow scale"></div>
+        <div class="message">
+          <h1 class="alert">Success!</h1>
+          <p>Payment is success.</p>
+        </div>
+        <button class="button-box green" @click="value = false">
+          <h1 class="green">continue</h1>
+        </button>
+      </div>
     </v-dialog>
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "Success",
   data() {
     return {
-        dialog: false,
+      dialog: false,
     }
   },
-  components: {
+  components: {},
 
-  },
-
-  props: ["value"]
-
+  props: ["value"],
 }
 </script>
 <style lang="scss" scoped>
-$white: #FCFCFC;
-$gray: #CBCDD3;
+$white: #fcfcfc;
+$gray: #cbcdd3;
 $dark: #777777;
-$error: #EF8D9C;
-$orange: #FFC39E;
-$success: #B0DB7D;
-$secondary: #99DBB4;
+$error: #ef8d9c;
+$orange: #ffc39e;
+$success: #b0db7d;
+$secondary: #99dbb4;
 
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
-$font: 'Lato', sans-serif;
+$font: "Lato", sans-serif;
 
 html {
   display: grid;
@@ -105,16 +105,17 @@ p {
   letter-spacing: 1px;
 }
 
-button, .dot {
+button,
+.dot {
   cursor: pointer;
 }
 
 #success-box {
   position: absolute;
   width: 25%;
-  height:45%;
-  top:22%;
-  left:38%;
+  height: 45%;
+  top: 22%;
+  left: 38%;
   background: linear-gradient(to bottom right, $success 40%, $secondary 100%);
   border-radius: 20px;
   box-shadow: 5px 5px 20px rgba($gray, 10%);
@@ -136,7 +137,7 @@ button, .dot {
 
 .two {
   right: 12%;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .face {
@@ -180,7 +181,7 @@ button, .dot {
 }
 
 .mouth {
-  position:absolute;
+  position: absolute;
   top: 43%;
   left: 41%;
   width: 7px;
@@ -198,7 +199,7 @@ button, .dot {
   position: absolute;
   width: 21%;
   height: 3%;
-  opacity: .5;
+  opacity: 0.5;
   background: $dark;
   left: 40%;
   top: 43%;
@@ -212,7 +213,6 @@ button, .dot {
 .move {
   animation: move 3s ease-in-out infinite;
 }
-
 
 .message {
   position: absolute;
@@ -232,18 +232,18 @@ button, .dot {
   left: 25%;
   outline: 0;
   border: none;
-  box-shadow: 2px 2px 10px rgba($dark, .5);
-  transition: all .5s ease-in-out;
+  box-shadow: 2px 2px 10px rgba($dark, 0.5);
+  transition: all 0.5s ease-in-out;
   &:hover {
     background: darken($white, 5%);
     transform: scale(1.05);
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 }
 
 @keyframes bounce {
   50% {
-     transform: translateY(-10px);
+    transform: translateY(-10px);
   }
 }
 
@@ -267,8 +267,4 @@ button, .dot {
     left: 25%;
   }
 }
-
-
-
-
 </style>

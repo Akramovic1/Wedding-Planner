@@ -803,13 +803,47 @@ export default {
     },
     darkMode(){
        var modeSwitch = document.querySelector(".mode-switch")
-    modeSwitch.addEventListener("click", function () {
-      document.documentElement.classList.toggle("dark")
-      modeSwitch.classList.toggle("active")
-    })
-  },
+      modeSwitch.addEventListener("click", function () {
+        document.documentElement.classList.toggle("dark")
+        modeSwitch.classList.toggle("active")
+      })
+    },
     search_btn(){
-      window.alert(this.searchKeyword)
+
+      if (this.sidebarOptionSelected == "Halls"){
+        axios.get("http://localhost:8080/api/searchPlaceByName", {
+          params: {
+            name: this.searchKeyword,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.halls = Data
+        })
+      }
+      else if (this.sidebarOptionSelected == "Photographers"){
+        axios.get("http://localhost:8080/api/searchPersonByName", {
+          params: {
+            name: this.searchKeyword,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.photographers = Data
+        })
+      }
+      else if (this.sidebarOptionSelected == "Makeup Artists"){
+        axios.get("http://localhost:8080/api/searchPersonByName", {
+          params: {
+            name: this.searchKeyword,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.makeupArtist = Data
+        })
+      }
+
     }
 
     
