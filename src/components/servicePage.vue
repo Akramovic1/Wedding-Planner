@@ -18,8 +18,8 @@
         <v-col cols="6">
           <v-carousel cycle hide-delimiters show-arrows-on-hover height="610">
             <v-carousel-item
-              v-for="(photo, i) in photos"
-              :key="i"
+              v-for="(photo, ok) in photos"
+              :key="ok"
               :src="photo.src"
             ></v-carousel-item>
           </v-carousel>
@@ -54,7 +54,7 @@
             <v-card-text style="height: 445px; overflow-y: auto">
               <!-- name of the service -->
               <h1 style="padding: 10px 10px 15px 15px">
-                {{ this.serviceInfo.title }}
+                {{ this.serviceInfo.name }}
               </h1>
               <v-timeline dense>
                 <!-- description -->
@@ -83,7 +83,7 @@
                   <v-col>
                     <strong>Location</strong>
                     <div class="text-caption">
-                      {{ this.serviceInfo.address }}
+                      {{ this.serviceInfo.location }}
                     </div>
                   </v-col>
                 </v-timeline-item>
@@ -97,7 +97,7 @@
                   <v-col>
                     <strong>Cost</strong>
                     <div class="text-caption">
-                      <h2>255$</h2>
+                      <h2>{{this.serviceInfo.cost}}</h2>
                     </div>
                   </v-col>
                 </v-timeline-item>
@@ -116,9 +116,12 @@
                       color="#FEC260"
                       length="5"
                       size="50"
-                      value="4.5"
                       readonly
-                    ></v-rating>
+                    >
+                    <div class="grey--text ms-2">
+                        {{this.serviceInfo.rate / 2}}
+                    </div>
+                    </v-rating>
                   </v-col>
                 </v-timeline-item>
 
@@ -182,7 +185,6 @@ export default {
   props: ["service"],
   data() {
     return {
-      dialogm1: "",
       dialog: false,
       serviceInfo: "",
       photos: [
@@ -205,8 +207,10 @@ export default {
     }
   },
   mounted() {
+    //window.alert(this.service.title);
     this.serviceInfo = JSON.parse(JSON.stringify(this.service))
     //this.photos = JSON.parse(JSON.stringify(this.service.image));
+    //window.alert(this.serviceInfo.name);
   },
 }
 </script>
