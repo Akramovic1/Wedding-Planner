@@ -644,44 +644,19 @@ export default {
     },
 
     filter: function () {
-      // window.alert(
-      //   this.inputAddress.title +
-      //     " , " +
-      //     this.inputPrice +
-      //     " , " +
-      //     this.inputRating +
-      //     " , " +
-      //     this.inputCapacity +
-      //     " , " +
-      //     this.searchKeyword
-      // )
-      var arr = [{
-                  "columnName":"location",
-                  "val":this.inputAddress.title,
-                }
-                ,
-                {
-                    "columnName":"cost",
-                    "val":"0," + this.inputPrice,
-                }
-                ,
-                {
-                    "columnName":"rate",
-                    "val":"0," + this.inputRating,
-                }
-                ,
-                {
-                    "columnName":"capacity",
-                    "val":"0," + this.inputCapacity,
-                }
-      ];
-
-      window.alert(JSON.stringify(arr));
-      document.write(JSON.stringify(arr));
-
+      window.alert(
+        this.inputAddress.title +
+          " , " +
+          this.inputPrice +
+          " , " +
+          this.inputRating +
+          " , " +
+          this.inputCapacity +
+          " , " +
+          this.searchKeyword
+      )
     },
     resetFilter: function () {},
-    
   },
   mounted: function () {
     var modeSwitch = document.querySelector(".mode-switch")
