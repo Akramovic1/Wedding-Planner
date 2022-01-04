@@ -106,5 +106,13 @@ public class Controller {
                                    @RequestParam(value = "date")String date) throws ParseException {
         return serviceProviderServices.isFreeDate(serviceID,date);
     }
+    @GetMapping("/searchPersonByName")
+    public List<Person> searchPersonByName(@RequestParam(value = "name")String name){
+        return serviceProviderServices.searchPersonByName(name);
+    }
+    @GetMapping("/searchPlaceByName")
+    public List<Place> searchPlaceByName(@RequestParam(value = "name")String name){
+        return serviceProviderServices.searchPlaceByName(name);
+    }
 
 }

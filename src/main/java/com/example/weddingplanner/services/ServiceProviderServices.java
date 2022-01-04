@@ -3,6 +3,8 @@ package com.example.weddingplanner.services;
 import com.example.weddingplanner.dao.ServiceDAO;
 import com.example.weddingplanner.model.facade.ServiceProviderFacade;
 import com.example.weddingplanner.model.serviceComponent.BasicService;
+import com.example.weddingplanner.model.serviceComponent.Person;
+import com.example.weddingplanner.model.serviceComponent.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,12 @@ public class ServiceProviderServices {
            System.err.println("Not valid date format");
            return false;
        }
+    }
+    public List<Person> searchPersonByName(String name){
+        return serviceFacade.searchPersonByName(name);
+    }
+    public List<Place> searchPlaceByName(String name){
+        return serviceFacade.searchPlaceByName(name);
     }
 
 }

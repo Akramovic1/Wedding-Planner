@@ -64,5 +64,11 @@ public class ServiceProviderFacade {
         ArrayList<Date>busyDates= (ArrayList<Date>) dao.getBusyDates(serviceID);
         return serviceDate.isDateFree(busyDates,date);
     }
+    public List<Person> searchPersonByName(String name){
+        return dao.searchPersonByName(name);
+    }
+    public List<Place> searchPlaceByName(String name){
+        return dao.searchPlaceByName(name);
+    }
 
 }

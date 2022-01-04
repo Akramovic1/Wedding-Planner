@@ -77,7 +77,7 @@ public class Filter {
 
         return String.valueOf(parseSQL);
     }
-    
+
     public  ArrayList<Person>makePersonFilter(ArrayList<Attribute>attributes){
         String tableName="persons";
         String SQLCommand=parseSQL(tableName,attributes);
