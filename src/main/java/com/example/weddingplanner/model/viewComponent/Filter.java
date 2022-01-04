@@ -47,7 +47,7 @@ public class Filter {
                         parseSQL.append(" and ");
                     }
                     else if(tableName.equals("persons")){
-                        parseSQL.append(" ID IN (Select distinct ID FROM persons_location WHERE location in ( ");
+                        parseSQL.append(" ID IN (Select distinct ID FROM person_locations WHERE location in ( ");
                         String[] locations=attribute.getVal().split(",");
                         for(String location :locations){
                             parseSQL.append("\""+location+"\""+",");
