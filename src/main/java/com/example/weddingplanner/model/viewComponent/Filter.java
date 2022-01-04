@@ -75,12 +75,22 @@ public class Filter {
         String tableName="persons";
         String SQLCommand=parseSQL(tableName,attributes);
         System.out.println(SQLCommand);
-        return (ArrayList<Person>) dao.performPersonSQL(SQLCommand);
+        ArrayList<Person>filteredServices=(ArrayList<Person>) dao.performPersonSQL(SQLCommand);
+        for(Person p:filteredServices){
+            p.setLocation(dao.getLocationsOfPerson(p.getID()));
+            p.setImgUrl(dao.getPicturesOfService(p.getID()));
+        }
+        return filteredServices;
     }
     public  ArrayList<Place>makePlacesFilter(ArrayList<Attribute>attributes){
         String tableName="places";
         String SQLCommand=parseSQL(tableName,attributes);
-        return (ArrayList<Place>) dao.performPlaceSQL(SQLCommand);
+        System.out.println(SQLCommand);
+        ArrayList<Place>filteredServices=(ArrayList<Place>) dao.performPlaceSQL(SQLCommand);
+        for(Place p:filteredServices){
+            p.setImgUrl(dao.getPicturesOfService(p.getID()));
+        }
+        return filteredServices;
     }
 
 

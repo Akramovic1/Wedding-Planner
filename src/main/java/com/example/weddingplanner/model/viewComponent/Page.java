@@ -41,10 +41,13 @@ public class Page {
         int start=(pageNumber-1)*10;
         int end=(pageNumber)*10;
         ArrayList<Place>page=end<allPlaceServices.size()?new ArrayList<>(allPlaceServices.size()):new ArrayList<>(end);
+        if(start<allPlaceServices.size()){
         for(int i=0;i<Math.min(allPlaceServices.size(),end);i++){
             page.add(allPlaceServices.get(start+i));
         }
+        }
         return page;
+
     }
 
 }

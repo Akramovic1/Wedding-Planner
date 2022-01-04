@@ -25,7 +25,7 @@ public class PageTests {
     @DisplayName("Page tests")
     void getPlacePage() {
         p.setPlacePage(null);
-        ArrayList<Place>places=p.getPlacePage(1);
+        ArrayList<Place>places=p.getPlacePage(3);
         System.out.println(places.size());
     }
 
