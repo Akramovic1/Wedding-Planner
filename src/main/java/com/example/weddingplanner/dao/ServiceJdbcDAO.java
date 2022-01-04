@@ -76,7 +76,7 @@ public class ServiceJdbcDAO implements ServiceDAO{
 
     @Override
     public int create(BasicService basicService) {
-        int newID = DAO.getNewID("serviceIndex");
+        int newID = DAO.getNewID("src/main/resources/serviceIndex");
         basicService.setID(newID);
         String sqlService = "INSERT INTO services VALUES (?,?)";
         int insert = jdbcTemplate.update(sqlService,newID,basicService instanceof Place ? "place" : "person");

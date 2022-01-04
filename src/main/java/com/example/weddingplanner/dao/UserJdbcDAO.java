@@ -71,7 +71,7 @@ public class UserJdbcDAO implements UserDAO{
 
     @Override
     public int create(User user) {
-        int newID = DAO.getNewID("userIndex");
+        int newID = DAO.getNewID("src/main/resources/userIndex");
         user.setID(newID);
         String sql = "INSERT INTO users VALUES (?,?,?,?,?,?)";
         int insert = jdbcTemplate.update(sql,newID,user.getEmail(),
