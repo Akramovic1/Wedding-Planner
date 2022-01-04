@@ -48,6 +48,10 @@ public interface ServiceDAO extends DAO<BasicService> {
     //Returns all the pictures of a person
     List<String> getPicturesOfService(int serviceID);
 
+    //Searches on persons using name
+    List<Person> searchPersonByName(String name);
+    List<Place> searchPlaceByName(String name);
+
     //Performs certain SQL on specific table
     List<Person> performPersonSQL(String sql);
     List<Place>performPlaceSQL(String sql);
