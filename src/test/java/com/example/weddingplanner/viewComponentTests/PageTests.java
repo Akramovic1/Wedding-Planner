@@ -3,6 +3,8 @@ package com.example.weddingplanner.viewComponentTests;
 import com.example.weddingplanner.model.serviceComponent.Person;
 import com.example.weddingplanner.model.serviceComponent.Place;
 import com.example.weddingplanner.model.viewComponent.Page;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ public class PageTests {
     void getPersonPage() {
         p.setPersonPage(null);
         ArrayList<Person>person=p.getPersonPage(1);
+        //Assertions.assertEquals(person.size(),3);
         System.out.println(person.size());
     }
     @Test
