@@ -18,6 +18,7 @@
           />
 
           <svg
+            @click="search_btn()"
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="20"
@@ -37,8 +38,10 @@
       </div>
 
       <div class="app-header-right">
-        <cartPage/>
-        <button class="mode-switch" title="Switch Theme">
+        <cartPage />
+        <button class="mode-switch" title="Switch Theme" 
+        @click="darkMode()"
+        >
           <svg
             class="moon"
             fill="none"
@@ -73,15 +76,8 @@
       <nav class="navbar" style="padding: 20px 0px">
         <ul class="navbar__menu">
           <li class="navbar__item">
-
             <!-- hall button -->
-            <a
-              class="navbar__link"
-              style="margin: 20px 0px"
-              @click="
-                sidebarOptionSelected = 'Halls'
-                disabled = false
-              "
+            <a class="navbar__link" style="margin: 20px 0px" @click="hall_btn"
               ><i
                 ><img
                   src="../assets/images/home.png"
@@ -93,23 +89,14 @@
             <a
               class="navbar__link"
               style="margin: 20px 0px"
-              @click="
-                sidebarOptionSelected = 'Photographers'
-                disabled = true
-              "
+              @click="photographer_btn"
               ><i
                 ><img src="../assets/images/camera.png" style="width: 42%" /></i
               ><span>Photographers</span></a
             >
           </li>
           <li class="navbar__item">
-            <a
-              class="navbar__link"
-              style="margin: 20px 0px"
-              @click="
-                sidebarOptionSelected = 'Makeup Artists'
-                disabled = true
-              "
+            <a class="navbar__link" style="margin: 20px 0px" @click="makeup_btn"
               ><i
                 ><img
                   src="../assets/images/make-up.png"
@@ -228,7 +215,7 @@
 
             <slot v-if="sidebarOptionSelected == 'Halls'">
               <v-col
-                v-for="(item,c) in halls"
+                v-for="(item, c) in halls"
                 :key="c"
                 class="d-flex child-flex"
                 cols="12"
@@ -242,22 +229,23 @@
                   max-width="250"
                   style="background-color: var(--app-container)"
                 >
-                  <v-img height="150" :src="item.image"></v-img>
+                  <v-img height="150" :src="item.imgUrl[0]"></v-img>
                   <v-card-title style="color: var(--main-color)">
                     {{ item.name }}
                   </v-card-title>
                   <v-card-text style="color: var(--main-color)">
                     <v-row align="center" class="mx-0">
                       <v-rating
-                        :value="item.rate/2"
-                        color="amber"
+                        :value="item.rate / 2"
+                        background-color="#FEC260"
+                        color="#FEC260"
                         dense
                         half-increments
                         readonly
                         size="14"
                       ></v-rating>
                       <div class="grey--text ms-2">
-                        {{ item.rate/2 }}
+                        {{ item.rate / 2 }}
                       </div>
                     </v-row>
                     <div class="my-2 text-subtitle-1">
@@ -266,7 +254,6 @@
                     </div>
                   </v-card-text>
                   <v-card-actions>
-                    
                     <servicePage :service="item" />
                   </v-card-actions>
                 </v-card>
@@ -277,8 +264,8 @@
 
             <slot v-if="sidebarOptionSelected == 'Photographers'">
               <v-col
-                v-for="item in photographers"
-                :key="item.id"
+                v-for="(item, c) in photographers"
+                :key="c"
                 class="d-flex child-flex"
                 cols="12"
                 lg="3"
@@ -291,31 +278,32 @@
                   max-width="250"
                   style="background-color: var(--app-container)"
                 >
-                  <v-img height="150" :src="item.image"></v-img>
+                  <v-img height="150" :src="item.imgUrl[0]"></v-img>
                   <v-card-title style="color: var(--main-color)">
-                    {{ item.title }}
+                    {{ item.name }}
                   </v-card-title>
                   <v-card-text style="color: var(--main-color)">
                     <v-row align="center" class="mx-0">
                       <v-rating
-                        :value="item.rate"
-                        color="amber"
+                        :value="item.rate / 2"
+                        background-color="#FEC260"
+                        color="#FEC260"
                         dense
                         half-increments
                         readonly
                         size="14"
                       ></v-rating>
                       <div class="grey--text ms-2">
-                        {{ item.rate }}
+                        {{ item.rate / 2 }}
                       </div>
                     </v-row>
                     <div class="my-2 text-subtitle-1">
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      {{ item.address }}
+                      {{ item.location }}
                     </div>
                   </v-card-text>
                   <v-card-actions>
-                     <servicePage :service="item" /> 
+                    <servicePage :service="item" />
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -324,8 +312,8 @@
 
             <slot v-if="sidebarOptionSelected == 'Makeup Artists'">
               <v-col
-                v-for="item in makeupArtist"
-                :key="item.id"
+                v-for="(item, c) in makeupArtist"
+                :key="c"
                 class="d-flex child-flex"
                 cols="12"
                 lg="3"
@@ -338,27 +326,28 @@
                   max-width="250"
                   style="background-color: var(--app-container)"
                 >
-                  <v-img height="150" :src="item.image"></v-img>
+                  <v-img height="150" :src="item.imgUrl[0]"></v-img>
                   <v-card-title style="color: var(--main-color)">
-                    {{ item.title }}
+                    {{ item.name }}
                   </v-card-title>
                   <v-card-text style="color: var(--main-color)">
                     <v-row align="center" class="mx-0">
                       <v-rating
-                        :value="item.rate"
-                        color="amber"
+                        :value="item.rate / 2"
+                        background-color="#FEC260"
+                        color="#FEC260"
                         dense
                         half-increments
                         readonly
                         size="14"
                       ></v-rating>
                       <div class="grey--text ms-2">
-                        {{ item.rate }}
+                        {{ item.rate / 2 }}
                       </div>
                     </v-row>
                     <div class="my-2 text-subtitle-1">
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      {{ item.address }}
+                      {{ item.location }}
                     </div>
                   </v-card-text>
                   <v-card-actions>
@@ -390,15 +379,15 @@ export default {
     // eslint-disable-next-line
     MyAccount,
     // eslint-disable-next-line
-    cartPage
+    cartPage,
   },
   data() {
     return {
-      coco : "" ,
+      coco: "",
       searchKeyword: "",
       inputPrice: "",
       inputAddress: "",
-      inputRating: "",
+      inputRating: "0" ,
       inputCapacity: "600",
       disabled: false,
       sidebarOptionSelected: "Halls",
@@ -436,9 +425,10 @@ export default {
       mini: true,
 
       addresses: [
-        { title: "Loran" },
-        { title: "Gleem" },
-        { title: "Sporting" },
+        { title: "alexandria" },
+        { title: "cairo" },
+        { title: "aswan" },
+        { title: "giza"}
       ],
       halls: [
         {
@@ -638,45 +628,203 @@ export default {
     }
   },
   methods: {
-    changeClass: function (id) {
+    changeClass(id) {
       var element = document.getElementById(id)
       element.classList.add("app-sidebar-link active")
     },
 
-    filter: function () {
-      window.alert(
-        this.inputAddress.title +
-          " , " +
-          this.inputPrice +
-          " , " +
-          this.inputRating +
-          " , " +
-          this.inputCapacity +
-          " , " +
-          this.searchKeyword
-      )
+    filter() {
+
+      var locationName = "" ;
+      if (this.inputAddress == ""){
+        locationName = "" ;
+      }else{
+      //location is not empty and the valu is this.inputAddress.tittle
+        locationName = this.inputAddress.title ;
+      }
+
+      if (this.sidebarOptionSelected == "Halls"){
+        axios.post("http://localhost:8080/api/setPlacePage", [
+          {
+            columnName: "location",
+            val: locationName,
+          },
+          {
+            columnName: "cost",
+            val: "0," + this.inputPrice,
+          },
+          {
+            columnName: "rate",
+            val: this.inputRating*2 + ",10" ,
+          },
+          {
+            columnName: "capacity",
+            val: "0," + this.inputCapacity,
+          },
+        ]).then(() => {});
+
+        axios.get("http://localhost:8080/api/getPlacePage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.halls = Data
+        })
+      }
+      else if (this.sidebarOptionSelected == "Photographers"){
+        axios.post("http://localhost:8080/api/setPersonPage", [
+          {
+            columnName: "job",
+            val: "photographer",
+          },
+          {
+            columnName: "location",
+            val: locationName,
+          },
+          {
+            columnName: "cost",
+            val: "0," + this.inputPrice,
+          },
+          {
+            columnName: "rate",
+            val: this.inputRating*2 + ",10" ,
+          },
+        ]).then(() => {});
+
+        axios.get("http://localhost:8080/api/getPersonPage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.photographers = Data
+        })
+      }
+      else if (this.sidebarOptionSelected == "Makeup Artists"){
+        axios.post("http://localhost:8080/api/setPersonPage", [
+          {
+            columnName: "job",
+            val: "makeup artist",
+          },
+          {
+            columnName: "location",
+            val: locationName,
+          },
+          {
+            columnName: "cost",
+            val: "0," + this.inputPrice,
+          },
+          {
+            columnName: "rate",
+            val: this.inputRating*2 + ",10" ,
+          },
+        ]).then(() => {});
+
+        axios.get("http://localhost:8080/api/getPersonPage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.makeupArtist = Data
+        })
+      }
+
     },
-    resetFilter: function () {},
-  },
-  mounted: function () {
-    var modeSwitch = document.querySelector(".mode-switch")
+    resetFilter() {},
+
+    hall_btn() {
+      this.sidebarOptionSelected = "Halls"
+      this.disabled = false;
+      axios.post("http://localhost:8080/api/setPlacePage", []).then(() => {})
+
+      axios
+        .get("http://localhost:8080/api/getPlacePage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          this.halls = Data
+        })
+    },
+
+    photographer_btn() {
+      this.sidebarOptionSelected = "Photographers"
+      this.disabled = true
+      axios
+        .post("http://localhost:8080/api/setPersonPage", [
+          {
+            columnName: "job",
+            val: "photographer",
+          },
+        ])
+        .then(() => {})
+
+      axios
+        .get("http://localhost:8080/api/getPersonPage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data1 = Response.data
+          this.photographers = Data1
+        })
+    },
+
+    makeup_btn() {
+      this.sidebarOptionSelected = "Makeup Artists"
+      this.disabled = true
+      axios
+        .post("http://localhost:8080/api/setPersonPage", [
+          {
+            columnName: "job",
+            val: "makeup artist",
+          },
+        ])
+        .then(() => {})
+
+      axios
+        .get("http://localhost:8080/api/getPersonPage", {
+          params: {
+            pageNumber: 1,
+          },
+        })
+        .then((Response) => {
+          const Data2 = Response.data
+          this.makeupArtist = Data2
+        })
+    },
+    darkMode(){
+       var modeSwitch = document.querySelector(".mode-switch")
     modeSwitch.addEventListener("click", function () {
       document.documentElement.classList.toggle("dark")
       modeSwitch.classList.toggle("active")
     })
+  },
+    search_btn(){
+      window.alert(this.searchKeyword)
+    }
 
-    axios.post("http://localhost:8080/api/setPlacePage",[]
-    ).then(() => {})
-
-    axios.get("http://localhost:8080/api/getPlacePage",{
-      params: {
-        pageNumber: 1,
-      },
-    }).then((Response) => {
-      const Data = Response.data
-      this.halls = Data ;
-    })
     
+  },
+  mounted() {
+    // var modeSwitch = document.querySelector(".mode-switch")
+    // modeSwitch.addEventListener("click", function () {
+    //   document.documentElement.classList.toggle("dark")
+    //   modeSwitch.classList.toggle("active")
+    // })
+
+    this.hall_btn()
+
+    // this.photographer_btn();
+    // this.makeup_btn();
   },
 }
 </script>

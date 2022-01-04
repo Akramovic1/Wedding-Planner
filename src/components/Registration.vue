@@ -373,7 +373,8 @@ export default {
   methods: {
     //login request
     checkLogin: function () {
-      axios.get("http://localhost:8080/api/login", {
+      axios
+        .get("http://localhost:8080/api/login", {
           params: {
             email: this.EmailAddress,
             password: this.password,
@@ -382,10 +383,10 @@ export default {
         .then((Response) => {
           const Data = Response.data
           if (Data == 0) this.message = "not a correct login input"
-          else{
-            this.message = "correct login input";
-            this.$router.push('/dashboard');
-          } 
+          else {
+            this.message = "correct login input"
+            this.$router.push("/dashboard")
+          }
           this.snackbar = true
         })
     },

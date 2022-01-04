@@ -1,10 +1,6 @@
 <template>
-      <div id="container">
-    <v-dialog
-      :value="value"
-      max-width="900px"
-      height="610px"
-    >
+  <div id="container">
+    <v-dialog :value="value" max-width="900px" height="610px">
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="red lighten-2"
@@ -16,111 +12,110 @@
         </v-btn>
       </template> -->
 
-        <div class="container">
-                    <v-col style="background-color: white; border-radius:10%">
-                    <v-row>
-                        <div class="col1" style="margin-left: 10%">
-                        <div class="card">
-                            <div class="front">
-                            <div class="type">
-                                <img class="bankid" />
-                            </div>
-                            <span class="chip"></span>
-                            <span class="card_number"
-                                >&#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                                &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                                &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                                &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                            </span>
-                            <div class="date">
-                                <span class="date_value">MM / YYYY</span>
-                            </div>
-                            <span class="fullname">Ahmed Akram</span>
-                            </div>
-                            <div class="back">
-                            <div class="magnetic"></div>
-                            <div class="bar"></div>
-                            <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
-                            <span class="chip"></span>
-                            </div>
-                        </div>
-                        </div>
-                    </v-row>
-                    <v-row>
-                        <div class="col2">
-                        <v-row>
-                            <v-col>
-                            <label>Card Number</label>
-                            <input
-                                class="number"
-                                type="text"
-                                ng-model="ncard"
-                                maxlength="19"
-                                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                            />
-                            </v-col>
-                            <v-col>
-                            <label>Cardholder name</label>
-                            <input class="inputname" type="text" placeholder="" />
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col>
-                            <label>Expiry date</label>
-                            <input
-                                class="expire"
-                                type="text"
-                                placeholder="MM / YYYY"
-                            />
-                            </v-col>
-                            <v-col>
-                            <label>Security Number</label>
-                            <input
-                                class="ccv"
-                                type="text"
-                                placeholder="CVC"
-                                maxlength="3"
-                                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                            />
-                            </v-col>
-                        </v-row>
-                        <!-- <v-row>
+      <div class="container">
+        <v-col style="background-color: white; border-radius: 10%">
+          <v-row>
+            <div class="col1" style="margin-left: 10%">
+              <div class="card">
+                <div class="front">
+                  <div class="type">
+                    <img class="bankid" />
+                  </div>
+                  <span class="chip"></span>
+                  <span class="card_number"
+                    >&#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                    &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                    &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                    &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                  </span>
+                  <div class="date">
+                    <span class="date_value">MM / YYYY</span>
+                  </div>
+                  <span class="fullname">Ahmed Akram</span>
+                </div>
+                <div class="back">
+                  <div class="magnetic"></div>
+                  <div class="bar"></div>
+                  <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+                  <span class="chip"></span>
+                </div>
+              </div>
+            </div>
+          </v-row>
+          <v-row>
+            <div class="col2">
+              <v-row>
+                <v-col>
+                  <label>Card Number</label>
+                  <input
+                    class="number"
+                    type="text"
+                    ng-model="ncard"
+                    maxlength="19"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  />
+                </v-col>
+                <v-col>
+                  <label>Cardholder name</label>
+                  <input class="inputname" type="text" placeholder="" />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <label>Expiry date</label>
+                  <input class="expire" type="text" placeholder="MM / YYYY" />
+                </v-col>
+                <v-col>
+                  <label>Security Number</label>
+                  <input
+                    class="ccv"
+                    type="text"
+                    placeholder="CVC"
+                    maxlength="3"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  />
+                </v-col>
+              </v-row>
+              <!-- <v-row>
                     <v-col> -->
-                        <button class="buy" @click="value = false; dialog2 = true">
-                            <i class="material-icons"></i> Pay
-                        </button>
-                        <success  v-model="dialog2" />
-                        <!-- </v-col>
+              <button
+                class="buy"
+                @click="
+                  value = false
+                  dialog2 = true
+                "
+              >
+                <i class="material-icons"></i> Pay
+              </button>
+              <success v-model="dialog2" />
+              <!-- </v-col>
                     <v-col>
                     </v-col>
                     </v-row> -->
-                        </div>
-                    </v-row>
-                    </v-col>
-                </div>
-    </v-dialog>
+            </div>
+          </v-row>
+        </v-col>
       </div>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
-import Success from './success.vue'
-
+import Success from "./success.vue"
 
 export default {
   name: "Pay",
   data() {
     return {
-        dialog: false,
-        dialog2:false,
+      dialog: false,
+      dialog2: false,
     }
   },
   components: {
-    Success
-
+    Success,
   },
 
-  props: ["value"]
-
+  props: ["value"],
 }
 </script>
 <style lang="scss" scoped>

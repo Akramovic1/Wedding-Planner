@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" max-width="1100px">
+    <v-dialog v-model="dialog5" max-width="1100px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           style="margin-left: 60%"
@@ -18,9 +18,9 @@
         <v-col cols="6">
           <v-carousel cycle hide-delimiters show-arrows-on-hover height="610">
             <v-carousel-item
-              v-for="(photo, ok) in photos"
-              :key="ok"
-              :src="photo.src"
+              v-for="(photo, i) in this.service.imgUrl"
+              :key="i"
+              :src="photo"
             ></v-carousel-item>
           </v-carousel>
         </v-col>
@@ -54,7 +54,7 @@
             <v-card-text style="height: 445px; overflow-y: auto">
               <!-- name of the service -->
               <h1 style="padding: 10px 10px 15px 15px">
-                {{ this.serviceInfo.name }}
+                {{ this.service.name }}
               </h1>
               <v-timeline dense>
                 <!-- description -->
@@ -83,7 +83,7 @@
                   <v-col>
                     <strong>Location</strong>
                     <div class="text-caption">
-                      {{ this.serviceInfo.location }}
+                      {{ this.service.location }}
                     </div>
                   </v-col>
                 </v-timeline-item>
@@ -97,7 +97,7 @@
                   <v-col>
                     <strong>Cost</strong>
                     <div class="text-caption">
-                      <h2>{{this.serviceInfo.cost}}</h2>
+                      <h2>{{this.service.cost}}</h2>
                     </div>
                   </v-col>
                 </v-timeline-item>
@@ -117,10 +117,10 @@
                       length="5"
                       size="50"
                       readonly
+                      :value= this.service.rate/2
+                      half-increments
                     >
-                    <div class="grey--text ms-2">
-                        {{this.serviceInfo.rate / 2}}
-                    </div>
+                    
                     </v-rating>
                   </v-col>
                 </v-timeline-item>
@@ -168,10 +168,10 @@
 
             <v-card-actions style="padding: 14px 20px">
               <v-spacer></v-spacer>
-              <v-btn color="#FF4F5A" text @click="dialog = false">
+              <v-btn color="#FF4F5A" text @click="dialog5 = false">
                 Close
               </v-btn>
-              <v-btn color="#ff616b" dark @click="dialog = false"> Add to Cart </v-btn>
+              <v-btn color="#ff616b" dark @click="addToCart"> Add to Cart </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -181,11 +181,12 @@
 </template>
 
 <script>
+
 export default {
   props: ["service"],
   data() {
     return {
-      dialog: false,
+      dialog5: false,
       serviceInfo: "",
       photos: [
         {
@@ -206,9 +207,15 @@ export default {
       ],
     }
   },
+  methods : {
+      addToCart(){
+        this.dialog5 = false;
+        document.write(this.service.name);
+      }
+  },
   mounted() {
     //window.alert(this.service.title);
-    this.serviceInfo = JSON.parse(JSON.stringify(this.service))
+    // eslint-disable-next-line
     //this.photos = JSON.parse(JSON.stringify(this.service.image));
     //window.alert(this.serviceInfo.name);
   },
