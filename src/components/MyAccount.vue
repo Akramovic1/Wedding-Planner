@@ -31,7 +31,6 @@
             <v-list>
               <v-list-item>
                 <v-btn
-                  outlined
                   rounded
                   style="width: 100%"
                   class="mt-4"
@@ -42,7 +41,6 @@
               </v-list-item>
               <v-list-item>
                 <v-btn
-                  outlined
                   rounded
                   style="width: 100%"
                   class="mt-4"
@@ -53,7 +51,6 @@
               </v-list-item>
               <v-list-item>
                 <v-btn
-                  outlined
                   rounded
                   style="width: 100%"
                   class="mt-4"

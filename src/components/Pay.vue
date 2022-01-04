@@ -1,10 +1,9 @@
 <template>
-  <div >
+      <div id="container">
     <v-dialog
       :value="value"
       max-width="900px"
       height="610px"
-      @input="$emit('input')"
     >
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -87,9 +86,10 @@
                         </v-row>
                         <!-- <v-row>
                     <v-col> -->
-                        <button class="buy" @click="dialog = false">
+                        <button class="buy" @click="value = false; dialog2 = true">
                             <i class="material-icons"></i> Pay
                         </button>
+                        <success  v-model="dialog2" />
                         <!-- </v-col>
                     <v-col>
                     </v-col>
@@ -99,10 +99,11 @@
                     </v-col>
                 </div>
     </v-dialog>
-  </div>
+      </div>
 </template>
 
 <script>
+import Success from './success.vue'
 
 
 export default {
@@ -110,9 +111,11 @@ export default {
   data() {
     return {
         dialog: false,
+        dialog2:false,
     }
   },
   components: {
+    Success
 
   },
 
@@ -147,6 +150,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
   width: 680px;
 
   .col1 {
