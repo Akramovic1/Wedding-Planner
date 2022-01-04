@@ -228,8 +228,8 @@
 
             <slot v-if="sidebarOptionSelected == 'Halls'">
               <v-col
-                v-for="item in halls"
-                :key="item.id"
+                v-for="(item,c) in halls"
+                :key="c"
                 class="d-flex child-flex"
                 cols="12"
                 lg="3"
@@ -244,12 +244,12 @@
                 >
                   <v-img height="150" :src="item.image"></v-img>
                   <v-card-title style="color: var(--main-color)">
-                    {{ item.title }}
+                    {{ item.name }}
                   </v-card-title>
                   <v-card-text style="color: var(--main-color)">
                     <v-row align="center" class="mx-0">
                       <v-rating
-                        :value="item.rate"
+                        :value="item.rate/2"
                         color="amber"
                         dense
                         half-increments
@@ -257,17 +257,17 @@
                         size="14"
                       ></v-rating>
                       <div class="grey--text ms-2">
-                        {{ item.rate }}
+                        {{ item.rate/2 }}
                       </div>
                     </v-row>
                     <div class="my-2 text-subtitle-1">
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      {{ item.address }}
+                      {{ item.location }}
                     </div>
                   </v-card-text>
                   <v-card-actions>
-                    <servicePage :service="item" />
                     
+                    <servicePage :service="item" />
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -315,7 +315,7 @@
                     </div>
                   </v-card-text>
                   <v-card-actions>
-                    <servicePage :service="item" />
+                     <servicePage :service="item" /> 
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -380,6 +380,8 @@ import MyAccount from "./MyAccount.vue"
 import servicePage from "./servicePage.vue"
 import cartPage from "./cartPage.vue"
 
+import axios from "axios"
+
 export default {
   name: "NewMain",
 
@@ -388,11 +390,11 @@ export default {
     // eslint-disable-next-line
     MyAccount,
     // eslint-disable-next-line
-    cartPage,
+    cartPage
   },
   data() {
     return {
-      dialog: false,
+      coco : "" ,
       searchKeyword: "",
       inputPrice: "",
       inputAddress: "",
@@ -400,6 +402,25 @@ export default {
       inputCapacity: "600",
       disabled: false,
       sidebarOptionSelected: "Halls",
+      dialog: false,
+      dialog1: false,
+      photos: [
+        {
+          src: require("../assets/images/hall1.png"),
+        },
+        {
+          src: require("../assets/images/hall2.jpg"),
+        },
+        {
+          src: require("../assets/images/hall9.jpg"),
+        },
+        {
+          src: require("../assets/images/hall4.jpg"),
+        },
+        {
+          src: require("../assets/images/hall8.jpg"),
+        },
+      ],
       ex3: {
         label: "Capacity",
         val: 1000,
@@ -643,6 +664,19 @@ export default {
       document.documentElement.classList.toggle("dark")
       modeSwitch.classList.toggle("active")
     })
+
+    axios.post("http://localhost:8080/api/setPlacePage",[]
+    ).then(() => {})
+
+    axios.get("http://localhost:8080/api/getPlacePage",{
+      params: {
+        pageNumber: 1,
+      },
+    }).then((Response) => {
+      const Data = Response.data
+      this.halls = Data ;
+    })
+    
   },
 }
 </script>

@@ -94,7 +94,7 @@
                               dark
                               block
                               tile
-                              @click="() => $router.push('/dashboard')"
+                              @click="checkLogin"
                               >Login</v-btn
                             >
 
@@ -373,17 +373,19 @@ export default {
   methods: {
     //login request
     checkLogin: function () {
-      axios
-        .get("http://localhost:8080/api/login", {
+      axios.get("http://localhost:8080/api/login", {
           params: {
-            Emailaddress: this.EmailAddress,
+            email: this.EmailAddress,
             password: this.password,
           },
         })
         .then((Response) => {
           const Data = Response.data
           if (Data == 0) this.message = "not a correct login input"
-          else this.message = "correct login input"
+          else{
+            this.message = "correct login input";
+            this.$router.push('/dashboard');
+          } 
           this.snackbar = true
         })
     },
@@ -393,9 +395,9 @@ export default {
       if (this.userType == "Customer") {
         axios
           .post("http://localhost:8080/api/signUpCustomer", {
-            name: this.FirstName + " " + this.LastName,
+            username: this.FirstName + " " + this.LastName,
             email: this.EmailAddress,
-            passsword: this.password,
+            password: this.password,
             phoneNumber: "",
           })
           .then((Response) => {
@@ -406,9 +408,9 @@ export default {
       } else {
         axios
           .post("http://localhost:8080/api/signUpProvider", {
-            name: this.FirstName + " " + this.LastName,
+            username: this.FirstName + " " + this.LastName,
             email: this.EmailAddress,
-            passsword: this.password,
+            password: this.password,
             phoneNumber: "",
           })
           .then((Response) => {
