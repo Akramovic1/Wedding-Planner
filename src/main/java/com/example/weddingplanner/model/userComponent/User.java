@@ -8,8 +8,7 @@ public abstract class User {
     private String username;
     private String phonenumber;
 
-    public User(int ID, String email, String password, String type, String username, String phonenumber) {
-        this.ID = ID;
+    public User(String email, String password, String type, String username, String phonenumber) {
         this.email = email;
         this.password = password;
         this.type = type;

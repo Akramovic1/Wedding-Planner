@@ -26,7 +26,7 @@ public class UserJdbcDAO implements UserDAO{
     }
 
     private final RowMapper<User> userRowMapper = (rs,rowNum)-> {
-        int ID = rs.getInt("id");
+        int ID = rs.getInt("ID");
         String email = rs.getString("email");
         String password = rs.getString("password");
         String type = rs.getString("type");
@@ -34,15 +34,33 @@ public class UserJdbcDAO implements UserDAO{
         String phonenumber = rs.getString("phonenumber");
         switch (type) {
             case "admin":
-                return new Administrator(ID, email, password, type, username,phonenumber);
+                Administrator administrator = new Administrator(email, password, type, username,phonenumber);
+                administrator.setID(ID);
+                return administrator;
             case "sp":
-                return new ServiceProvider(ID, email, password, type, username,phonenumber);
+                ServiceProvider serviceProvider = new ServiceProvider(email, password, type, username,phonenumber);
+                serviceProvider.setID(ID);
+                return serviceProvider;
             case "customer":
-                return new Customer(ID, email, password, type, username,phonenumber);
+                Customer customer = new Customer(email, password, type, username,phonenumber);
+                customer.setID(ID);
+                return customer;
             default:
                 log.error("User type came from database is corrupted !");
                 return null;
         }
+    };
+
+    private final RowMapper<ServiceProvider> spRowMapper = (rs,rowNum)-> {
+        int ID = rs.getInt("ID");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        String type = rs.getString("type");
+        String username = rs.getString("username");
+        String phonenumber = rs.getString("phonenumber");
+        ServiceProvider serviceProvider = new ServiceProvider(email, password, type, username,phonenumber);
+        serviceProvider.setID(ID);
+        return serviceProvider;
     };
 
     @Override
@@ -112,5 +130,11 @@ public class UserJdbcDAO implements UserDAO{
             log.error("User not found (email=" +email+",password="+password+")");
         }
         return user;
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProvidersByName(String name) {
+        String sql = "SELECT * FROM users WHERE type = ? AND username LIKE ?";
+        return jdbcTemplate.query(sql,spRowMapper,"sp","%"+name+"%");
     }
 }
