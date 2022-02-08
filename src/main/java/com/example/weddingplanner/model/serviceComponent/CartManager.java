@@ -67,7 +67,7 @@ public class CartManager {
         List<Date> dueDate=new ArrayList<>();
         for (CartItem c : cartItems) {
             BasicService service = serviceDAO.get(c.serviceID);
-            service.setImgUrl(serviceDAO.getPicturesOfService(service.getID()));
+            service.setImgUrl(serviceDAO.getPicturesOfService(c.serviceID));
             services.add(service);
             dueDate.add(c.dueDate);
         }
