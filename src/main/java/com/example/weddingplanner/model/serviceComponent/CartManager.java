@@ -72,6 +72,14 @@ public class CartManager {
         return new cart(userID,services,dueDate);
     }
     public int pay(int userID,String paymentMethod){
+        cart c = loadCart(userID);
+        List<BasicService> services=c.getServices();
+        List<Date> dueDates=c.getDueDate();
+        for (int i = 0; i < services.size(); i++) {
+            BasicService service = services.get(i);
+            Date dueDate = dueDates.get(i);
+            serviceDAO.addBusyDate(service.getID(),dueDate);
+        }
         //call the data base which will return the id of the placed order
         return cartDAO.confirmPurchase(userID,new Date(),paymentMethod);
     }
