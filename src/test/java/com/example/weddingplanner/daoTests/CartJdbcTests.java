@@ -41,13 +41,13 @@ public class CartJdbcTests {
     @DisplayName("Confirm Purchase test")
     void confirmPurchaseTest() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        CartItem cartItem1 = new CartItem(9,1,dateFormat.parse("2020-2-2"));
-        CartItem cartItem2 = new CartItem(9,2,dateFormat.parse("2020-2-2"));
-        CartItem cartItem3 = new CartItem(9,3,dateFormat.parse("2020-2-2"));
-        CartItem cartItem4 = new CartItem(9,4,dateFormat.parse("2020-2-2"));
-        CartItem cartItem5 = new CartItem(10,1,dateFormat.parse("2020-2-2"));
-        CartItem cartItem6 = new CartItem(11,1,dateFormat.parse("2020-2-2"));
-        CartItem cartItem7 = new CartItem(11,3,dateFormat.parse("2020-2-2"));
+        CartItem cartItem1 = new CartItem(9,1,dateFormat.parse("2020-2-27"));
+        CartItem cartItem2 = new CartItem(9,2,dateFormat.parse("2020-2-27"));
+        CartItem cartItem3 = new CartItem(9,3,dateFormat.parse("2020-2-27"));
+        CartItem cartItem4 = new CartItem(9,4,dateFormat.parse("2020-2-27"));
+        CartItem cartItem5 = new CartItem(10,1,dateFormat.parse("2020-2-27"));
+        CartItem cartItem6 = new CartItem(11,1,dateFormat.parse("2020-2-27"));
+        CartItem cartItem7 = new CartItem(11,3,dateFormat.parse("2020-2-27"));
         Assertions.assertEquals(1,dao.addCartItem(cartItem1));
         Assertions.assertEquals(1,dao.addCartItem(cartItem2));
         Assertions.assertEquals(1,dao.addCartItem(cartItem3));
