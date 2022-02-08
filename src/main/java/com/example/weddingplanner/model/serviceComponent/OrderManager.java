@@ -22,11 +22,11 @@ public class OrderManager {
         serviceDate=new ServiceDate();
     }
 
-    public order getOrderServices(int orderID){
+    /*public order getOrderServices(int orderID){
         order order=null;
         //call the data base
         return order;
-    }
+    }*/
 
     public List<Integer> getUserOrders(int userID){
         List<Integer> ordersIDs=null;
