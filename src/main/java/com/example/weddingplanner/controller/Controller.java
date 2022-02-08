@@ -1,5 +1,7 @@
 package com.example.weddingplanner.controller;
 
+import com.example.weddingplanner.model.serviceComponent.CartManager;
+import com.example.weddingplanner.model.serviceComponent.OrderManager;
 import com.example.weddingplanner.model.serviceComponent.Person;
 import com.example.weddingplanner.model.serviceComponent.Place;
 import com.example.weddingplanner.model.userComponent.Customer;
@@ -27,11 +29,16 @@ public class Controller {
     private final UserServices userServices;
     private final ServiceProviderServices serviceProviderServices;
     private final Page pagingSystem;
+    private final CartManager cartManagerSystem;
+    private final OrderManager orderManagerSystem;
     @Autowired
-    public Controller(UserServices userServices, ServiceProviderServices serviceProviderServices, Page pagingSystem) {
+    public Controller(UserServices userServices, ServiceProviderServices serviceProviderServices, Page pagingSystem,
+                      CartManager cartManagerSystem, OrderManager orderManagerSystem) {
         this.userServices = userServices;
         this.serviceProviderServices = serviceProviderServices;
         this.pagingSystem = pagingSystem;
+        this.cartManagerSystem=cartManagerSystem;
+        this.orderManagerSystem=orderManagerSystem;
     }
 
     @PostMapping("/signUpCustomer")
