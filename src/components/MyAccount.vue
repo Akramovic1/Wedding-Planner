@@ -127,8 +127,8 @@
                   </v-col> -->
                   <v-col cols="12" lg="6">
       <v-menu
-        ref="menu"
-        v-model="menu"
+        ref="menu1"
+        v-model="menu1"
         :close-on-content-click="false"
         transition="scale-transition"
         offset-y
