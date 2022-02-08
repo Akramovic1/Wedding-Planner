@@ -3,7 +3,7 @@
     <v-row no-gutters style="overflow-x: hidden">
       <!-- image cornter -->
       <v-col cols="3">
-        <v-card tile class="rounded-tr rounded-td" height="700">
+        <v-card tile class="rounded-tr rounded-td" height="625">
           <v-card-title>
             <v-row>
               <v-col
@@ -12,7 +12,7 @@
                 style="padding: 10px 10px 0px 15px"
               >
                 <v-avatar size="70">
-                  <img src="..\assets\images\team2.jpg" />
+                  <img src="..\assets\images\team1.jpg" />
                 </v-avatar>
               </v-col>
               <v-col align="center" justify="center" style="padding: 10px 10px">
@@ -49,16 +49,7 @@
                   >Order</v-btn
                 >
               </v-list-item>
-              <v-list-item>
-                <v-btn
-                  rounded
-                  style="width: 100%"
-                  class="mt-4"
-                  :color="selectedOption == 'Payment' ? '#FF4F5A' : ''"
-                  @click="selectedOption = 'Payment'"
-                  >Payment</v-btn
-                >
-              </v-list-item>
+              
             </v-list>
           </v-col>
         </v-card>
@@ -78,7 +69,7 @@
 
       <!-- text corner -->
       <v-col cols="9">
-        <v-card tile class="rounded-tr rounded-td" height="700">
+        <v-card tile class="rounded-tr rounded-td" height="625">
           <v-card-title style="padding: 10px">
             <v-row>
               <v-col>
@@ -108,21 +99,9 @@
                 <v-row>
                   <v-col>
                     <v-text-field
-                      v-model="firstName"
-                      label="First Name"
+                      v-model="username"
+                      label="User Name"
                       dense
-                      :rules="nameRules"
-                      :readonly="editUserInfo == false"
-                      color="#FF4F5A"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col>
-                    <v-text-field
-                      v-model="lastName"
-                      label="Last Name"
-                      :rules="lastNameRules"
-                      dense
-                      :readonly="editUserInfo == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -132,111 +111,20 @@
                     <v-text-field
                       v-model="email"
                       label="Email"
-                      :rules="emailRules"
                       dense
-                      :readonly="editUserInfo == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
-                  <!-- <v-col>
+                  <v-col>
                     <v-text-field
                       v-model="date"
                       label="Birth-date"
                       dense
-                      readonly
-                      color="#FF4F5A"
-                    ></v-text-field>
-                  </v-col> -->
-                  <v-col cols="12" lg="6">
-                    <v-menu
-                      ref="menu1"
-                      v-model="menu1"
-                      :close-on-content-click="false"
-                      transition="scale-transition"
-                      offset-y
-                      max-width="290px"
-                      min-width="auto"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          v-model="dateFormatted"
-                          label="Birth-date"
-                          hint="MM/DD/YYYY format"
-                          persistent-hint
-                          color="#FF4F5A"
-                          prepend-icon="mdi-calendar"
-                          v-bind="attrs"
-                          readonly
-                          dense
-                          @blur="date = parseDate(dateFormatted)"
-                          v-on="editUserInfo? on : off"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        v-model="date"
-                        no-title
-                        @input="menu1 = false"
-                      ></v-date-picker>
-                    </v-menu>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col> </v-col>
-                  <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editUserInfo=true">
-                      Edit
-                    </v-btn>
-                  </v-col>
-                  <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="saveUserInfo">
-                      Save
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-
-                <v-row style="margin-top: 20px">
-                  <h3 class="mb-7">Password</h3>
-                </v-row>
-                <v-row>
-                  <v-col>
-                    <v-text-field
-                      v-model="oldPassword"
-                      label="Old Password"
-                      type="password"
-                      :rules="oldPassRules"
-                      dense
-                      :readonly="editPassword == false"
-                      color="#FF4F5A"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col>
-                    <v-text-field
-                      v-model="newPassword"
-                      label="New Password"
-                      type="password"
-                      :rules="passwordRules"
-                      dense
-                      :readonly="editPassword == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row>
-                  <v-col> </v-col>
-                  <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editPassword=true">
-                      Edit
-                    </v-btn>
-                  </v-col>
-                  <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="savePassword">
-                      Save
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-divider></v-divider>
-
+                
                 <v-row style="margin-top: 20px">
                   <h3 class="mb-7">Contact information</h3>
                 </v-row>
@@ -246,7 +134,6 @@
                       v-model="phone"
                       label="Phone"
                       dense
-                      :readonly="editContactInfo==false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -255,7 +142,6 @@
                       v-model="address"
                       label="Address"
                       dense
-                      :readonly="editContactInfo==false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -263,12 +149,51 @@
                 <v-row>
                   <v-col> </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editContactInfo=true">
-                      Edit
+                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="reset()">
+                      Reset
                     </v-btn>
                   </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="saveContactInfo">
+                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="save()">
+                      Save
+                    </v-btn>
+                  </v-col>
+                </v-row>
+ 
+                <v-divider></v-divider>
+              
+                <v-row style="margin-top: 20px">
+                  <h3 class="mb-7">Password</h3>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-text-field
+                      v-model="oldPassword"
+                      label="Old Password"
+                      type="password"
+                      dense
+                      color="#FF4F5A"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col>
+                    <v-text-field
+                      v-model="newPassword"
+                      label="New Password"
+                      type="password"
+                      dense
+                      color="#FF4F5A"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col> </v-col>
+                  <v-col lg="2" md="2" sm="3" xs="4">
+                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="oldPassword = newPassword = ''">
+                      Reset
+                    </v-btn>
+                  </v-col>
+                  <v-col lg="2" md="2" sm="3" xs="4">
+                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="savePasswordChange()">
                       Save
                     </v-btn>
                   </v-col>
@@ -276,134 +201,223 @@
               </v-col>
             </slot>
             <slot v-if="selectedOption == 'Orders'">
-              <i>Orders -- TO DO</i>
-            </slot>
-            <slot v-if="selectedOption == 'Payment'">
-              <div class="tips">
-                Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39)
-                DinersClub, (34-37) American Express, (65) Discover, (5019)
-                dankort
-              </div>
+              <v-row v-for="(service, i) in ordersList" :key="i">
 
-              <!-- <div class="container">
+                <v-col cols="2" style="padding: 10px 10px 20px 25px">
+                  <v-avatar size="90">
+                    <img class="image" :src="service.imageSrc" />
+                  </v-avatar>
+                </v-col>
 
-              </div> -->
-                <div class="wrapper" id="app">
-                <CardForm
-                  :form-data="formData"
-                  @input-card-number="updateCardNumber"
-                  @input-card-name="updateCardName"
-                  @input-card-month="updateCardMonth"
-                  @input-card-year="updateCardYear"
-                  @input-card-cvv="updateCardCvv"
-                />
-                <!-- backgroundImage="https://images.unsplash.com/photo-1572336183013-960c3e1a0b54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" -->
-              </div>
+                <v-col cols="8" style="padding: 5px 0px">
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-list-item-title>{{ service.name }}</v-list-item-title>
+                      <v-list-item-subtitle>{{
+                        service.address
+                      }}</v-list-item-subtitle>
+                      <v-list-item-subtitle>{{
+                        service.description
+                      }}</v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+
+                <v-col cols="2" style="padding: 35px 25px">
+                  <v-btn icon color="pink" 
+                    ><v-icon>mdi-close</v-icon></v-btn
+                  >
+                </v-col>
+
+              </v-row>
             </slot>
+            
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
+
+    <v-snackbar v-model="snackbar">
+      {{ message }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
   </v-dialog>
 </template>
 
 <script>
-// import VueCardFormat from 'vue-credit-card-validation';
-// Vue.use(VueCardFormat)
-import CardForm from '@/components/CardForm'
+
+import axios from "axios"
 
 export default {
-  name: "MyAccount",
-
-  components: {
-    // eslint-disable-next-line
-    // VueCardFormat,
-    CardForm
-
-  },
-  // data() {
-    // return {
-     data:
-      vm => ({
+  data() {
+    return {
       selectedOption: "Profile",
       dialog: false,
-      firstName: "Rana",
-      lastName: "Ayman",
-      email: "ranaayman@gmail.com",
-      // date: "6-10-2000",
-      oldPassword: "123456789",
-      newPassword: "abcdefghi",
-      phone: "0100123456789",
-      address: "Alexandria",
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
-      menu1: false,
-      editUserInfo:false,
-      editPassword:false,
-      editContactInfo:false,
-      formData: {
-        cardName: '',
-        cardNumber: '',
-        cardMonth: '',
-        cardYear: '',
-        cardCvv: ''
+      username: 'Rana Ayman',
+      email: 'ranaayman@gmail.com',
+      date: '6-10-2000',
+      oldPassword: '',
+      newPassword: '',
+      phone: '0100123456789',
+      address: 'Alexandria',
+
+      snackbar: false,
+      message: '',
+
+      userData : {
+        ID : 5,
+        email : 'mostata@gmail.com',
+        password : '123',
+        type : '',
+        username: '',
+        phonenumber : ''
       },
-      
-    nameRules: [
-      (v) => v.length <= 10 || "Name must be less than 10 characters",
-    ],
-    lastNameRules: [
-      (v) => v.length <= 20 || "Name must be less than 20 characters",
-    ],
-    emailRules: [
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
-    ],
-    passwordRules: [
-      (v) => v.length >= 8 || "Min 8 characters",
-    ],
-    }),
-    // }
-  // },
+
+      ordersList: [
+        {
+          name: "Alexandria Hall",
+          address: "Alexandria , sidi-gaber",
+          description:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdi nec ut, sed euismod convenire principes at",
+          cost: "200$",
+          imageSrc: require("../assets/images/hall1.png"),
+        },
+        {
+          name: "Mostafa Ahmed photographer",
+          address: "Alexandria , loran",
+          description:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdi nec ut, sed euismod convenire principes at",
+          cost: "110$",
+          imageSrc: require("../assets/images/p5.jpg"),
+        },
+        {
+          name: "Mohamed Radwan Makeup artist",
+          address: "Alexandria , miamai",
+          description:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdi nec ut, sed euismod convenire principes at",
+          cost: "100$",
+          imageSrc: require("../assets/images/m1.jpg"),
+        },
+        {
+          name: "Rana Makeup artist",
+          address: "Alexandria , loran",
+          description:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdi nec ut, sed euismod convenire principes at",
+          cost: "100$",
+          imageSrc: require("../assets/images/m3.jpg"),
+        },
+        {
+          name: "Amr photographer",
+          address: "Alexandria , sidi-beshr",
+          description:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdi nec ut, sed euismod convenire principes at",
+          cost: "100$",
+          imageSrc: require("../assets/images/p4.jpg"),
+        },
+      ],
+    }
+  },
   props: ["value"],
-  computed: {
-    computedDateFormatted() {
-      return this.formatDate(this.date)
-    },
-  },
+  mounted() {
+    // request the user data from the database to be showed
+    /*
+    axios.get("http://localhost:8080/api/returnUser", {})
+    .then((Response) => {
+      const Data = Response.data
+      this.userData = Data
+    })
+    */
+    // request to get the orders of the user from the database 
 
-  watch: {
-    // eslint-disable-next-line
-    date(val) {
-      this.dateFormatted = this.formatDate(this.date)
-    },
   },
-  methods: {
-    saveUserInfo(){
-      this.editUserInfo=false;
-      // alert(this.date)
+  methods : {
+    reset(){
+      this.email = this.userData.email;
+      this.phonenumber = this.userData.phonenumber;
     },
-    savePassword(){
-      this.editPassword=false
+    save(){
+      switch(this.userData.type){
+        case "admin" :
+          this.saveAdmin() ;
+          break ;
+        case "sp" :
+          this.saveProvider();
+          break ;
+        case "customer" :
+          this.saveCustomer();
+          break ;
+      }
     },
-    saveContactInfo(){
-      this.editContactInfo=false
+    saveCustomer(){
+      
+      axios.post("http://localhost:8080/api/updateCustomer", {
+        ID : this.userData.ID ,
+        email: this.email,
+        password: this.userData.password,
+        type : this.userData.type ,
+        username: this.username,
+        phoneNumber: this.phonenumber,
+      })
+      .then((Response) => {
+        const Data = Response.data
+        this.message = Data
+        this.snackbar = true
+      })
     },
-    formatDate(date) {
-      if (!date) return null
+    saveProvider(){
 
-      const [year, month, day] = date.split("-")
-      return `${month}/${day}/${year}`
+      axios.post("http://localhost:8080/api/updateProvider", {
+        ID : this.userData.ID ,
+        email: this.email,
+        password: this.userData.password,
+        type : this.userData.type ,
+        username: this.username,
+        phoneNumber: this.phonenumber,
+      })
+      .then((Response) => {
+        const Data = Response.data
+        this.message = Data
+        this.snackbar = true
+      })
     },
-    parseDate(date) {
-      if (!date) return null
+    saveAdmin(){
 
-      const [month, day, year] = date.split("/")
-      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
+      axios.post("http://localhost:8080/api/updateAdmin", {
+        ID : this.userData.ID ,
+        email: this.email,
+        password: this.userData.password,
+        type : this.userData.type ,
+        username: this.username,
+        phoneNumber: this.phonenumber,
+      })
+      .then((Response) => {
+        const Data = Response.data
+        this.message = Data
+        this.snackbar = true
+      })
     },
-    
-  },
-    mounted () {
-    this.$i18n.locale = navigator.language
+    savePasswordChange(){
+      if (this.oldPassword != this.userData.password){
+        // window.alert("wrong Password or new password is empty");
+        this.message = "wrong Password";
+        this.snackbar = true
+      }
+      else if ( this.newPassword == ''){
+        this.message = "New Password cant be empty";
+        this.snackbar = true
+      }
+      else{
+        this.userData.password = this.newPassword ;
+        this.save();
+        //request to change the password 
+      }
+    }
+
   }
 }
 </script>
@@ -752,5 +766,4 @@ $transition: $timing ease all;
 .button:hover span {
   color: #6a778e;
 }
-
 </style>
