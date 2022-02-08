@@ -181,7 +181,7 @@ public class Controller {
     }
     //getOrderServices
     @GetMapping("/getOrderServices")
-    public List<BasicService> getOrderServices(@RequestParam(value = "userID")int userID){
-        return orderManagerSystem.getOrderServices(userID);
+    public List<BasicService> getOrderServices(@RequestParam(value = "orderID")int orderID){
+        return orderManagerSystem.getOrderServices(orderID);
     }
 }
