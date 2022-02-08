@@ -102,6 +102,7 @@
                       v-model="username"
                       label="User Name"
                       dense
+                      :rules="lastNameRules"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -112,17 +113,49 @@
                       v-model="email"
                       label="Email"
                       dense
+                      :rules="emailRules"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
-                  <v-col>
+                  <!-- <v-col>
                     <v-text-field
                       v-model="date"
                       label="Birth-date"
                       dense
                       color="#FF4F5A"
                     ></v-text-field>
-                  </v-col>
+                  </v-col> -->
+                  <v-col cols="12" lg="6">
+      <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs2 }">
+          <v-text-field
+            v-model="date"
+            label="Birth-date"
+            prepend-icon="mdi-calendar"
+            readonly
+            dense
+            color="#FF4F5A"
+            v-bind="attrs2"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="date"
+          no-title
+          scrollable
+        >
+        
+        </v-date-picker>
+      </v-menu>
+    </v-col>
+                  
                 </v-row>
                 
                 <v-row style="margin-top: 20px">
@@ -180,6 +213,7 @@
                       v-model="newPassword"
                       label="New Password"
                       type="password"
+                      :rules="passwordRules"
                       dense
                       color="#FF4F5A"
                     ></v-text-field>
@@ -254,17 +288,19 @@
 import axios from "axios"
 
 export default {
-  data() {
-    return {
+  data(){
+      return{
       selectedOption: "Profile",
       dialog: false,
       username: 'Rana Ayman',
       email: 'ranaayman@gmail.com',
-      date: '6-10-2000',
+      // date: '6-10-2000',
       oldPassword: '',
       newPassword: '',
       phone: '0100123456789',
       address: 'Alexandria',
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      menu1: false,
 
       snackbar: false,
       message: '',
@@ -320,8 +356,21 @@ export default {
           imageSrc: require("../assets/images/p4.jpg"),
         },
       ],
-    }
-  },
+    // nameRules: [
+    //   (v) => v.length <= 10 || "Name must be less than 10 characters",
+    // ],
+    lastNameRules: [
+      (v) => v.length <= 20 || "Name must be less than 20 characters",
+    ],
+    emailRules: [
+      (v) => /.+@.+/.test(v) || "Invalid E-mail",
+    ],
+    passwordRules: [
+      (v) => v.length >= 8 || "Min 8 characters",
+    ],
+    
+      }
+      },
   props: ["value"],
   mounted() {
     // request the user data from the database to be showed
@@ -341,6 +390,7 @@ export default {
       this.phonenumber = this.userData.phonenumber;
     },
     save(){
+      // alert(this.date)
       switch(this.userData.type){
         case "admin" :
           this.saveAdmin() ;
@@ -416,9 +466,21 @@ export default {
         this.save();
         //request to change the password 
       }
-    }
+    },
 
-  }
+  },
+    computed: {
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    // eslint-disable-next-line
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
+  },
 }
 </script>
 
