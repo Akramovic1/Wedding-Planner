@@ -29,4 +29,14 @@ public class UserJdbcTests {
         Assertions.assertEquals(1,dao.delete(newSp.getID()));
         Assertions.assertEquals(1,dao.delete(newAdmin.getID()));
     }
+
+    @Test
+    @DisplayName("Update User Test")
+    void updateUserTest(){
+        Customer newCustomer = new Customer("testemail1","password","customer","test","0");
+        Assertions.assertEquals(1,dao.create(newCustomer));
+        newCustomer.setEmail("Modified email For Test");
+        Assertions.assertEquals(1,dao.update(newCustomer,newCustomer.getID()));
+        Assertions.assertEquals(1,dao.delete(newCustomer.getID()));
+    }
 }

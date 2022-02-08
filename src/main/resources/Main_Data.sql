@@ -1,11 +1,11 @@
 USE wedding_planner;
 #Adding Service providers
-INSERT INTO users VALUES(0,"amrmomtaz@gmail.com","12345678","admin","AmrMomtaz","010");
-INSERT INTO users VALUES(1,"radwan@gmail.com","12345678","sp","Radwan","11");
-INSERT INTO users VALUES(2,"moemen@gmail.com","12345678","sp","Moemen","12");
-INSERT INTO users VALUES(3,"mostafa@gmail.com","12345678","sp","Mostafa","15");
-INSERT INTO users VALUES(4,"akram@gmail.com","12345678","customer","Akram","15");
-INSERT INTO users VALUES(5,"rana@gmail.com","12345678","customer","Rana","15");
+INSERT INTO users VALUES(1,"amrmomtaz@gmail.com","12345678","admin","AmrMomtaz","010");
+INSERT INTO users VALUES(2,"radwan@gmail.com","12345678","sp","Radwan","11");
+INSERT INTO users VALUES(3,"moemen@gmail.com","12345678","sp","Moemen","12");
+INSERT INTO users VALUES(4,"mostafa@gmail.com","12345678","sp","Mostafa","15");
+INSERT INTO users VALUES(5,"akram@gmail.com","12345678","customer","Akram","15");
+INSERT INTO users VALUES(6,"rana@gmail.com","12345678","customer","Rana","15");
 
 #Adding Serivces
 INSERT INTO services VALUES(1,"place");
