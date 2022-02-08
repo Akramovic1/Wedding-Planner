@@ -3,6 +3,7 @@ package com.example.weddingplanner.dao;
 import com.example.weddingplanner.model.serviceComponent.CartItem;
 import com.example.weddingplanner.model.serviceComponent.Order;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CartDAO{
@@ -20,7 +21,7 @@ public interface CartDAO{
     List<CartItem> listCartItems(int userID);
 
     // Confirm user purchase Returns Order ID returns order ID
-    int confirmPurchase(int userID);
+    int confirmPurchase(int userID, Date paymentDate,String paymentMethod);
 
     // Get user orders
     List<Integer> listOrdersID(int userID);

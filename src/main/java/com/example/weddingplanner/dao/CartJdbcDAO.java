@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Repository("CartDAO")
@@ -63,7 +64,8 @@ public class CartJdbcDAO implements CartDAO {
     }
 
     @Override
-    public int confirmPurchase(int userID) {
+    public int confirmPurchase(int userID, Date paymentDate, String paymentMethod) {
+        
         return 0;
     }
 
