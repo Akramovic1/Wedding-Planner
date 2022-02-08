@@ -37,13 +37,13 @@ public class CartManager {
         //call the data base
         return state;
     }
-    public cart loadCart(int userID){
+    /*public cart loadCart(int userID){
         cart cart=null;
         //call the data base to get list of service id and list of dueDates
         //then call data base to git the BasicService s of these serves ids
         //make object cart contains all these information
         return cart;
-    }
+    }*/
     public int pay(int userID){
         int orserID=0;
         //call the data base which will return the id of the placed order

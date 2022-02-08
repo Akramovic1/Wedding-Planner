@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Repository("CartDAO")
@@ -22,23 +24,42 @@ public class CartJdbcDAO implements CartDAO {
     }
 
     @Override
-    public int addCartItem(int userID, CartItem cartItem) {
-        return 0;
+    public int addCartItem(CartItem cartItem) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String sql = "INSERT INTO cart VALUES (?,?,?)";
+        int insert = jdbcTemplate.update(sql,cartItem.getUserID(),cartItem.getServiceID(),
+                dateFormat.format(cartItem.getDueDate()));
+        if(insert == 1)
+            log.info("New item added to cart for user : " + cartItem.getUserID());
+        return insert;
     }
 
     @Override
-    public int removeCartItem(int userID, CartItem cartItem) {
-        return 0;
+    public int removeCartItem(CartItem cartItem) {
+        String sql = "DELETE FROM cart WHERE User_ID = ? AND Service_ID = ?";
+        int delete = jdbcTemplate.update(sql,cartItem.getUserID(),cartItem.getServiceID());
+        if(delete==1)
+            log.info("Item deleted from cart successfully (user id="+ cartItem.getUserID() + ")");
+        return delete;
     }
 
     @Override
     public int clearCart(int userID) {
-        return 0;
+        String sql = "DELETE FROM cart WHERE User_ID = ?";
+        int delete = jdbcTemplate.update(sql,userID);
+        if(delete==1)
+            log.info("Cart cleared (user id="+ userID + ")");
+        return delete;
     }
 
     @Override
-    public List<CartItem> listCart(int userID) {
-        return null;
+    public List<CartItem> listCartItems(int userID) {
+        String sql = "SELECT * FROM cart WHERE User_ID = ?";
+        return jdbcTemplate.query(sql,((rs, rowNum) -> new CartItem(
+                rs.getInt("User_ID"),
+                rs.getInt("Service_ID"),
+                rs.getDate("Due_Date")
+        )),userID);
     }
 
     @Override

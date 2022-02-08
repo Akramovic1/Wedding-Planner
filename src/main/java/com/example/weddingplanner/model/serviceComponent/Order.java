@@ -7,13 +7,13 @@ public class Order {
     int ID;
     int userID;
     List<Integer> servicesID;
+    List<Date> dueDates;
     Date paymentDate;
     String paymentMethod;
 
-    public Order(int ID, int userID, List<Integer> servicesID, Date paymentDate, String paymentMethod) {
+    public Order(int ID, int userID, Date paymentDate, String paymentMethod) {
         this.ID = ID;
         this.userID = userID;
-        this.servicesID = servicesID;
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
     }
@@ -40,6 +40,14 @@ public class Order {
 
     public void setServicesID(List<Integer> servicesID) {
         this.servicesID = servicesID;
+    }
+
+    public List<Date> getDueDates() {
+        return dueDates;
+    }
+
+    public void setDueDates(List<Date> dueDates) {
+        this.dueDates = dueDates;
     }
 
     public Date getPaymentDate() {

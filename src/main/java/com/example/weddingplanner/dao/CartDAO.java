@@ -8,16 +8,16 @@ import java.util.List;
 public interface CartDAO{
 
     // Adds item to user cart returns insertion state
-    int addCartItem(int userID, CartItem cartItem);
+    int addCartItem(CartItem cartItem);
 
     // Remove item from user cart returns deletion state
-    int removeCartItem(int userID,CartItem cartItem);
+    int removeCartItem(CartItem cartItem);
 
     // Remove all cart items returns deletion state
     int clearCart(int userID);
 
     // Returns list of user cart items
-    List<CartItem> listCart(int userID);
+    List<CartItem> listCartItems(int userID);
 
     // Confirm user purchase Returns Order ID returns order ID
     int confirmPurchase(int userID);
