@@ -1,9 +1,6 @@
 package com.example.weddingplanner.controller;
 
-import com.example.weddingplanner.model.serviceComponent.CartManager;
-import com.example.weddingplanner.model.serviceComponent.OrderManager;
-import com.example.weddingplanner.model.serviceComponent.Person;
-import com.example.weddingplanner.model.serviceComponent.Place;
+import com.example.weddingplanner.model.serviceComponent.*;
 import com.example.weddingplanner.model.userComponent.Customer;
 import com.example.weddingplanner.model.userComponent.Administrator;
 import com.example.weddingplanner.model.userComponent.ServiceProvider;
@@ -141,4 +138,50 @@ public class Controller {
         return userServices.returnUser();
     }
 
+    //addServiceToCart
+    @GetMapping("/addServiceToCart")
+    public boolean addServiceToCart(@RequestParam(value = "userID")int userID,
+                                    @RequestParam(value = "serviceID")int serviceID,
+                                    @RequestParam(value = "dueDate")Date dueDate){
+        return cartManagerSystem.addServiceToCart(userID,serviceID,dueDate);
+    }
+    //deleteServiceFromCart
+    @GetMapping("/deleteServiceFromCart")
+    public boolean deleteServiceFromCart(@RequestParam(value = "userID")int userID,
+                                         @RequestParam(value = "serviceID")int serviceID){
+        return cartManagerSystem.deleteServiceFromCart(userID,serviceID);
+    }
+    //deleteServiceFromCartInSpecificDue
+    @GetMapping("/deleteServiceFromCartInSpecificDue")
+    public boolean deleteServiceFromCartInSpecificDue(@RequestParam(value = "userID")int userID,
+                                                      @RequestParam(value = "serviceID")int serviceID,
+                                                      @RequestParam(value = "dueDate")Date dueDate){
+        return cartManagerSystem.deleteServiceFromCartInSpecificDue(userID,serviceID,dueDate);
+    }
+    //clearCart
+    @GetMapping("/clearCart")
+    public boolean clearCart(@RequestParam(value = "userID")int userID){
+        return cartManagerSystem.clearCart(userID);
+    }
+    //loadCart
+    @GetMapping("/loadCart")
+    public cart loadCart(@RequestParam(value = "userID")int userID){
+        return cartManagerSystem.loadCart(userID);
+    }
+    //pay  returns the order id
+    @GetMapping("/pay")
+    public int pay(@RequestParam(value = "userID")int userID,
+                   @RequestParam(value = "paymentMethod")String paymentMethod){
+        return cartManagerSystem.pay(userID,paymentMethod);
+    }
+    //getUserOrders
+    @GetMapping("/getUserOrders")
+    public List<OrderDetailed> getUserOrders(@RequestParam(value = "userID")int userID){
+        return orderManagerSystem.getUserOrders(userID);
+    }
+    //getOrderServices
+    @GetMapping("/getOrderServices")
+    public List<BasicService> getOrderServices(@RequestParam(value = "userID")int userID){
+        return orderManagerSystem.getOrderServices(userID);
+    }
 }
