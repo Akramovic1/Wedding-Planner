@@ -4,50 +4,76 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.weddingplanner.dao.CartDAO;
 import com.example.weddingplanner.dao.ServiceDAO;
 import com.example.weddingplanner.model.serviceComponent.serviceAppendices.ServiceDate;
-import com.example.weddingplanner.model.viewComponent.Attribute;
-import com.example.weddingplanner.model.viewComponent.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("cartManagerSystem")
 public class CartManager {
     private final ServiceDAO serviceDAO;
-    private ServiceDate serviceDate;
+    private final CartDAO cartDAO;
+    private final ServiceDate serviceDate;
 
     @Autowired
-    public CartManager(ServiceDAO serviceDAO) {
+    public CartManager(ServiceDAO serviceDAO, CartDAO cartDAO) {
         this.serviceDAO=serviceDAO;
-        serviceDate=new ServiceDate();
+        this.cartDAO=cartDAO;
+        this.serviceDate=new ServiceDate();
     }
 
     public boolean addServiceToCart(int userID, int serviceID, Date dueDate){
         boolean state=false;
         List<Date>busy=serviceDAO.getBusyDates(serviceID);
         if (serviceDate.isDateFree(busy,dueDate)){
-            //call the data base
+            CartItem c =new CartItem(userID,serviceID,dueDate);
+            int stateIndicator=cartDAO.addCartItem(c);
+            if (stateIndicator==1)state=true;
             return state;
         }
         else
             return false;
     }
+    //delete the service from the cart with all its due dates
     public boolean deleteServiceFromCart(int userID,int serviceID){
         boolean state=false;
-        //call the data base
+        CartItem c =new CartItem(userID,serviceID,null);
+        int stateIndicator=cartDAO.removeCartItem(c);
+        if (stateIndicator==1)state=true;
         return state;
     }
-    /*public cart loadCart(int userID){
-        cart cart=null;
+    //delete the service from the cart with all its due dates
+    public boolean deleteServiceFromCartInSpecificDue(int userID,int serviceID,Date dueDate){
+        boolean state=false;
+        CartItem c =new CartItem(userID,serviceID,dueDate);
+        int stateIndicator=cartDAO.removeCartItem(c);
+        if (stateIndicator==1)state=true;
+        return state;
+    }
+    //delete all the services from the cart
+    public boolean clearCart(int userID){
+        boolean state=false;
+        int stateIndicator=cartDAO.clearCart(userID);
+        if (stateIndicator==1)state=true;
+        return state;
+    }
+    public cart loadCart(int userID){
         //call the data base to get list of service id and list of dueDates
         //then call data base to git the BasicService s of these serves ids
         //make object cart contains all these information
-        return cart;
-    }*/
-    public int pay(int userID){
-        int orserID=0;
+        List<CartItem> cartItems=cartDAO.listCartItems(userID);
+        List<BasicService> services=new ArrayList<>();
+        List<Date> dueDate=new ArrayList<>();
+        for (CartItem c : cartItems) {
+            services.add(serviceDAO.get(c.serviceID));
+            dueDate.add(c.dueDate);
+        }
+        return new cart(userID,services,dueDate);
+    }
+    public int pay(int userID,String paymentMethod){
         //call the data base which will return the id of the placed order
-        return orserID;
+        return cartDAO.confirmPurchase(userID,new Date(),paymentMethod);
     }
 
 }

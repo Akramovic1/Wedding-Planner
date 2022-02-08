@@ -37,13 +37,4 @@ public class CartItem {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-
-    @Override
-    public String toString() {
-        return "CartItem{" +
-                "userID=" + userID +
-                ", serviceID=" + serviceID +
-                ", dueDate=" + dueDate +
-                '}';
-    }
 }

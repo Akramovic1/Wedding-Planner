@@ -3,18 +3,18 @@ package com.example.weddingplanner.model.serviceComponent;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class OrderDetailed {
     int ID;
     int userID;
-    List<Integer> servicesID;
+    List<BasicService> services;
     List<Date> dueDate;
     Date paymentDate;
     String paymentMethod;
 
-    public Order(int ID, int userID, List<Integer> servicesID, List<Date> dueDate, Date paymentDate, String paymentMethod) {
+    public OrderDetailed(int ID, int userID, List<BasicService> services, List<Date> dueDate,Date paymentDate, String paymentMethod) {
         this.ID = ID;
         this.userID = userID;
-        this.servicesID = servicesID;
+        this.services = services;
         this.dueDate=dueDate;
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
@@ -36,12 +36,12 @@ public class Order {
         this.userID = userID;
     }
 
-    public List<Integer> getServicesID() {
-        return servicesID;
+    public List<BasicService> getServices() {
+        return services;
     }
 
-    public void setServicesID(List<Integer> servicesID) {
-        this.servicesID = servicesID;
+    public void setServices(List<BasicService> services) {
+        this.services = services;
     }
 
     public List<Date> getDueDate() { return dueDate; }

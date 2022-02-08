@@ -1,36 +1,42 @@
 package com.example.weddingplanner.model.serviceComponent;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import com.example.weddingplanner.dao.CartDAO;
 import com.example.weddingplanner.dao.ServiceDAO;
-import com.example.weddingplanner.model.serviceComponent.serviceAppendices.ServiceDate;
-import com.example.weddingplanner.model.viewComponent.Attribute;
-import com.example.weddingplanner.model.viewComponent.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("orderManagerSystem")
 public class OrderManager {
     private final ServiceDAO serviceDAO;
-    private ServiceDate serviceDate;
+    private final CartDAO cartDAO;
 
     @Autowired
-    public OrderManager(ServiceDAO serviceDAO) {
+    public OrderManager(ServiceDAO serviceDAO, CartDAO cartDAO) {
         this.serviceDAO=serviceDAO;
-        serviceDate=new ServiceDate();
+        this.cartDAO=cartDAO;
     }
 
-    /*public order getOrderServices(int orderID){
-        order order=null;
-        //call the data base
-        return order;
-    }*/
+    public List<BasicService> getOrderServices(int orderID){
+        Order order=cartDAO.getOrder(orderID);
+        List<Integer> servicesID=order.getServicesID();
+        List<BasicService> services=new ArrayList<>();
+        for (int serviceID : servicesID) {
+            services.add(serviceDAO.get(serviceID));
+        }
+        return services;
+    }
 
-    public List<Integer> getUserOrders(int userID){
-        List<Integer> ordersIDs=null;
-        //call the data base
-        return ordersIDs;
+    public List<OrderDetailed> getUserOrders(int userID){
+        List<Integer> ordersIDs=cartDAO.listOrdersID(userID);
+        List<OrderDetailed> ordersDetailed=new ArrayList<>();
+        for (int orderID : ordersIDs) {
+            Order order=cartDAO.getOrder(orderID);
+            List<BasicService> services=getOrderServices(orderID);
+            ordersDetailed.add(new OrderDetailed(order.getID(),order.getUserID(),services,order.getDueDate(),order.getPaymentDate(),order.getPaymentMethod()));
+        }
+        return ordersDetailed;
     }
 }
