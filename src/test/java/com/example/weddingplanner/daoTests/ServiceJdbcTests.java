@@ -196,9 +196,8 @@ public class ServiceJdbcTests {
     @Test
     @DisplayName("Searching on services by name")
     void searchServiceByName(){
-        List<Person> people = dao.searchPersonByName("Photographer A");
-        List<Place> places = dao.searchPlaceByName("wedding hall c");
-        System.out.println("");
+        dao.searchPersonByName("Photographer A");
+        dao.searchPlaceByName("wedding hall c");
     }
     @Test
     @DisplayName("Pictures operations test")
