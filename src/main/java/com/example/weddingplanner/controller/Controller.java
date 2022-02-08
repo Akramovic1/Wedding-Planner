@@ -5,6 +5,7 @@ import com.example.weddingplanner.model.serviceComponent.Place;
 import com.example.weddingplanner.model.userComponent.Customer;
 import com.example.weddingplanner.model.userComponent.Administrator;
 import com.example.weddingplanner.model.userComponent.ServiceProvider;
+import com.example.weddingplanner.model.userComponent.User;
 import com.example.weddingplanner.model.viewComponent.Attribute;
 import com.example.weddingplanner.model.viewComponent.Page;
 import com.example.weddingplanner.services.ServiceProviderServices;
@@ -113,6 +114,24 @@ public class Controller {
     @GetMapping("/searchPlaceByName")
     public List<Place> searchPlaceByName(@RequestParam(value = "name")String name){
         return serviceProviderServices.searchPlaceByName(name);
+    }
+    @PostMapping("/updateCustomer")
+    public String updateCustomer(@RequestBody Customer user) {
+        return this.userServices.updateUser(user);
+    }
+
+    @PostMapping("/updateProvider")
+    public String pdateProvider(@RequestBody ServiceProvider user) {
+        return this.userServices.updateUser(user);
+    }
+
+    @PostMapping("/updateAdmin")
+    public String updateAdmin(@RequestBody Administrator user) {
+        return this.userServices.updateUser(user);
+    }
+    @GetMapping("/returnUser")
+    public User returnUser(){
+        return userServices.returnUser();
     }
 
 }

@@ -52,4 +52,19 @@ public class FilterTests {
             System.out.println(p.getRate()+" "+p.getLocation());
         }
     }
+    @Test
+    @DisplayName("Get all places in cairo")
+    void filterPlacesToGetAll() {
+        Filter f=new Filter(dao);
+        ArrayList<Attribute> allFilters=new ArrayList<>();
+        Attribute a2=new Attribute("cost","0,");
+        Attribute a3=new Attribute("rate","0,");
+        Attribute a4=new Attribute("location","cairo");
+        allFilters.add(a2);allFilters.add(a3);allFilters.add(a4);
+        ArrayList<Place>filteredServices= f.makePlacesFilter(allFilters);
+        for (Place p:filteredServices){
+            Assertions.assertEquals(p.getLocation(),"cairo");
+            System.out.println(p.getRate()+" "+p.getLocation());
+        }
+    }
 }

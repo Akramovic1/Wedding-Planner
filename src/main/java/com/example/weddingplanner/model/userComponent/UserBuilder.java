@@ -47,12 +47,25 @@ public class UserBuilder {
             return "Please Complete Empty fields";
         }
         else if(!correctEmailAddress(email)){
-            return "Not valid email-address";
+            return "Invalid email-address";
         }
         else if(!correctPassword(password)){
             return "Password should have at least 8 characters";
         }
         else {
+            if(dao.get(user.getID())!=null){
+                User oldUser=dao.get(user.getID());
+                if(!oldUser.getEmail().equals(user.getEmail())) {
+                    if (!correctEmailAddress(user.getEmail())) {
+                        return "Invalid email-address";
+                    }
+                    if (dao.checkEmailExists(user.getEmail())) {
+                        return "There's another account with tha same email";
+                    }
+                }
+                dao.update(user,user.getID());
+                return "user Updated successfully";
+            }
             if(dao.checkEmailExists(email)){
                 return "There's another account with tha same email";}
             else {
@@ -61,4 +74,5 @@ public class UserBuilder {
             }
         }
     }
+
 }

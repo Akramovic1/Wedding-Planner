@@ -12,8 +12,8 @@ import java.util.HashSet;
 public class UserServices {
 
     private final UserFacade backend;
-    private final HashSet<Integer> activeUsers=new HashSet();
-
+    private static final HashSet<Integer> activeUsers=new HashSet();
+    private User activeUser=null;
     @Autowired
     public UserServices(UserDAO userDAO) {
         backend=new UserFacade(userDAO);
@@ -27,8 +27,18 @@ public class UserServices {
         int userId=backend.logIn(email,password);
         if (userId!=-1){
             activeUsers.add(userId);
+            activeUser=backend.returnUser(userId);
         }
         return userId;
+    }
+    public User returnUser(){
+        return activeUser;
+    }
+    public String updateUser(User user){
+        if(user.getID()!=activeUser.getID()){
+            return "Invalid UserID";
+        }
+        return backend.updateUser(user.getID(),user);
     }
 
 }

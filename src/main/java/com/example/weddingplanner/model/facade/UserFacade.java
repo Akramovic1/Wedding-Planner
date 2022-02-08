@@ -23,6 +23,9 @@ public class UserFacade{
             return -1;
         return user.getID();
     }
+    public User returnUser(int userID){
+        return dao.get(userID);
+    }
     public String signUp(User user) {
         UserBuilder builder;
         if(user instanceof Administrator){
@@ -40,5 +43,37 @@ public class UserFacade{
         }
         return builder.getUser(dao);
     }
+    public String updateUser(int userID,User user){
+        UserBuilder builder = null;
+        User oldUser=dao.get(userID);
+        if(oldUser!=null){
+            if(!oldUser.getType().equals(user.getType())){
+                return "Type of user can't be changed";
+            }
+            if(user instanceof Administrator){
+                if(!user.getType().equals("admin")){
+                    return "Invalid user type";
+                }
+                builder=new UserBuilder((Administrator) user);
+            }
+            else if(user instanceof Customer){
+                if(!user.getType().equals("customer")){
+                    return "Invalid user type";
+                }
+                builder=new UserBuilder((Customer) user);
+            }
+            else if(user instanceof ServiceProvider){
+                if(!user.getType().equals("sp")){
+                    return "Invalid user type";
+                }
+                builder=new UserBuilder((ServiceProvider) user);
+            }
+            return builder.getUser(dao);
+        }
+        else {
+            return "Invalid userID";
+        }
+    }
+
 
 }
