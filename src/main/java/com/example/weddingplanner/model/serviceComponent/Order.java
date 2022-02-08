@@ -11,11 +11,9 @@ public class Order {
     Date paymentDate;
     String paymentMethod;
 
-    public Order(int ID, int userID, List<Integer> servicesID, List<Date> dueDate, Date paymentDate, String paymentMethod) {
+    public Order(int ID, int userID, Date paymentDate, String paymentMethod) {
         this.ID = ID;
         this.userID = userID;
-        this.servicesID = servicesID;
-        this.dueDate=dueDate;
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
     }
@@ -64,5 +62,17 @@ public class Order {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ID=" + ID +
+                ", userID=" + userID +
+                ", servicesID=" + servicesID +
+                ", dueDate=" + dueDate +
+                ", paymentDate=" + paymentDate +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                '}';
     }
 }
