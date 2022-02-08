@@ -111,7 +111,8 @@
                       v-model="firstName"
                       label="First Name"
                       dense
-                      readonly
+                      :rules="nameRules"
+                      :readonly="editUserInfo == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -119,8 +120,9 @@
                     <v-text-field
                       v-model="lastName"
                       label="Last Name"
+                      :rules="lastNameRules"
                       dense
-                      readonly
+                      :readonly="editUserInfo == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -130,12 +132,13 @@
                     <v-text-field
                       v-model="email"
                       label="Email"
+                      :rules="emailRules"
                       dense
-                      readonly
+                      :readonly="editUserInfo == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
-                  <v-col>
+                  <!-- <v-col>
                     <v-text-field
                       v-model="date"
                       label="Birth-date"
@@ -143,17 +146,49 @@
                       readonly
                       color="#FF4F5A"
                     ></v-text-field>
+                  </v-col> -->
+                  <v-col cols="12" lg="6">
+                    <v-menu
+                      ref="menu1"
+                      v-model="menu1"
+                      :close-on-content-click="false"
+                      transition="scale-transition"
+                      offset-y
+                      max-width="290px"
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="dateFormatted"
+                          label="Birth-date"
+                          hint="MM/DD/YYYY format"
+                          persistent-hint
+                          color="#FF4F5A"
+                          prepend-icon="mdi-calendar"
+                          v-bind="attrs"
+                          readonly
+                          dense
+                          @blur="date = parseDate(dateFormatted)"
+                          v-on="editUserInfo? on : off"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="date"
+                        no-title
+                        @input="menu1 = false"
+                      ></v-date-picker>
+                    </v-menu>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-col> </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px">
+                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editUserInfo=true">
                       Edit
                     </v-btn>
                   </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px">
+                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="saveUserInfo">
                       Save
                     </v-btn>
                   </v-col>
@@ -169,8 +204,9 @@
                       v-model="oldPassword"
                       label="Old Password"
                       type="password"
+                      :rules="oldPassRules"
                       dense
-                      readonly
+                      :readonly="editPassword == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -179,8 +215,9 @@
                       v-model="newPassword"
                       label="New Password"
                       type="password"
+                      :rules="passwordRules"
                       dense
-                      readonly
+                      :readonly="editPassword == false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -188,12 +225,12 @@
                 <v-row>
                   <v-col> </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px">
+                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editPassword=true">
                       Edit
                     </v-btn>
                   </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px">
+                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="savePassword">
                       Save
                     </v-btn>
                   </v-col>
@@ -209,7 +246,7 @@
                       v-model="phone"
                       label="Phone"
                       dense
-                      readonly
+                      :readonly="editContactInfo==false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -218,7 +255,7 @@
                       v-model="address"
                       label="Address"
                       dense
-                      readonly
+                      :readonly="editContactInfo==false"
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
@@ -226,12 +263,12 @@
                 <v-row>
                   <v-col> </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark text style="margin-left: 60px">
+                    <v-btn color="#ff616b" dark text style="margin-left: 60px" @click="editContactInfo=true">
                       Edit
                     </v-btn>
                   </v-col>
                   <v-col lg="2" md="2" sm="3" xs="4">
-                    <v-btn color="#ff616b" dark style="margin-left: 40px">
+                    <v-btn color="#ff616b" dark style="margin-left: 40px" @click="saveContactInfo">
                       Save
                     </v-btn>
                   </v-col>
@@ -248,92 +285,19 @@
                 dankort
               </div>
 
-              <div class="container">
-                <v-col>
-                  <v-row>
-                    <div class="col1" style="margin-left: 10%">
-                      <div class="card">
-                        <div class="front">
-                          <div class="type">
-                            <img class="bankid" />
-                          </div>
-                          <span class="chip"></span>
-                          <span class="card_number"
-                            >&#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                            &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                            &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                            &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                          </span>
-                          <div class="date">
-                            <span class="date_value">MM / YYYY</span>
-                          </div>
-                          <span class="fullname">Ahmed Akram</span>
-                        </div>
-                        <div class="back">
-                          <div class="magnetic"></div>
-                          <div class="bar"></div>
-                          <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
-                          <span class="chip"></span
-                          ><span class="disclaimer"
-                            >This card is property of Random Bank of Random
-                            corporation. <br />
-                            If found please return to Random Bank of Random
-                            corporation - 21968 Paris, Verdi Street, 34
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </v-row>
-                  <v-row>
-                    <div class="col2">
-                      <v-row>
-                        <v-col>
-                          <label>Card Number</label>
-                          <input
-                            class="number"
-                            type="text"
-                            ng-model="ncard"
-                            maxlength="19"
-                            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                          />
-                        </v-col>
-                        <v-col>
-                          <label>Cardholder name</label>
-                          <input class="inputname" type="text" placeholder="" />
-                        </v-col>
-                      </v-row>
-                      <v-row>
-                        <v-col>
-                          <label>Expiry date</label>
-                          <input
-                            class="expire"
-                            type="text"
-                            placeholder="MM / YYYY"
-                          />
-                        </v-col>
-                        <v-col>
-                          <label>Security Number</label>
-                          <input
-                            class="ccv"
-                            type="text"
-                            placeholder="CVC"
-                            maxlength="3"
-                            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                          />
-                        </v-col>
-                      </v-row>
-                      <!-- <v-row>
-                <v-col> -->
-                      <button class="buy">
-                        <i class="material-icons"></i> Add card
-                      </button>
-                      <!-- </v-col>
-                <v-col>
-                </v-col>
-                </v-row> -->
-                    </div>
-                  </v-row>
-                </v-col>
+              <!-- <div class="container">
+
+              </div> -->
+                <div class="wrapper" id="app">
+                <CardForm
+                  :form-data="formData"
+                  @input-card-number="updateCardNumber"
+                  @input-card-name="updateCardName"
+                  @input-card-month="updateCardMonth"
+                  @input-card-year="updateCardYear"
+                  @input-card-cvv="updateCardCvv"
+                />
+                <!-- backgroundImage="https://images.unsplash.com/photo-1572336183013-960c3e1a0b54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" -->
               </div>
             </slot>
           </v-card-text>
@@ -344,23 +308,103 @@
 </template>
 
 <script>
+// import VueCardFormat from 'vue-credit-card-validation';
+// Vue.use(VueCardFormat)
+import CardForm from '@/components/CardForm'
+
 export default {
-  data() {
-    return {
+  name: "MyAccount",
+
+  components: {
+    // eslint-disable-next-line
+    // VueCardFormat,
+    CardForm
+
+  },
+  // data() {
+    // return {
+     data:
+      vm => ({
       selectedOption: "Profile",
       dialog: false,
       firstName: "Rana",
       lastName: "Ayman",
       email: "ranaayman@gmail.com",
-      date: "6-10-2000",
+      // date: "6-10-2000",
       oldPassword: "123456789",
       newPassword: "abcdefghi",
       phone: "0100123456789",
       address: "Alexandria",
-    }
-  },
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
+      menu1: false,
+      editUserInfo:false,
+      editPassword:false,
+      editContactInfo:false,
+      formData: {
+        cardName: '',
+        cardNumber: '',
+        cardMonth: '',
+        cardYear: '',
+        cardCvv: ''
+      },
+      
+    nameRules: [
+      (v) => v.length <= 10 || "Name must be less than 10 characters",
+    ],
+    lastNameRules: [
+      (v) => v.length <= 20 || "Name must be less than 20 characters",
+    ],
+    emailRules: [
+      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+    ],
+    passwordRules: [
+      (v) => v.length >= 8 || "Min 8 characters",
+    ],
+    }),
+    // }
+  // },
   props: ["value"],
-  mounted() {},
+  computed: {
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    // eslint-disable-next-line
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
+  },
+  methods: {
+    saveUserInfo(){
+      this.editUserInfo=false;
+      // alert(this.date)
+    },
+    savePassword(){
+      this.editPassword=false
+    },
+    saveContactInfo(){
+      this.editContactInfo=false
+    },
+    formatDate(date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split("-")
+      return `${month}/${day}/${year}`
+    },
+    parseDate(date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split("/")
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
+    },
+    
+  },
+    mounted () {
+    this.$i18n.locale = navigator.language
+  }
 }
 </script>
 
@@ -708,4 +752,5 @@ $transition: $timing ease all;
 .button:hover span {
   color: #6a778e;
 }
+
 </style>

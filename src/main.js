@@ -2,12 +2,15 @@ import Vue from "vue"
 import App from "./App.vue"
 import vuetify from "./plugins/vuetify"
 import VueRouter from "vue-router"
-
+import VueCardFormat from 'vue-credit-card-validation';
+import i18n from './i18n'
 // import Home from './views/Home';
 import NotFound from "./views/NotFound"
 import Registration from "./components/Registration"
 
-Vue.use(VueRouter)
+Vue.use(VueRouter,VueCardFormat)
+// Vue.use(VueCardFormat)
+
 
 import "./scss/main.scss"
 import NewMain from "./components/NewMain"
@@ -42,5 +45,6 @@ const router = new VueRouter({
 new Vue({
   router,
   vuetify,
+  i18n,
   render: (h) => h(App),
 }).$mount("#app")

@@ -7824,6 +7824,11 @@
     "semver" "^6.0.0"
     "shelljs" "^0.8.3"
 
+"vue-credit-card-validation@^1.0.3":
+  "integrity" "sha512-QjmpOJtRLmGJ0PlL1SFJOYxjk8pw24MkfJiBry9r9XWRe7uBj6qdhVB6bfQG9Rh4E8z/zAOREwpuXf5zXsYbzA=="
+  "resolved" "https://registry.npmjs.org/vue-credit-card-validation/-/vue-credit-card-validation-1.0.3.tgz"
+  "version" "1.0.3"
+
 "vue-eslint-parser@^5.0.0":
   "integrity" "sha512-JlHVZwBBTNVvzmifwjpZYn0oPWH2SgWv5dojlZBsrhablDu95VFD+hriB1rQGwbD+bms6g+rAFhQHk6+NyiS6g=="
   "resolved" "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-5.0.0.tgz"
@@ -7840,6 +7845,11 @@
   "integrity" "sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog=="
   "resolved" "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
   "version" "2.3.4"
+
+"vue-i18n@^8.27.0":
+  "integrity" "sha512-SX35iJHL5PJ4Gfh0Mo/q0shyHiI2V6Zkh51c+k8E9O1RKv5BQyYrCxRzpvPrsIOJEnLaeiovet3dsUB0e/kDzw=="
+  "resolved" "https://registry.npmjs.org/vue-i18n/-/vue-i18n-8.27.0.tgz"
+  "version" "8.27.0"
 
 "vue-loader@^15.7.2":
   "integrity" "sha512-H/P9xt/nkocyu4hZKg5TzPqyCT1oKOaCSk9zs0JCbJuy0Q8KtR0bjJpnT/5R5x/Ckd1GFkkLQnQ1C4x6xXeLZg=="
