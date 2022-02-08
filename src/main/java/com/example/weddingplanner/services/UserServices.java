@@ -38,7 +38,9 @@ public class UserServices {
         if(user.getID()!=activeUser.getID()){
             return "Invalid UserID";
         }
-        return backend.updateUser(user.getID(),user);
+        String result=backend.updateUser(user.getID(),user);
+        activeUser=backend.returnUser(activeUser.getID());
+        return result;
     }
 
 }
