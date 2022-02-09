@@ -382,7 +382,7 @@ export default {
         })
         .then((Response) => {
           const Data = Response.data
-          if (Data == 0) this.message = "not a correct login input"
+          if (Data == -1) this.message = "not a correct login input"
           else {
             this.message = "correct login input"
             this.$router.push("/dashboard")

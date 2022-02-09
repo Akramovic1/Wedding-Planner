@@ -1,31 +1,29 @@
 <template>
-  <v-dialog max-width="1100px" :value="value" @input="$emit('input')">
+  <v-dialog max-width="1000px" :value="value" @input="$emit('input')">
     <v-row no-gutters style="overflow-x: hidden">
       <!-- image cornter -->
-      <v-col cols="3">
+      <v-col cols="2">
         <v-card tile class="rounded-tr rounded-td" height="625">
           <v-card-title>
-            <v-row>
-              <v-col
-                align="center"
-                justify="center"
-                style="padding: 10px 10px 0px 15px"
-              >
-                <v-avatar size="70">
-                  <img src="..\assets\images\team1.jpg" />
-                </v-avatar>
-              </v-col>
-              <v-col align="center" justify="center" style="padding: 10px 10px">
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title Style="font-weight:bold"
-                      >Account Name</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-              </v-col>
-            </v-row>
-          </v-card-title>
+              <v-row>
+                <v-col cols="1" style="padding: 10px 10px 10px 20px">
+                  <v-avatar size="70">
+                    <img
+                      src="..\assets\images\team1.jpg"
+                      alt="Mostafa el gamed"
+                    />
+                  </v-avatar>
+                </v-col>
+                <v-col cols="12" style="padding: 0px 10px">
+                  <v-list-item two-line>
+                    <v-list-item-content>
+                      <v-list-item-title>{{this.userData.username}}</v-list-item-title>
+                      <v-list-item-subtitle>{{this.userData.type}}</v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+              </v-row>
+            </v-card-title>
           <v-divider></v-divider>
           <v-col align="center" justify="center" justify-content="center">
             <v-list>
@@ -45,7 +43,7 @@
                   style="width: 100%"
                   class="mt-4"
                   :color="selectedOption == 'Orders' ? '#FF4F5A' : ''"
-                  @click="selectedOption = 'Orders'"
+                  @click="order()"
                   >Order</v-btn
                 >
               </v-list-item>
@@ -68,7 +66,7 @@
       </v-col>
 
       <!-- text corner -->
-      <v-col cols="9">
+      <v-col cols="10">
         <v-card tile class="rounded-tr rounded-td" height="625">
           <v-card-title style="padding: 10px">
             <v-row>
@@ -117,38 +115,36 @@
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
-
                   <v-col cols="12" lg="6">
-      <v-menu
-        ref="menu1"
-        v-model="menu1"
-        :close-on-content-click="false"
-        transition="scale-transition"
-        offset-y
-        min-width="auto"
-      >
-        <template v-slot:activator="{ on, attrs2 }">
-          <v-text-field
-            v-model="date"
-            label="Birth-date"
-            prepend-icon="mdi-calendar"
-            readonly
-            dense
-            color="#FF4F5A"
-            v-bind="attrs2"
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          v-model="date"
-          no-title
-          scrollable
-        >
-        
-        </v-date-picker>
-      </v-menu>
-    </v-col>
-                  
+                    <v-menu
+                      ref="menu1"
+                      v-model="menu1"
+                      :close-on-content-click="false"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs2 }">
+                        <v-text-field
+                          v-model="date"
+                          label="Birth-date"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          dense
+                          color="#FF4F5A"
+                          v-bind="attrs2"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="date"
+                        no-title
+                        scrollable
+                      >
+                      
+                      </v-date-picker>
+                    </v-menu>
+                  </v-col>
                 </v-row>
                 
                 <v-row style="margin-top: 20px">
@@ -157,7 +153,7 @@
                 <v-row>
                   <v-col>
                     <v-text-field
-                      v-model="phone"
+                      v-model="phonenumber"
                       label="Phone"
                       dense
                       color="#FF4F5A"
@@ -228,11 +224,12 @@
               </v-col>
             </slot>
             <slot v-if="selectedOption == 'Orders'">
-              <v-row v-for="(service, i) in ordersList" :key="i">
+              <v-row v-for="(order, i) in ordersList" :key="i">
+                <v-row v-for="(service, j) in order.services" :key="j">
 
                 <v-col cols="2" style="padding: 10px 10px 20px 25px">
                   <v-avatar size="90">
-                    <img class="image" :src="service.imageSrc" />
+                    <img class="image" :src="service.imgUrl[0]"/>
                   </v-avatar>
                 </v-col>
 
@@ -241,10 +238,13 @@
                     <v-list-item-content>
                       <v-list-item-title>{{ service.name }}</v-list-item-title>
                       <v-list-item-subtitle>{{
-                        service.address
+                        service.location
                       }}</v-list-item-subtitle>
                       <v-list-item-subtitle>{{
                         service.description
+                      }}</v-list-item-subtitle>
+                      <v-list-item-subtitle>{{
+                        service.cost
                       }}</v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -256,6 +256,9 @@
                   >
                 </v-col>
 
+                </v-row>
+        
+                
               </v-row>
             </slot>
             
@@ -281,17 +284,18 @@
 import axios from "axios"
 
 export default {
-  data(){
-      return{
+  data() {
+    return {
       selectedOption: "Profile",
       dialog: false,
       username: 'Rana Ayman',
       email: 'ranaayman@gmail.com',
-      // date: '6-10-2000',
+      //date: '6-10-2000',
       oldPassword: '',
       newPassword: '',
-      phone: '0100123456789',
+      phonenumber: '0100123456789',
       address: 'Alexandria',
+
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       menu1: false,
 
@@ -299,7 +303,7 @@ export default {
       message: '',
 
       userData : {
-        ID : 5,
+        id : 5,
         email : 'mostata@gmail.com',
         password : '123',
         type : '',
@@ -349,38 +353,43 @@ export default {
           imageSrc: require("../assets/images/p4.jpg"),
         },
       ],
-    lastNameRules: [
+
+      lastNameRules: [
       (v) => v.length <= 20 || "Name must be less than 20 characters",
-    ],
-    emailRules: [
-      (v) => /.+@.+/.test(v) || "Invalid E-mail",
-    ],
-    passwordRules: [
-      (v) => v.length >= 8 || "Min 8 characters",
-    ],
-    
-      }
-      },
+      ],
+
+      emailRules: [
+        (v) => /.+@.+/.test(v) || "Invalid E-mail",
+      ],
+
+      passwordRules: [
+        (v) => v.length >= 8 || "Min 8 characters",
+      ],
+    }
+  },
   props: ["value"],
   mounted() {
     // request the user data from the database to be showed
-    /*
+    
     axios.get("http://localhost:8080/api/returnUser", {})
     .then((Response) => {
       const Data = Response.data
       this.userData = Data
+      this.username = Data.username ;
+      this.email = Data.email ;
+      this.phonenumber = Data.phonenumber;
     })
-    */
-    // request to get the orders of the user from the database 
 
+    // request to get the orders of the user from the database 
+    this.loadOrders();
   },
   methods : {
     reset(){
+      this.username = this.userData.username;
       this.email = this.userData.email;
       this.phonenumber = this.userData.phonenumber;
     },
     save(){
-      // alert(this.date)
       switch(this.userData.type){
         case "admin" :
           this.saveAdmin() ;
@@ -396,50 +405,64 @@ export default {
     saveCustomer(){
       
       axios.post("http://localhost:8080/api/updateCustomer", {
-        ID : this.userData.ID ,
+        id : this.userData.id ,
         email: this.email,
         password: this.userData.password,
         type : this.userData.type ,
         username: this.username,
-        phoneNumber: this.phonenumber,
+        phonenumber: this.phonenumber,
       })
       .then((Response) => {
         const Data = Response.data
         this.message = Data
         this.snackbar = true
+        if (this.message != "user Updated successfully"){
+          this.resetIfrequestFailed();
+        }
       })
     },
     saveProvider(){
 
       axios.post("http://localhost:8080/api/updateProvider", {
-        ID : this.userData.ID ,
+        id : this.userData.id ,
         email: this.email,
         password: this.userData.password,
         type : this.userData.type ,
         username: this.username,
-        phoneNumber: this.phonenumber,
+        phonenumber: this.phonenumber,
       })
       .then((Response) => {
         const Data = Response.data
         this.message = Data
         this.snackbar = true
+        if (this.message != "user Updated successfully"){
+          this.resetIfrequestFailed();
+        }
       })
     },
     saveAdmin(){
 
       axios.post("http://localhost:8080/api/updateAdmin", {
-        ID : this.userData.ID ,
+        id : this.userData.id ,
         email: this.email,
         password: this.userData.password,
         type : this.userData.type ,
         username: this.username,
-        phoneNumber: this.phonenumber,
+        phonenumber: this.phonenumber,
       })
       .then((Response) => {
         const Data = Response.data
         this.message = Data
         this.snackbar = true
+        if (this.message != "user Updated successfully"){
+          this.resetIfrequestFailed();
+        }
       })
+    },
+    resetIfrequestFailed(){
+      this.username = this.userData.username ;
+      this.email = this.userData.email ;
+      this.phonenumber = this.userData.phonenumber
     },
     savePasswordChange(){
       if (this.oldPassword != this.userData.password){
@@ -457,8 +480,20 @@ export default {
         //request to change the password 
       }
     },
+    loadOrders(){
+      axios.get("http://localhost:8080/api/getUserOrders", {})
+      .then((Response) => {
+        const Data = Response.data
+        this.ordersList = Data ;
+        
+      })
+    },
+    order(){
+      this.selectedOption = 'Orders' ;
+      this.loadOrders();
+    }
 
-  },
+  }
 }
 </script>
 

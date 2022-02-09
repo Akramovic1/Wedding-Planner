@@ -33,7 +33,7 @@
                 <v-col cols="1" style="padding: 10px 10px 0px 15px">
                   <v-avatar size="45">
                     <img
-                      src="..\assets\images\team2.jpg"
+                      src="..\assets\images\team1.jpg"
                       alt="Mostafa el gamed"
                     />
                   </v-avatar>
@@ -176,11 +176,23 @@
           </v-card>
         </v-col>
       </v-row>
+
+      <v-snackbar v-model="snackbar">
+      {{ message }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
     </v-dialog>
   </v-row>
 </template>
 
 <script>
+
+import axios from "axios"
 
 export default {
   props: ["service"],
@@ -188,6 +200,10 @@ export default {
     return {
       dialog5: false,
       serviceInfo: "",
+
+      snackbar: false,
+      message: '',
+
       photos: [
         {
           src: require("../assets/images/hall1.png"),
@@ -209,8 +225,22 @@ export default {
   },
   methods : {
       addToCart(){
-        this.dialog5 = false;
-        document.write(this.service.name);
+        // window.alert(this.service.id);
+        axios.get("http://localhost:8080/api/addServiceToCart", {
+          params: {
+            serviceID: this.service.id,
+            dueDate:'2052-01-09',
+          },
+        })
+        .then((Response) => {
+          const Data = Response.data
+          if (Data == true) 
+            this.message = "service has been added to the cart successfully"
+          else 
+            this.message = "cant book this service at this data, change the data"
+          
+          this.snackbar = true
+        })
       }
   },
   mounted() {

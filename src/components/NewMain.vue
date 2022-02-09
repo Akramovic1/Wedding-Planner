@@ -111,7 +111,7 @@
                   src="../assets/images/gear.png"
                   style="width: 42%"
                   @click="dialog = true"
-                /><MyAccount v-model="dialog" /> </i
+                /><MyAccount v-model="dialog"/> </i
               ><span>MyAccount</span></a
             >
           </li>

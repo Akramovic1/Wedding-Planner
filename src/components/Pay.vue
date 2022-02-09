@@ -22,11 +22,8 @@
           @input-card-cvv="updateCardCvv"
         />              <button
                 class="buy"
-                @click="
-                  value = false
-                  dialog2 = true
-                "
-              >
+                @click="value = false
+                dialog2 = true">
                 <i class="material-icons"></i> Pay
               </button>
               <success v-model="dialog2" />
@@ -40,6 +37,8 @@
 import Success from "./success.vue"
 import CardForm from '@/components/CardForm'
 
+
+
 export default {
   name: "Pay",
   data() {
@@ -51,6 +50,9 @@ export default {
   components: {
     Success,
     CardForm
+  },
+  methods : {
+    
   },
 
   props: ["value"],
