@@ -493,7 +493,19 @@ export default {
       this.loadOrders();
     }
 
-  }
+  },
+    computed: {
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    // eslint-disable-next-line
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
+  },
 }
 </script>
 
