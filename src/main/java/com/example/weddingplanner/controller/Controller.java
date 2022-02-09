@@ -82,12 +82,12 @@ public class Controller {
     }
     @GetMapping("/setPicturesOfService")
     public int setPicturesOfService(@RequestParam(value = "serviceID")int serviceID
-                                    ,@RequestParam(value = "pageNumber")String path){
-      return serviceProviderServices.setPicturesOfService(serviceID,path);
+            ,@RequestParam(value = "pageNumber")String path){
+        return serviceProviderServices.setPicturesOfService(serviceID,path);
     }
     @GetMapping("/removePicturesOfService")
     public int removePicturesOfService(@RequestParam(value = "serviceID")int serviceID
-                                      ,@RequestParam(value = "imgURL")String imgURL){
+            ,@RequestParam(value = "imgURL")String imgURL){
         return serviceProviderServices.removePicturesOfService(serviceID,imgURL);
     }
     @GetMapping("/getPicturesOfService")
@@ -140,15 +140,23 @@ public class Controller {
 
     //addServiceToCart
     @GetMapping("/addServiceToCart")
-    public boolean addServiceToCart(@RequestParam(value = "userID")int userID,
-                                    @RequestParam(value = "serviceID")int serviceID,
-                                    @RequestParam(value = "dueDate")Date dueDate){
-        return cartManagerSystem.addServiceToCart(userID,serviceID,dueDate);
+    public boolean addServiceToCart(@RequestParam(value = "serviceID")int serviceID,
+                                    @RequestParam(value = "dueDate")String dueDate){
+        int userID = userServices.returnUser().getID();
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsedDate= formatter.parse(dueDate);
+            return cartManagerSystem.addServiceToCart(userID,serviceID,parsedDate);
+        }
+        catch (Exception e){
+            System.err.println("Not valid date format");
+            return false;
+        }
     }
     //deleteServiceFromCart
     @GetMapping("/deleteServiceFromCart")
-    public boolean deleteServiceFromCart(@RequestParam(value = "userID")int userID,
-                                         @RequestParam(value = "serviceID")int serviceID){
+    public boolean deleteServiceFromCart(@RequestParam(value = "serviceID")int serviceID){
+        int userID = userServices.returnUser().getID();
         return cartManagerSystem.deleteServiceFromCart(userID,serviceID);
     }
     //deleteServiceFromCartInSpecificDue
@@ -165,18 +173,20 @@ public class Controller {
     }
     //loadCart
     @GetMapping("/loadCart")
-    public cart loadCart(@RequestParam(value = "userID")int userID){
+    public cart loadCart(){
+        int userID = userServices.returnUser().getID();
         return cartManagerSystem.loadCart(userID);
     }
     //pay  returns the order id
     @GetMapping("/pay")
-    public int pay(@RequestParam(value = "userID")int userID,
-                   @RequestParam(value = "paymentMethod")String paymentMethod){
+    public int pay(@RequestParam(value = "paymentMethod")String paymentMethod){
+        int userID = userServices.returnUser().getID();
         return cartManagerSystem.pay(userID,paymentMethod);
     }
     //getUserOrders
     @GetMapping("/getUserOrders")
-    public List<OrderDetailed> getUserOrders(@RequestParam(value = "userID")int userID){
+    public List<OrderDetailed> getUserOrders(){
+        int userID = userServices.returnUser().getID();
         return orderManagerSystem.getUserOrders(userID);
     }
     //getOrderServices
