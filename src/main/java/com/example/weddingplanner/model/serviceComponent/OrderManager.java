@@ -24,7 +24,9 @@ public class OrderManager {
         List<Integer> servicesID=order.getServicesID();
         List<BasicService> services=new ArrayList<>();
         for (int serviceID : servicesID) {
-            services.add(serviceDAO.get(serviceID));
+            BasicService service = serviceDAO.get(serviceID);
+            service.setImgUrl(serviceDAO.getPicturesOfService(service.getID()));
+            services.add(service);
         }
         return services;
     }
