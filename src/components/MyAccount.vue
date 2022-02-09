@@ -117,7 +117,14 @@
                       color="#FF4F5A"
                     ></v-text-field>
                   </v-col>
-
+                  <!-- <v-col>
+                    <v-text-field
+                      v-model="date"
+                      label="Birth-date"
+                      dense
+                      color="#FF4F5A"
+                    ></v-text-field>
+                  </v-col> -->
                   <v-col cols="12" lg="6">
       <v-menu
         ref="menu1"
@@ -349,6 +356,9 @@ export default {
           imageSrc: require("../assets/images/p4.jpg"),
         },
       ],
+    // nameRules: [
+    //   (v) => v.length <= 10 || "Name must be less than 10 characters",
+    // ],
     lastNameRules: [
       (v) => v.length <= 20 || "Name must be less than 20 characters",
     ],
@@ -458,6 +468,18 @@ export default {
       }
     },
 
+  },
+    computed: {
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    // eslint-disable-next-line
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
   },
 }
 </script>
